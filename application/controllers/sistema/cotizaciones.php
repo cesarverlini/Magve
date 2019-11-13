@@ -16,18 +16,18 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function crear_cotizacion()
 	{
-		// if($this->input->is_ajax_request()){
-			// $data = array(				
-			// 	'nombre' => trim($this->input->post('nombre')),
-			// 	'cantidad' => trim($this->input->post('cantidad')),
-			// 	'precio_unitario' => trim($this->input->post('precio')),
-			// 	'total' => trim($this->input->post('total')),
-			// );
+		if($this->input->is_ajax_request()){
+			$data = array(				
+				'nombre' => trim($this->input->post('nombre')),
+				'cantidad' => trim($this->input->post('cantidad')),
+				'precio_unitario' => trim($this->input->post('precio')),
+				'total' => trim($this->input->post('total')),
+			);
 			
-			// $this->Cotizaciones_model->insert_bebidas($data);
+			$this->Cotizaciones_model->insert_bebidas($data);
 			
-		// }else{
-		// 	show_404();
-		// }
+		}else{
+			show_404();
+		}
 	}
 }

@@ -205,17 +205,18 @@ $(document).ready(function () {
 	$('#btnprueba').on('click',function(e){
 		
 		// $.post(base_url+'cotizaciones/crear_cotizacion');
-		$.ajax({
-			type: 'POST',
-			url: base_url+'cotizaciones/crear_cotizacion', //aqui quiero mandar los datos a la bd
-			data: Bebidas,
-			success: function(e) {
-				alert(); // Aquí si puedes, porque estás dentro de una función
-			},
-			error: function(e){
-				alert(e);
-			}
-		});
+		cargar_ajax.run_server_ajax('cotizaciones/crear_cotizacion',Bebidas);
+		// $.ajax({
+		// 	type: 'POST',
+		// 	url: base_url+'cotizaciones/crear_cotizacion', //aqui quiero mandar los datos a la bd
+		// 	data: Bebidas,
+		// 	success: function(e) {
+		// 		alert(); // Aquí si puedes, porque estás dentro de una función
+		// 	},
+		// 	error: function(e){
+		// 		alert(e);
+		// 	}
+		// });
 	});
 });
 
