@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2019 a las 20:14:00
+-- Tiempo de generación: 13-11-2019 a las 23:21:00
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.8
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `magve`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `banquete_bebidas`
+--
+
+CREATE TABLE `banquete_bebidas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `precio_unitario` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -77,6 +91,13 @@ CREATE TABLE `proveedor` (
   `correo` varchar(255) DEFAULT NULL,
   `pagina_web` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id`, `nombre`, `telefono`, `correo`, `pagina_web`) VALUES
+(1, 'Banquete', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -162,6 +183,12 @@ CREATE TABLE `ventas` (
 --
 
 --
+-- Indices de la tabla `banquete_bebidas`
+--
+ALTER TABLE `banquete_bebidas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
@@ -197,8 +224,7 @@ ALTER TABLE `roles`
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_servicios_proveedor` (`id_proveedor`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -219,6 +245,12 @@ ALTER TABLE `ventas`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `banquete_bebidas`
+--
+ALTER TABLE `banquete_bebidas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -242,7 +274,7 @@ ALTER TABLE `detalle_cotizacion_venta`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
