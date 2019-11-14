@@ -136,6 +136,7 @@ $('#navStep7').on('click', function(){
 //=====================================================================================================================================================
 $(document).ready(function () {
 	var Bebidas = [];
+	$('#tablaBebidas').DataTable();
 	var base_url = "http://localhost/magve/";
 	$('#btnAddBebida').on('click', function(e){
 		var nombre = $('#cmbBebida option:selected').text(); // no se si agregar el nombre o el valor del input
@@ -143,14 +144,21 @@ $(document).ready(function () {
 		var precio = $('#txtCantidadBebida').val();
 		var total = parseInt(cantidad) * parseInt(precio);
 
-		Bebidas.push({"nombre":nombre,"cantidad":cantidad,"precio":precio,"total":total});
+		Bebidas.push({
+			'nombre':  $('#cmbBebida option:selected').text(), // no se si agregar el nombre o el valor del input
+			'cantidad': $('#txtCantidadBebida').val(),
+			'precio': $('#txtPrecioBebida').val(),
+			'total':  parseInt(cantidad) * parseInt(precio),
+		});
+		
+		// Bebidas.push({"nombre":nombre,"cantidad":cantidad,"precio":precio,"total":total});
 		$('#tablabebidas').empty();
 		$.each(Bebidas, function(e,v){
 			$('#tablabebidas').append(
 				'<tr>'+
 				'<td>'+v.nombre+'</td>'+
-				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.precio+'</td>'+
+				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.total+'</td>'+
 				'</tr>'
 			);
@@ -171,8 +179,8 @@ $(document).ready(function () {
 			$('#tablaComida').append(
 				'<tr>'+
 				'<td>'+v.nombre+'</td>'+
-				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.precio+'</td>'+
+				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.total+'</td>'+
 				'</tr>'
 			);
@@ -193,8 +201,8 @@ $(document).ready(function () {
 			$('#tablapostres').append(
 				'<tr>'+
 				'<td>'+v.nombre+'</td>'+
-				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.precio+'</td>'+
+				'<td>'+v.cantidad+'</td>'+
 				'<td>'+v.total+'</td>'+
 				'</tr>'
 			);
@@ -202,21 +210,27 @@ $(document).ready(function () {
 				
 	});
 
-	$('#btnprueba').on('click',function(e){
-		
-		// $.post(base_url+'cotizaciones/crear_cotizacion');
-		cargar_ajax.run_server_ajax('cotizaciones/crear_cotizacion',Bebidas);
-		// $.ajax({
-		// 	type: 'POST',
-		// 	url: base_url+'cotizaciones/crear_cotizacion', //aqui quiero mandar los datos a la bd
-		// 	data: Bebidas,
-		// 	success: function(e) {
-		// 		alert(); // Aquí si puedes, porque estás dentro de una función
-		// 	},
-		// 	error: function(e){
-		// 		alert(e);
-		// 	}
+	$('#btnprueba').on('click',function(e){	
+		var data = {
+			Bebida: $('#cmbBebida option:selected').text(),
+			cantidadBebida: $('#txtPrecioBebida').val(),
+			precioBebida: $('#txtCantidadBebida').val(),
+			totalBebida: parseInt($('#txtPrecioBebida').val()) * parseInt($('#txtCantidadBebida').val()),
+			Comida: $('#cmbComida option:selected').text(),
+			cantidadComida: $('#txtPrecioComida').val(),
+			precioComida: $('#txtCantidadComida').val(),
+			totalComida: parseInt($('#txtPrecioComida').val()) * parseInt($('#txtCantidadComida').val()),
+			Postre: $('#cmbPostre option:selected').text(),
+			cantidadPostre: $('#txtPrecioPostre').val(),
+			precioPostre: $('#txtCantidadPostre').val(),
+			totalPostre: parseInt($('#txtPrecioPostre').val()) * parseInt($('#txtCantidadPostre').val()),
+		}	
+		cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_cotizacion',data);			
+
+		// $.each(Bebidas, function(e,v){
+		// 	cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_cotizacion',v);			
 		// });
+		// console.log(data);
 	});
 });
 

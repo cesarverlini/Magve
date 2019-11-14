@@ -33,7 +33,7 @@
                                     <li id="navStep3" class="li-nav" step="#step-3">
                                         <a>
                                             <!-- <h4 class="list-group-item-heading">Paso 2</h4> -->
-                                            <p class="list-group-item-text">Musica</p>
+                                            <p class="list-group-item-text">Fotografia</p>
                                         </a>
                                     </li>
                                     <li id="navStep4" class="li-nav" step="#step-4">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="box-body">                        
-                        <div class="row setup-content primer_paso" id="step-1">
+                        <div class="row setu	p-content primer_paso" id="step-1">
                             <!-- <form name="crear_cotizacion" id="crear_cotizacion" style="margin-top: -20px;"> -->
 							<div class="col-xs-6 text-left"">
 								<label>Servicios</label>
@@ -92,19 +92,54 @@
                                                                   	VISTA DE LOCALES
                           ======================================================================================================================================== -->
                         <div class="row setup-content segundo_paso" id="step-2" style="display: none; margin-top: -40px;">
-                            <form>
-                                
-                            </form>
+							<div class="col-md-12">
+								<div class="col-md-4">
+									<label>Local</label>
+									<select class="form-control" id="cmbLocales">
+										<option value="">Seleccionar...</option>										
+										<option value="1">Local 1</option>
+										<option value="2">Local 2</option>
+										<option value="3">Local 3</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label>Capacidad</label>
+									<input class="form-control" type="number" id="txtLocalCap" min="0" placeholder="Capacidad de personas del local">									
+								</div>
+								<div class="col-md-4">
+									<label>Direccion</label>
+									<input class="form-control" type="text" id="txtLocalAddress" placeholder="Direccion del local">
+								</div>
+								<div class="col-md-4">
+									<label>Costo</label>
+									<input class="form-control" type="number" id="txtCostoLocal" min="0" placeholder="Costo del local">
+								</div>
+							</div>
                         </div>
                         <!--  ========================================================================================================================================
-                        											VISTA DE MUSICA
+                        											VISTA DE FOTOGRAFIA
                         ======================================================================================================================================== -->
-                        <div class="row setup-content tercer_paso" id="step-3" style="display: none; margin-top: -40px;">
-                            <form>
-                                
-                            </form>
+                        <div class="row setup-content tercer_paso" id="step-3" style="display: none; margin-top: -40px;">                            
+							<div class="col-md-12">
+								<div class="col-md-4">
+									<label>Paquete</label>
+									<select class="form-control" id="cmbPaqueteFoto">
+										<option value="">Seleccionar...</option>										
+										<option value="1">Paquete 1</option>
+										<option value="2">Paquete 2</option>
+										<option value="3">Paquete 3</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label>Descripcion</label>
+									<textarea class="form-control" id="txtareaDesc" placeholder="Descripcion del paquete"></textarea>
+								</div>
+								<div class="col-md-4">
+									<label>Costo</label>
+									<input class="form-control" type="number" id="txtCostoFoto" min="0" placeholder="Costo del paquete fotografico">
+								</div>
+							</div>
                         </div>
-
                         <!--  ========================================================================================================================================
                         											VISTA DE REPOSTERIA
                         ======================================================================================================================================== -->
@@ -119,6 +154,7 @@
 							<div id="bebidas" class="col-md-4">
 								<label>Bebida</label>
 								<select class="form-control" id="cmbBebida">
+									<option value="">Seleccionar...</option>
 									<option value="1">Coca-Cola</option>
 									<option value="2">Orchata</option>
 									<option value="3">Alcohol</option>
@@ -138,6 +174,7 @@
 							<div id="Comida" class="col-md-4">
 								<label>Comida</label>
 								<select class="form-control" id="cmbComida">
+									<option value="">Seleccionar...</option>
 									<option value="1">Barbacoa</option>
 									<option value="2">Cabeza</option>
 								</select>
@@ -156,6 +193,7 @@
 							<div id="banquete" class="col-md-4">
 								<label>Postre</label>
 								<select class="form-control" id="cmbPostre">
+									<option value="">Seleccionar...</option>
 									<option value="1">Brownie</option>
 									<option value="2">Pastel</option>
 								</select>
@@ -174,13 +212,13 @@
 							</div>
 
 							<div id="" class="col-md-4">
-								<table>
+								<table id="tablaBebidas">
 									<thead>
 										<tr>
-											<th>Bebida</th>
-											<th>Cantidad</th>
-											<th>Precio</th>
-											<th>Total</th>
+											<th width="30%">Bebida</th>
+											<th width="30%">Precio</th>
+											<th width="30%">Cantidad</th>
+											<th width="30%">Total</th>
 										</tr>
 									</thead>
 									<tbody id="tablabebidas">
@@ -193,10 +231,10 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Comida</th>
-											<th>Cantidad</th>
-											<th>Precio</th>
-											<th>Total</th>
+											<th width="30%">Comida</th>
+											<th width="30%">Precio</th>
+											<th width="30%">Cantidad</th>
+											<th width="30%">Total</th>
 										</tr>
 									</thead>
 									<tbody id="tablaComida">
@@ -209,10 +247,10 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Postre</th>
-											<th>Cantidad</th>
-											<th>Precio</th>
-											<th>Total</th>
+											<th width="30%">Postre</th>
+											<th width="30%">Precio</th>
+											<th width="30%">Cantidad</th>
+											<th width="30%">Total</th>
 										</tr>
 									</thead>
 									<tbody id="tablapostres">
