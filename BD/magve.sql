@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2019 a las 23:21:00
+-- Tiempo de generación: 14-11-2019 a las 21:50:05
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.8
 
@@ -35,6 +35,15 @@ CREATE TABLE `banquete_bebidas` (
   `precio_unitario` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `banquete_bebidas`
+--
+
+INSERT INTO `banquete_bebidas` (`id`, `nombre`, `cantidad`, `precio_unitario`, `total`) VALUES
+(3, 'Coca-Cola', 5, 10, 50),
+(4, 'Orchata', 15, 50, 750),
+(5, 'Alcohol', 20, 15, 300);
 
 -- --------------------------------------------------------
 
@@ -76,6 +85,33 @@ CREATE TABLE `detalle_cotizacion_venta` (
   `cantidad` int(11) DEFAULT NULL,
   `subtotal` int(11) DEFAULT NULL,
   `id_cotizacion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `fotopaquetes`
+--
+
+CREATE TABLE `fotopaquetes` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `costo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `locales`
+--
+
+CREATE TABLE `locales` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `capacidad` int(11) DEFAULT NULL,
+  `costo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -209,6 +245,18 @@ ALTER TABLE `detalle_cotizacion_venta`
   ADD KEY `FK_detalle_servicios` (`id_servicio`);
 
 --
+-- Indices de la tabla `fotopaquetes`
+--
+ALTER TABLE `fotopaquetes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `locales`
+--
+ALTER TABLE `locales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
@@ -250,7 +298,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `banquete_bebidas`
 --
 ALTER TABLE `banquete_bebidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -268,6 +316,18 @@ ALTER TABLE `cotizacion`
 -- AUTO_INCREMENT de la tabla `detalle_cotizacion_venta`
 --
 ALTER TABLE `detalle_cotizacion_venta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `fotopaquetes`
+--
+ALTER TABLE `fotopaquetes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `locales`
+--
+ALTER TABLE `locales`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
