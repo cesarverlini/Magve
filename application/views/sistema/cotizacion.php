@@ -103,26 +103,27 @@
 									<label>Local</label>
 									<select class="form-control" id="cmbLocales">
 										<option value="">Seleccionar...</option>										
-										<option value="1">Local 1</option>
+										<!-- <option value="1">Local 1</option>
 										<option value="2">Local 2</option>
-										<option value="3">Local 3</option>
+										<option value="3">Local 3</option> -->
 									</select>
 								</div>
 								<div class="col-md-4">
 									<label>Fecha</label>
-									<input class="form-control" type="date" id="txtLocal_fecha"  value="2019-11-20" min="0" placeholder="Fecha que desea rentar el local">
+									<input class="form-control" type="date" id="txtLocal_fecha" min="0" placeholder="Fecha que desea rentar el local">
+									<!-- value="2019-11-20" -->
 								</div>
 								<div class="col-md-4">
 									<label>Capacidad</label>
-									<input class="form-control" type="number" id="txtLocalCap" min="0" placeholder="Capacidad de personas del local">									
+									<input class="form-control" type="number" id="txtLocalCap" readonly="true" min="0" placeholder="Capacidad de personas del local">									
 								</div>
 								<div class="col-md-4">
 									<label>Direccion</label>
-									<input class="form-control" type="text" id="txtLocalAddress" placeholder="Direccion del local">
+									<input class="form-control" type="text" id="txtLocalAddress" readonly="true" placeholder="Direccion del local">
 								</div>
 								<div class="col-md-4">
 									<label>Costo</label>
-									<input class="form-control" type="number" id="txtCostoLocal" min="0" placeholder="Costo del local">
+									<input class="form-control" type="number" id="txtCostoLocal" readonly="true" min="0" placeholder="Costo del local">
 								</div>
 							</div>
                         </div>

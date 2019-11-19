@@ -262,13 +262,32 @@ $(document).ready(function () {
 		
 
 	});
-	$('#btnapi').on('click',function(e){	
-		// var cleanUrl = '192.168.0.21/restful/clientes/cliente/1';
-		// window.location = cleanUrl;
-		// window.open('192.168.0.21/restful/clientes/cliente/1');
-		var prueba = cargar_ajax_get.run_server_ajax('restful/clientes/cliente/1');				
-		console.log(prueba);
-	});
+	
 });
 
-
+var locales = [];
+var prueba = [];
+var datos = [];
+$('#btnapi').on('click',function(e){	
+	prueba = cargar_ajax_get.run_server_ajax('Locales/local/');				
+	locales = prueba['locales'];
+	// console.log(prueba['locales']);
+	$.each( prueba['locales'], function( key, value ) {			
+		$('#cmbLocales').append(
+			'<option value="'+value.id+'">'+value.nombre+'</option>'
+		);
+	});
+});
+$('#cmbLocales').change(function(){	
+	var id = $(this).val();
+	// console.log(id);
+	$.each( prueba['locales'], function( key, value ) {			
+		if (value.id == id) {
+			datos = value;
+		}	
+	});
+	$('#txtLocalCap').val(datos.capacidad);
+	$('#txtLocalAddress').val(datos.direccion);
+	$('#txtCostoLocal').val(datos.costo);
+	// $('#txtLocalCap, #txtLocalAddress, #txtCostoLocal').attr('readonly', true);
+});
