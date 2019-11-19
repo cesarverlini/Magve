@@ -70,22 +70,28 @@
 							<div class="col-xs-6 text-left"">
 								<label>Servicios</label>
 								<br>
-								<input type="checkbox" name="vehicle1">Local<br>
-								<input type="checkbox" name="vehicle1">Musica<br>
-								<input type="checkbox" name="vehicle1">Reposteria<br>
-								<input type="checkbox" name="vehicle1">Banquete<br>
+								<input type="checkbox" id="cbxlocal" name="cbxlocal">Local<br>
+								<input type="checkbox" id="cbxfotografia" name="cbxfotografia">Fotografia<br>
+								<input type="checkbox" id="cbxmusica" name="cbxmusica">Musica<br>
+								<input type="checkbox" id="cbxreposteria" name="cbxreposteria">Reposteria<br>
+								<input type="checkbox" id="cbxbanquete" name="cbxbanquete">Banquete<br>
 								<br>
 							</div>
 							<div id="clientes" class="col-md-6">
 								<label>Cliente</label>
 								<input class="form-control"	type="text" id="nombreCliente" placeholder="Introduzca el nombre del cliente">
-
+								
 								<label>Correo</label>
-								<input class="form-control"	type="text" id="nombreCliente" placeholder="Introduzca el correo del cliente">
+								<input class="form-control"	type="text" id="correoCliente" placeholder="Introduzca el correo del cliente">
 
 								<label>Numero de Telefono</label>
-								<input class="form-control"	type="text" id="nombreCliente" placeholder="Introduzca el telefono del cliente">
+								<input class="form-control"	type="text" id="telefonoCliente" placeholder="Introduzca el telefono del cliente">
 							</div>
+							<div class="col-xs-6 text-left" style="margin-top: 50px;">
+								<!-- <a type="button" href="" class="btn btn-default">Cancelar</a> -->
+								<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
+							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
+                       	 	</div>
                             <!-- </form> -->
                         </div>
                          <!--  ========================================================================================================================================
@@ -101,6 +107,10 @@
 										<option value="2">Local 2</option>
 										<option value="3">Local 3</option>
 									</select>
+								</div>
+								<div class="col-md-4">
+									<label>Fecha</label>
+									<input class="form-control" type="date" id="txtLocal_fecha"  value="2019-11-20" min="0" placeholder="Fecha que desea rentar el local">
 								</div>
 								<div class="col-md-4">
 									<label>Capacidad</label>
@@ -132,7 +142,7 @@
 								</div>
 								<div class="col-md-4">
 									<label>Descripcion</label>
-									<textarea class="form-control" id="txtareaDesc" placeholder="Descripcion del paquete"></textarea>
+									<textarea class="form-control" id="txtDesc_foto" placeholder="Descripcion del paquete"></textarea>
 								</div>
 								<div class="col-md-4">
 									<label>Costo</label>

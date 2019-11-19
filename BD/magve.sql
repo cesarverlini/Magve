@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2019 a las 21:50:05
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 19-11-2019 a las 18:22:50
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,29 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `banquete_bebidas`
---
-
-CREATE TABLE `banquete_bebidas` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  `precio_unitario` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `banquete_bebidas`
---
-
-INSERT INTO `banquete_bebidas` (`id`, `nombre`, `cantidad`, `precio_unitario`, `total`) VALUES
-(3, 'Coca-Cola', 5, 10, 50),
-(4, 'Orchata', 15, 50, 750),
-(5, 'Alcohol', 20, 15, 300);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `clientes`
 --
 
@@ -60,6 +37,13 @@ CREATE TABLE `clientes` (
   `correo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nombre`, `apellido_p`, `apellido_m`, `telefono`, `correo`) VALUES
+(36, 'Cesar Verduzco', NULL, NULL, '6622286175', 'cesarvb02@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -68,10 +52,20 @@ CREATE TABLE `clientes` (
 
 CREATE TABLE `cotizacion` (
   `id` int(11) NOT NULL,
-  `id_empleado` int(11) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
-  `fecha_registro` datetime(6) DEFAULT NULL
+  `id_empleado` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`id`, `id_cliente`, `id_empleado`, `total`, `fecha_registro`) VALUES
+(18, 36, 1, 22000, '2019-11-19 10:20:03'),
+(19, NULL, NULL, NULL, '2019-11-19 10:20:04'),
+(20, NULL, NULL, NULL, '2019-11-19 10:20:04');
 
 -- --------------------------------------------------------
 
@@ -81,11 +75,27 @@ CREATE TABLE `cotizacion` (
 
 CREATE TABLE `detalle_cotizacion_venta` (
   `id` int(11) NOT NULL,
-  `id_servicio` int(11) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  `subtotal` int(11) DEFAULT NULL,
-  `id_cotizacion` int(11) DEFAULT NULL
+  `id_cotizacion` int(11) DEFAULT NULL,
+  `tipo_servicio` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `capacidad` varchar(45) DEFAULT NULL,
+  `fecha_renta` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
+  `cantidad` varchar(45) DEFAULT NULL,
+  `sabor` varchar(45) DEFAULT NULL,
+  `marca` varchar(45) DEFAULT NULL,
+  `id_proveedor` int(11) DEFAULT NULL,
+  `costo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalle_cotizacion_venta`
+--
+
+INSERT INTO `detalle_cotizacion_venta` (`id`, `id_cotizacion`, `tipo_servicio`, `nombre`, `direccion`, `capacidad`, `fecha_renta`, `descripcion`, `cantidad`, `sabor`, `marca`, `id_proveedor`, `costo`) VALUES
+(13, 18, 'local', 'Local 2', 'Leocadio Salcedo', '150', '2019-11-20', NULL, NULL, NULL, NULL, NULL, 20000),
+(14, 18, 'fotografia', 'Paquete 2', NULL, NULL, NULL, 'Muchas Fotos', NULL, NULL, NULL, NULL, 2000);
 
 -- --------------------------------------------------------
 
@@ -219,12 +229,6 @@ CREATE TABLE `ventas` (
 --
 
 --
--- Indices de la tabla `banquete_bebidas`
---
-ALTER TABLE `banquete_bebidas`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
@@ -240,9 +244,7 @@ ALTER TABLE `cotizacion`
 -- Indices de la tabla `detalle_cotizacion_venta`
 --
 ALTER TABLE `detalle_cotizacion_venta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_detalle_cotizacion` (`id_cotizacion`),
-  ADD KEY `FK_detalle_servicios` (`id_servicio`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `fotopaquetes`
@@ -295,28 +297,22 @@ ALTER TABLE `ventas`
 --
 
 --
--- AUTO_INCREMENT de la tabla `banquete_bebidas`
---
-ALTER TABLE `banquete_bebidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_cotizacion_venta`
 --
 ALTER TABLE `detalle_cotizacion_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `fotopaquetes`

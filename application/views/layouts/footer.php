@@ -109,6 +109,25 @@
 			return json_result;
 		}
 	}
+
+	var cargar_ajax_get = {
+
+		run_server_ajax: function(_url, _data = null){
+			var json_result = $.ajax({
+			url:'http://192.168.0.21/' + _url,
+			dataType: "json",
+			method: "get",
+			async: false,
+			type: 'post',
+			data: _data, 
+			done: function(response) {
+				return response;
+			}
+			}).responseJSON;
+
+		return json_result;
+	}
+}
 	// FUNCION PARA CARGAR MENSAJES SWAL DESDE LOS CONTROLADORES
 	<?php if(isset($mensajes_swal)){ echo  $mensajes_swal;}?>
 	</script>

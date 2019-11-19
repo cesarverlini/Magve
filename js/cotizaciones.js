@@ -136,7 +136,7 @@ $('#navStep7').on('click', function(){
 //=====================================================================================================================================================
 $(document).ready(function () {
 	var Bebidas = [];
-	$('#tablaBebidas').DataTable();
+	// $('#tablaBebidas').DataTable();
 	var base_url = "http://localhost/magve/";
 	$('#btnAddBebida').on('click', function(e){
 		var nombre = $('#cmbBebida option:selected').text(); // no se si agregar el nombre o el valor del input
@@ -211,26 +211,63 @@ $(document).ready(function () {
 	});
 
 	$('#btnprueba').on('click',function(e){	
-		var data = {
-			Bebida: $('#cmbBebida option:selected').text(),
-			cantidadBebida: $('#txtPrecioBebida').val(),
-			precioBebida: $('#txtCantidadBebida').val(),
-			totalBebida: parseInt($('#txtPrecioBebida').val()) * parseInt($('#txtCantidadBebida').val()),
-			Comida: $('#cmbComida option:selected').text(),
-			cantidadComida: $('#txtPrecioComida').val(),
-			precioComida: $('#txtCantidadComida').val(),
-			totalComida: parseInt($('#txtPrecioComida').val()) * parseInt($('#txtCantidadComida').val()),
-			Postre: $('#cmbPostre option:selected').text(),
-			cantidadPostre: $('#txtPrecioPostre').val(),
-			precioPostre: $('#txtCantidadPostre').val(),
-			totalPostre: parseInt($('#txtPrecioPostre').val()) * parseInt($('#txtCantidadPostre').val()),
-		}	
-		cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_cotizacion',data);			
+		var arrayDatos = [];
+		if ($('#nombreCliente').val() != "" && $('#correoCliente').val() != "" && $('#telefonoCliente').val() != "" ) 
+		{
+			var cliente = {
+				nombre: $('#nombreCliente').val(),
+				correo: $('#correoCliente').val(),
+				telefono: $('#telefonoCliente').val(),
+			}	
+			
+			var respuesta_cliente = cargar_ajax.run_server_ajax('sistema/cotizaciones/Crear_Cliente',cliente);	
+			if (respuesta_cliente) {
+				var cliente_id = {
+					id:respuesta_cliente,
+					id_empleado:1
+				}
+				var respuesta_cotizacion = cargar_ajax.run_server_ajax('sistema/cotizaciones/Crear_Cotizacion',cliente_id);
+				if (respuesta_cotizacion) {
 
-		// $.each(Bebidas, function(e,v){
-		// 	cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_cotizacion',v);			
-		// });
-		// console.log(data);
+					if ($('#cbxlocal').prop('checked')) {
+						var data = {
+							tipo_servicio: 'local',
+							nombre: $('#cmbLocales option:selected').text(),
+							direccion: $('#txtLocalAddress').val(),
+							capacidad: $('#txtLocalCap').val(),
+							costo: $('#txtCostoLocal').val(),
+							fecha_renta: $('#txtLocal_fecha').val(),
+							id_cotizacion: respuesta_cotizacion
+						}	
+						cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_detalle_cotizacion',data);			
+					}
+					if ($('#cbxfotografia').prop('checked')) {
+						var data = {
+							tipo_servicio: 'fotografia',
+							nombre: $('#cmbPaqueteFoto option:selected').text(),
+							descripcion: $('#txtDesc_foto').val(),
+							costo: $('#txtCostoFoto').val(),
+							id_cotizacion: respuesta_cotizacion
+						}
+						cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_detalle_cotizacion',data);			
+					}
+					var cotizacion_id = {
+						id_cotizacion: respuesta_cotizacion
+					}
+					cargar_ajax.run_server_ajax('sistema/cotizaciones/definir_total',cotizacion_id);	
+				}
+			}
+		}		
+			
+		
+
+	});
+	$('#btnapi').on('click',function(e){	
+		// var cleanUrl = '192.168.0.21/restful/clientes/cliente/1';
+		// window.location = cleanUrl;
+		// window.open('192.168.0.21/restful/clientes/cliente/1');
+		var prueba = cargar_ajax_get.run_server_ajax('restful/clientes/cliente/1');				
+		console.log(prueba);
 	});
 });
 

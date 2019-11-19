@@ -14,34 +14,108 @@ class Cotizaciones extends CI_Controller {
 		$this->load->view("sistema/cotizacion");
 		$this->load->view("layouts/footer");
 	}
-	public function crear_cotizacion()
+	public function crear_detalle_cotizacion()
 	{
+		$this->Crear_Cotizacion();
 		// var_dump($this->input->post());
-		if($this->input->is_ajax_request()){
-			$bebidas = array(				
-				'nombre' => trim($this->input->post('Bebida')),
-				'cantidad' => trim($this->input->post('cantidadBebida')),
-				'precio_unitario' => trim($this->input->post('precioBebida')),
-				'total' => trim($this->input->post('totalBebida')),
-			);
-			$comidas = array(				
-				'nombre' => trim($this->input->post('Comida')),
-				'cantidad' => trim($this->input->post('cantidadComida')),
-				'precio_unitario' => trim($this->input->post('precioComida')),
-				'total' => trim($this->input->post('totalComida')),
-			);
-			// $this->Cotizaciones_model->insert_comidas($bebidas);
-			$postres = array(				
-				'nombre' => trim($this->input->post('Postre')),
-				'cantidad' => trim($this->input->post('cantidadPostre')),
-				'precio_unitario' => trim($this->input->post('precioPostre')),
-				'total' => trim($this->input->post('totalPostre')),
-			);
-			// $this->Cotizaciones_model->insert_bebidas($bebidas);		
-			$this->Cotizaciones_model->insert_bebidas($bebidas,$comidas,$postres);
+		if($this->input->is_ajax_request()){	
+
+			if ($this->input->post('tipo_servicio') == 'local') {
+				$locales = array(
+					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
+					'nombre' => trim($this->input->post('nombre')), 
+					'direccion' => trim($this->input->post('direccion')), 
+					'capacidad' => trim($this->input->post('capacidad')), 
+					'costo' => trim($this->input->post('costo')), 
+					'fecha_renta' => trim($this->input->post('fecha_renta')),
+					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
+				);
+				$this->Cotizaciones_model->insert_servicios($locales);		
+			}else if ($this->input->post('tipo_servicio') == 'fotografia') {
+				$fotos = array(
+					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
+					'nombre' => trim($this->input->post('nombre')), 
+					'descripcion' => trim($this->input->post('descripcion')), 
+					'costo' => trim($this->input->post('costo')), 
+					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
+				);
+				$this->Cotizaciones_model->insert_servicios($fotos);		
+			}else{ //para registrar solo al cliente
+
+			}
+
+			// $this->Cotizaciones_model->insert_bebidas($bebidas,$comidas,$postres);
 			
 		}else{
 			show_404();
 		}
 	}
+	function Crear_Cotizacion()
+	{
+		if($this->input->is_ajax_request()){
+			// var_dump($this->input->post());
+			$cotizacion = array(				
+				'id_empleado' => $this->input->post('id_empleado'), 
+				'id_cliente' => $this->input->post('id')			
+			);
+			$respuesta = $this->Cotizaciones_model->insert_cotizacion($cotizacion);					
+			echo $respuesta;
+		}
+	}
+	public function Crear_Cliente()
+	{
+		if($this->input->is_ajax_request()){
+			$cliente = array(				
+				'nombre' => trim($this->input->post('nombre')), 
+				'correo' => trim($this->input->post('correo')), 
+				'telefono' => trim($this->input->post('telefono')), 
+			);
+			$respuesta = $this->Cotizaciones_model->insert_clientes($cliente);
+			echo $respuesta;					
+		}
+
+	}
+	public function definir_total()
+	{
+		if($this->input->is_ajax_request()){
+			// $cotizacion = array(				
+			// 	'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
+			// );
+			$id_cotizacion = trim($this->input->post('id_cotizacion'));
+			$respuesta = $this->Cotizaciones_model->get_detalles($id_cotizacion);
+			if ($respuesta) {
+				$costo = 0;
+				foreach ($respuesta->result() as $row) {
+					$costo += $row->costo;
+				}
+				// echo $costo_total;
+				$costo_total = array(
+					'total' => $costo
+				);
+				$respuesta = $this->Cotizaciones_model->set_costototal($id_cotizacion,$costo_total);
+				
+			}
+		}
+	}
 }
+
+
+// $bebidas = array(				
+// 	'nombre' => trim($this->input->post('Bebida')),
+// 	'cantidad' => trim($this->input->post('cantidadBebida')),
+// 	'precio_unitario' => trim($this->input->post('precioBebida')),
+// 	'total' => trim($this->input->post('totalBebida')),
+// );
+// $comidas = array(				
+// 	'nombre' => trim($this->input->post('Comida')),
+// 	'cantidad' => trim($this->input->post('cantidadComida')),
+// 	'precio_unitario' => trim($this->input->post('precioComida')),
+// 	'total' => trim($this->input->post('totalComida')),
+// );
+// // $this->Cotizaciones_model->insert_comidas($bebidas);
+// $postres = array(				
+// 	'nombre' => trim($this->input->post('Postre')),
+// 	'cantidad' => trim($this->input->post('cantidadPostre')),
+// 	'precio_unitario' => trim($this->input->post('precioPostre')),
+// 	'total' => trim($this->input->post('totalPostre')),
+// );
