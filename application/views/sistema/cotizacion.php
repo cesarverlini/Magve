@@ -109,7 +109,7 @@
 									</select>
 								</div>
 								<div class="col-md-4">
-									<label>Fecha</label>
+									<label>Fecha Tentativa de renta</label>
 									<input class="form-control" type="date" id="txtLocal_fecha" min="0" placeholder="Fecha que desea rentar el local">
 									<!-- value="2019-11-20" -->
 								</div>

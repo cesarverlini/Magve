@@ -262,22 +262,24 @@ $(document).ready(function () {
 		
 
 	});
-	
 });
 
 var locales = [];
 var prueba = [];
 var datos = [];
-$('#btnapi').on('click',function(e){	
-	prueba = cargar_ajax_get.run_server_ajax('Locales/local/');				
-	locales = prueba['locales'];
-	// console.log(prueba['locales']);
-	$.each( prueba['locales'], function( key, value ) {			
-		$('#cmbLocales').append(
-			'<option value="'+value.id+'">'+value.nombre+'</option>'
-		);
-	});
+$('#cbxlocal').change(function(){
+	if ($(this).is( ":checked" )) {
+		prueba = cargar_ajax_get.run_server_ajax('Locales/local/');				
+		locales = prueba['locales'];
+		// console.log(prueba['locales']);
+		$.each( prueba['locales'], function( key, value ) {			
+			$('#cmbLocales').append(
+				'<option value="'+value.id+'">'+value.nombre+'</option>'
+			);
+		});
+	}
 });
+
 $('#cmbLocales').change(function(){	
 	var id = $(this).val();
 	// console.log(id);
@@ -290,4 +292,14 @@ $('#cmbLocales').change(function(){
 	$('#txtLocalAddress').val(datos.direccion);
 	$('#txtCostoLocal').val(datos.costo);
 	// $('#txtLocalCap, #txtLocalAddress, #txtCostoLocal').attr('readonly', true);
+	
+	// console.log(disponibilidad);				
+});
+$('#txtLocal_fecha').change(function(){
+	var disponibilidad = cargar_ajax_get.run_server_ajax('Locales/disponibilidad/'+datos.id);
+	var fecha_seleccionada = $(this).val();
+	if (disponibilidad[0].fecha_renta == fecha_seleccionada) {
+		alert("El local ya esta rentado la fecha seleccionada");
+		$(this).val("");
+	}
 });
