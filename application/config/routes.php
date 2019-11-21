@@ -5,6 +5,7 @@ $route['default_controller'] = 'auth';
 
 // Rutas para venta
 $route['ventas'] = 'sistema/ventas';
+$route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
 
 // rutas del sistema
 $route['404_override'] = '';

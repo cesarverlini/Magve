@@ -13,7 +13,7 @@
 						Necesitas generar una cotización para poder partir de ese punto
 						y realizar el checkout.
 					</p>
-					<p><a class="btn btn-success btn-lg" href="#" role="button">Crear cotización</a></p>
+					<p><a class="btn btn-success btn-lg" href="<?php echo base_url('sistema/cotizaciones'); ?>" role="button">Crear cotización</a></p>
 				</div>
 			</div>
 		</div>
@@ -39,16 +39,48 @@
 					<tr>
 						<th>Numero cotización</th>
 						<th>Nombre del cliente</th>
+						<th>Empleado cotizador</th>
+						<th>Total cotización (MX)</th>
 						<th>Fecha de cotización</th>
 						<th>Acción</th>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>1</td>
 						<td>Isaí Madueño Guerrero</td>
 						<td>Hace mucho</td>
 						<td><a href="#">Ver cotización</a></td>
-					</tr>
+					</tr> -->
+					<?php foreach($cotizaciones as $row){ ?>
+						<tr>
+							<td><?php echo $row['id']; ?></td>
+							<td><?php echo $row['id_cliente']; ?></td>
+							<td><?php echo $row['id_empleado']; ?></td>
+							<td><?php echo $row['total']; ?></td>
+							<td><?php echo $row['fecha']; ?></td>
+							<td><a href="<?php echo base_url('ventas/verificar-cotizacion/'.$row['id']); ?>">Ver Cotización</a></td>
+
+						</tr>
+					<?php } ?> 
 				</table>
+				<div class="block">
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li class="disabled">
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+							</li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	</section><!-- /.content -->
