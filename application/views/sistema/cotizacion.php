@@ -67,43 +67,52 @@
                     <div class="box-body">                        
                         <div class="row setup-content primer_paso" id="step-1">
                             <!-- <form name="crear_cotizacion" id="crear_cotizacion" style="margin-top: -20px;"> -->
-							<div class="col-xs-6 text-left"">
-								<label>Servicios</label>
-								<br>
-								<li>									
-									<input type="checkbox" id="cbxlocal" name="cbxlocal">Local<br>
-								</li>
-								<li>
-									<input type="checkbox" id="cbxfotografia" name="cbxfotografia">Fotografia<br>
-								</li>
-								<li>
-									<input type="checkbox" id="cbxbanquete" name="cbxbanquete">Banquete<br>
-								</li>
-								<li>
-									<input type="checkbox" id="cbximprenta" name="cbxmusica">Imprenta<br>
-								</li>
-								<li>
-									<input type="checkbox" id="cbxdecoracion" name="cbxreposteria">Decoraciones<br>
-								</li>
-								<br>
+							<div class="col-md-6 text-left">
+								<label class="">Servicios</label>
+
+								<ul class="list-group">
+									<li class="list-group-item">
+										<input class="form-check-input" type="checkbox" id="cbxlocal" name="cbxlocal">
+										<label for="cbxlocal">Local</label>
+									</li>
+									<li class="list-group-item">
+										<input type="checkbox" id="cbxfotografia" name="cbxfotografia">
+										<label for="cbxfotografia">Fotografía</label>
+									</li>
+									<li class="list-group-item">
+										<input type="checkbox" id="cbxbanquete" name="cbxbanquete">
+										<label for="cbxbanquete">Banquete</label>
+									</li>
+									<li class="list-group-item">
+										<input type="checkbox" id="cbximprenta" name="cbxmusica">
+										<label for="cbxmusica">Musica</label>
+									</li>
+									<li class="list-group-item">
+										<input type="checkbox" id="cbxdecoracion" name="cbxreposteria">
+										<label for="cbxreposteria">Reposteria</label>
+									</li>
+								</ul>
 							</div>
+
 							<div id="clientes" class="col-md-6">
 								<label>Cliente</label>
 								<input class="form-control"	type="text" id="nombreCliente" placeholder="Introduzca el nombre del cliente">
-								
+								<small claas="text-muted"></small>
+								<br>
 								<label>Correo</label>
 								<input class="form-control"	type="text" id="correoCliente" placeholder="Introduzca el correo del cliente">
-
+								<br>
 								<label>Numero de Telefono</label>
 								<input class="form-control"	type="text" id="telefonoCliente" placeholder="Introduzca el telefono del cliente">
 							</div>
 							<div class="col-xs-6 text-left" style="margin-top: 50px;">
-								<!-- <a type="button" href="" class="btn btn-default">Cancelar</a> -->
-								<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
+								<!-- <a type="button" href="" class="btn btn-default">Cancelar</a> 
+								<button type="button" id="btnapi" class="btn btn-primary">prueba</button>-->
 							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
                        	 	</div>
                             <!-- </form> -->
                         </div>
+						<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
                          <!--  ========================================================================================================================================
                                                                   	VISTA DE LOCALES
                           ======================================================================================================================================== -->

@@ -7,6 +7,7 @@ class Cotizaciones extends CI_Controller {
 		parent::__construct();	
 		$this->load->model('Cotizaciones_model');
 	}
+	
 	public function index()
 	{		
 		$this->load->view("layouts/header");
