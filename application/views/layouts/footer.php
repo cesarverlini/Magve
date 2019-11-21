@@ -90,7 +90,7 @@
 		)
 		return false;
 	});
-	// FUNCION PARA CARGAR AJAX DESDE CUALQUIER ARCHIVO JS o <script> DEL SISTEMA
+	// FUNCIONES PARA CARGAR AJAX DESDE CUALQUIER ARCHIVO JS o <script> DEL SISTEMA
 	var cargar_ajax = {
 
 		run_server_ajax: function(_url, _data = null){
@@ -110,11 +110,30 @@
 		}
 	}
 
+	var cargar_ajax_put = {
+
+		run_server_ajax: function(_url, _data = null){
+			var json_result = $.ajax({
+			url: 'http://localhost/api_locales/index.php/' + _url,
+			dataType: "json",
+			method: "put",
+			async: false,
+			type: 'post',
+			data: _data, 
+			done: function(response) {
+				return response;
+			}
+			}).responseJSON;
+
+			return json_result;
+		}
+	}
+
 	var cargar_ajax_get = {
 
 		run_server_ajax: function(_url, _data = null){
 			var json_result = $.ajax({
-			url:'http://192.168.0.4/api_locales/index.php/' + _url,
+			url:'http://localhost/api_locales/index.php/' + _url,
 			dataType: "json",
 			method: "get",
 			async: false,
@@ -127,6 +146,8 @@
 
 		return json_result;
 	}
+	
+	
 }
 	// FUNCION PARA CARGAR MENSAJES SWAL DESDE LOS CONTROLADORES
 	<?php if(isset($mensajes_swal)){ echo  $mensajes_swal;}?>
