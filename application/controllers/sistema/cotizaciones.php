@@ -20,7 +20,11 @@ class Cotizaciones extends CI_Controller {
 		// $this->Crear_Cotizacion();
 		// var_dump($this->input->post());
 		if($this->input->is_ajax_request()){	
-
+			// $datos = ($this->input->post());
+			// var_dump($datos);
+			// foreach ($datos as $key => $value) {
+				
+			// }
 			if ($this->input->post('tipo_servicio') == 'local') {
 				$locales = array(
 					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
@@ -38,6 +42,7 @@ class Cotizaciones extends CI_Controller {
 					'nombre' => trim($this->input->post('nombre')), 
 					'descripcion' => trim($this->input->post('descripcion')), 
 					'costo' => trim($this->input->post('costo')), 
+					'fecha_renta' => trim($this->input->post('fecha_renta')),
 					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
 				);
 				$this->Cotizaciones_model->insert_servicios($fotos);		
@@ -48,6 +53,7 @@ class Cotizaciones extends CI_Controller {
 					'nombre' => trim($this->input->post('nombre')), 
 					'descripcion' => trim($this->input->post('descripcion')), 
 					'costo' => trim($this->input->post('costo')), 
+					'fecha_renta' => trim($this->input->post('fecha_renta')),
 					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
 				);
 				$this->Cotizaciones_model->insert_servicios($banquete);		
@@ -57,44 +63,23 @@ class Cotizaciones extends CI_Controller {
 					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
 					'nombre' => trim($this->input->post('nombre')), 
 					'descripcion' => trim($this->input->post('descripcion')), 
-					'costo' => trim($this->input->post('costo')), 
+					'costo' => trim($this->input->post('costo')),
+					'fecha_renta' => trim($this->input->post('fecha_renta')),
 					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
 				);
 				$this->Cotizaciones_model->insert_servicios($impresiones);		
 			}
-			else if ($this->input->post('tipo_servicio') == 'decoraciones') {
+			else if ($this->input->post('tipo_servicio') == 'decoracion') {
 				$decoraciones = array(
 					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
 					'nombre' => trim($this->input->post('nombre')), 
 					'descripcion' => trim($this->input->post('descripcion')), 
 					'costo' => trim($this->input->post('costo')), 
+					'fecha_renta' => trim($this->input->post('fecha_renta')),
 					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
 				);
-				$this->Cotizaciones_model->insert_servicios($fotos);		
-			}
-			// else if ($this->input->post('tipo_servicio') == 'fotografia') {
-			// 	$fotos = array(
-			// 		'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-			// 		'nombre' => trim($this->input->post('nombre')), 
-			// 		'descripcion' => trim($this->input->post('descripcion')), 
-			// 		'costo' => trim($this->input->post('costo')), 
-			// 		'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-			// 	);
-			// 	$this->Cotizaciones_model->insert_servicios($fotos);		
-			// }
-			// else if ($this->input->post('tipo_servicio') == 'fotografia') {
-			// 	$fotos = array(
-			// 		'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-			// 		'nombre' => trim($this->input->post('nombre')), 
-			// 		'descripcion' => trim($this->input->post('descripcion')), 
-			// 		'costo' => trim($this->input->post('costo')), 
-			// 		'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-			// 	);
-			// 	$this->Cotizaciones_model->insert_servicios($fotos);		
-			// }
-			
-
-			// $this->Cotizaciones_model->insert_bebidas($bebidas,$comidas,$postres);
+				$this->Cotizaciones_model->insert_servicios($decoraciones);		
+			}			
 			
 		}else{
 			show_404();
@@ -124,7 +109,8 @@ class Cotizaciones extends CI_Controller {
 			// echo $respuesta;
 			$cotizacion = array(				
 				'id_empleado' => 1, 
-				'id_cliente' => $respuesta			
+				'id_cliente' => $respuesta,
+				'total' => 	trim($this->input->post('total'))		
 			);
 			$respuestacot = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
 			echo $respuestacot;

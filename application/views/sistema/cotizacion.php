@@ -111,8 +111,8 @@
 							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
                        	 	</div>
                             <!-- </form> -->
+							<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
                         </div>
-						<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
                          <!--  ========================================================================================================================================
                                                                   	VISTA DE LOCALES
                           ======================================================================================================================================== -->
@@ -159,7 +159,7 @@
 							</div>
 							<div class="col-md-12">
 								<br>
-								<button type="button" id="btnCarritoLocal" class="btn btn-primary">Agregar a Carrito</button>
+								<!-- <button type="button" id="btnCarritoLocal" class="btn btn-primary">Agregar a Carrito</button> -->
 							</div>
 
                         </div>
@@ -184,9 +184,9 @@
 									<label>Paquete</label>
 									<select class="form-control" id="cmbPaqueteFoto">
 										<option value="">Seleccionar...</option>										
-										<option value="1">Paquete 1</option>
-										<option value="2">Paquete 2</option>
-										<option value="3">Paquete 3</option>
+										<option value="1">Paquete fotos 1</option>
+										<option value="2">Paquete fotos 2</option>
+										<option value="3">Paquete fotos 3</option>
 									</select>
 								</div>
 								<div class="col-md-4">
@@ -200,14 +200,48 @@
 							</div>
 							<div class="col-md-12">
 								<br>
-								<button type="button" id="btnCarritoFoto" class="btn btn-primary">Agregar a Carrito</button>
+								<!-- <button type="button" id="btnCarritoFoto" class="btn btn-primary">Agregar a Carrito</button> -->
 							</div>
                         </div>
                         <!--  ========================================================================================================================================
                         											VISTA DE BANQUETE
                         ======================================================================================================================================== -->
                         <div class="row setup-content cuarto_paso" id="step-4" style="display: none; margin-top: -40px;">                    
-						
+						<div class="col-md-12">
+								<h4>Filtrar disponibilidad</h4>
+								<br>
+								<div class="col-md-4">
+									<label>Fecha</label>
+									<input class="form-control fecha_renta" type="date" id="filtroBanquete_fecha" min="0" placeholder="Fecha que desea rentar el local">
+									<!-- value="2019-11-20" -->
+								</div>
+							</div>
+							<div class="col-md-12">
+								<br>								
+								<h4>Seleccionar paquetes disponibles</h4>
+								<br>
+								<div class="col-md-4">
+									<label>Paquete</label>
+									<select class="form-control" id="cmbPaqueteBanquete">
+										<option value="">Seleccionar...</option>										
+										<option value="1">Paquete banquete 1</option>
+										<option value="2">Paquete banquete 2</option>
+										<option value="3">Paquete banquete 3</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label>Descripcion</label>
+									<textarea class="form-control" id="txtDesc_banquete" placeholder="Descripcion del paquete"></textarea>
+								</div>
+								<div class="col-md-4">
+									<label>Costo</label>
+									<input class="form-control" type="number" id="txtCostoBanquete" min="0" placeholder="Costo del paquete fotografico">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<br>
+								<!-- <button type="button" id="btnCarritoFoto" class="btn btn-primary">Agregar a Carrito</button> -->
+							</div>
                         </div>
 
                         <!--  ========================================================================================================================================
@@ -231,9 +265,9 @@
 									<label>Paquete</label>
 									<select class="form-control" id="cmbPaqueteImprenta">
 										<option value="">Seleccionar...</option>										
-										<option value="1">Paquete 1</option>
-										<option value="2">Paquete 2</option>
-										<option value="3">Paquete 3</option>
+										<option value="1">Paquete imprenta 1</option>
+										<option value="2">Paquete imprenta 2</option>
+										<option value="3">Paquete imprenta 3</option>
 									</select>
 								</div>
 								<div class="col-md-4">
@@ -247,7 +281,7 @@
 							</div>
 							<div class="col-md-12">
 								<br>
-								<button type="button" id="btnCarritoImprenta" class="btn btn-primary">Agregar a Carrito</button>
+								<!-- <button type="button" id="btnCarritoImprenta" class="btn btn-primary">Agregar a Carrito</button> -->
 							</div>
 						</div>
 					<!--========================================================================================================================================
@@ -287,7 +321,7 @@
 							</div>
 							<div class="col-md-12">
 								<br>
-								<button type="button" id="btnCarritoDecoracion" class="btn btn-primary">Agregar a Carrito</button>
+								<!-- <button type="button" id="btnCarritoDecoracion" class="btn btn-primary">Agregar a Carrito</button> -->
 							</div>
 						</div>
 					<!--========================================================================================================================================
@@ -301,13 +335,12 @@
 						<!--========================================================================================================================================
                         											TABLA CARRITO
 						======================================================================================================================================== -->
-						<div class="col-xs-10 text-left" style="margin-top: 50px;">								
+						<!-- <div class="col-xs-10 text-left" style="margin-top: 50px;">								
 							<table>
 								<thead>
 									<tr>
 										<th width="200px">Tipo Servicio</th>
-										<th width="200px">Nombre</th>
-										<!-- <th width="30%">Direccion</th> -->
+										<th width="200px">Nombre</th>										
 										<th width="200px">Costo</th>
 									</tr>
 								</thead>
@@ -315,7 +348,7 @@
 									
 								</tbody>
 							</table>
-						</div>
+						</div> -->
 					<!--========================================================================================================================================
                         											Botones footer
 						======================================================================================================================================== -->

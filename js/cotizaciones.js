@@ -231,27 +231,101 @@ var datos_cotizacion = [];
 var respuesta_cliente = 0;
 $('#btnprueba').on('click',function(e){	
 	var arrayDatos = [];
-	// if ($('#nombreCliente').val() != "" && $('#correoCliente').val() != "" && $('#telefonoCliente').val() != "" ) 
-	// {
+	if ($('#nombreCliente').val() != "" && $('#correoCliente').val() != "" && $('#telefonoCliente').val() != "" ) 
+	{
+		var TotalCotizacion = 0;
+		datos_cotizacion = [];
+		if ($('#cbxlocal').prop('checked')) {
+			var locales = {
+				tipo_servicio: 'local',
+				nombre: $('#cmbLocales option:selected').text(),
+				direccion: $('#txtLocalAddress').val(),
+				capacidad: $('#txtLocalCap').val(),
+				costo: $('#txtCostoLocal').val(),
+				fecha_renta: $('#filtroLocal_fecha').val(),
+				id_cotizacion: 0
+			}	
+			TotalCotizacion = parseInt(TotalCotizacion) + parseInt($('#txtCostoLocal').val())
+			datos_cotizacion.push(locales);
+		}
+		if ($('#cbxfotografia').prop('checked')) {
+			var fotografia = {
+				tipo_servicio: 'fotografia',
+				nombre: $('#cmbPaqueteFoto option:selected').text(),
+				descripcion: $('#txtDesc_foto').val(),
+				costo: $('#txtCostoFoto').val(),
+				fecha_renta: $('#filtroFoto_fecha').val(),
+				id_cotizacion: respuesta_cliente
+			}
+			TotalCotizacion = parseInt(TotalCotizacion) + parseInt($('#txtCostoFoto').val())
+			datos_cotizacion.push(fotografia);
+		}
+		if ($('#cbximprenta').prop('checked')) {
+			var imprenta = {
+				tipo_servicio: 'imprenta',
+				nombre: $('#cmbPaqueteImprenta option:selected').text(),
+				descripcion: $('#txtDesc_imprenta').val(),
+				costo: $('#txtCostoImprenta').val(),
+				fecha_renta: $('#filtroImprenta_fecha').val(),
+				id_cotizacion: respuesta_cliente
+			}
+			TotalCotizacion = parseInt(TotalCotizacion) + parseInt($('#txtCostoImprenta').val())
+			datos_cotizacion.push(imprenta);
+		}
+		if ($('#cbxbanquete').prop('checked')) {
+			var banquete = {
+				tipo_servicio: 'banquete',
+				nombre: $('#cmbPaqueteBanquete option:selected').text(),
+				descripcion: $('#txtDesc_banquete').val(),
+				costo: $('#txtCostoBanquete').val(),
+				fecha_renta: $('#filtroBanquete_fecha').val(),
+				id_cotizacion: respuesta_cliente
+			}
+			TotalCotizacion = parseInt(TotalCotizacion) + parseInt($('#txtCostoBanquete').val())
+			datos_cotizacion.push(banquete);
+		}
+		if ($('#cbxdecoracion').prop('checked')) {
+			var decoracion = {
+				tipo_servicio: 'decoracion',
+				nombre: $('#cmbPaqueteDecoracion option:selected').text(),
+				descripcion: $('#txtDesc_decoracion').val(),
+				costo: $('#txtCostoDecoracion').val(),
+				fecha_renta: $('#filtroDecoracion_fecha').val(),
+				id_cotizacion: respuesta_cliente
+			}
+			TotalCotizacion = parseInt(TotalCotizacion) + parseInt($('#txtCostoDecoracion').val())
+			datos_cotizacion.push(decoracion);
+		}
 		var cliente = {
 			nombre: $('#nombreCliente').val(),
 			correo: $('#correoCliente').val(),
 			telefono: $('#telefonoCliente').val(),
-		}	
-		
+			total: TotalCotizacion
+		}					
+		// console.log(locales);	
 		respuesta_cliente = cargar_ajax.run_server_ajax('sistema/cotizaciones/Crear_Cliente',cliente);				
-		if (respuesta_cliente) {
-				$.each(datos_cotizacion, function( key, value ) {		
-					cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_detalle_cotizacion',value);	
-				});				
-				var cotizacion_id = {
-					id_cotizacion: respuesta_cliente
-				}
-				cargar_ajax.run_server_ajax('sistema/cotizaciones/definir_total',cotizacion_id);	
-			}
+		if (respuesta_cliente) 
+		{
+			var id_cotizacion = respuesta_cliente;
+			if ($('#cbxfotografia').prop('checked')) { locales['id_cotizacion'] = id_cotizacion}
+			if ($('#cbxlocal').prop('checked')) { fotografia['id_cotizacion'] = id_cotizacion}
+			if ($('#cbximprenta').prop('checked')) { imprenta['id_cotizacion'] = id_cotizacion}
+			if ($('#cbxbanquete').prop('checked')) { banquete['id_cotizacion'] = id_cotizacion}
+			if ($('#cbxdecoracion').prop('checked')) { decoracion['id_cotizacion'] = id_cotizacion}
+			// datos_cotizacion.push(id_cotizacion);
+			$.each(datos_cotizacion, function( key, value ) {		
+				var respuesta;
+					respuesta += cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_detalle_cotizacion',value);
+					console.log(respuesta);	
+			});				
+			// var cotizacion_id = {
+			// 	id_cotizacion: respuesta_cliente
+			// }
+			// cargar_ajax.run_server_ajax('sistema/cotizaciones/definir_total',cotizacion_id);	
+		}
 			// console.log(datos_cotizacion);
-		// }
-	// }		
+	}
+			
 	
 
 });
@@ -261,18 +335,7 @@ $('#btnprueba').on('click',function(e){
 
 
 $('#btnCarritoLocal').on('click',function(){
-	if ($('#cbxlocal').prop('checked')) {
-		var locales = {
-			tipo_servicio: 'local',
-			nombre: $('#cmbLocales option:selected').text(),
-			direccion: $('#txtLocalAddress').val(),
-			capacidad: $('#txtLocalCap').val(),
-			costo: $('#txtCostoLocal').val(),
-			fecha_renta: $('#filtroLocal_fecha').val(),
-			id_cotizacion: respuesta_cliente
-		}	
-		datos_cotizacion.push(locales);
-	}
+	
 	// console.log(datos_cotizacion);
 	// $('#tablaCarrito').empty();	
 	$.each(datos_cotizacion, function( key, value ) {	
@@ -291,16 +354,7 @@ $('#btnCarritoLocal').on('click',function(){
 	
 });
 $('#btnCarritoFoto').on('click',function(){
-	if ($('#cbxfotografia').prop('checked')) {
-		var fotografia = {
-			tipo_servicio: 'fotografia',
-			nombre: $('#cmbPaqueteFoto option:selected').text(),
-			descripcion: $('#txtDesc_foto').val(),
-			costo: $('#txtCostoFoto').val(),
-			fecha_renta: $('#filtroFoto_fecha').val(),
-			id_cotizacion: respuesta_cliente
-		}
-		datos_cotizacion.push(fotografia);
+	
 		$.each(datos_cotizacion, function( key, value ) {	
 		if (value.tipo_servicio == 'fotografia') {
 			$('#tablaCarrito').append(
@@ -313,19 +367,9 @@ $('#btnCarritoFoto').on('click',function(){
 			);
 		}	
 	});
-	}
 });
 $('#btnCarritoImprenta').on('click',function(){
-	if ($('#cbximprenta').prop('checked')) {
-		var imprenta = {
-			tipo_servicio: 'imprenta',
-			nombre: $('#cmbPaqueteImprenta option:selected').text(),
-			descripcion: $('#txtDesc_imprenta').val(),
-			costo: $('#txtCostoImprenta').val(),
-			fecha_renta: $('#filtroImprenta_fecha').val(),
-			id_cotizacion: respuesta_cliente
-		}
-		datos_cotizacion.push(imprenta);
+	
 		$.each(datos_cotizacion, function( key, value ) {	
 			if (value.tipo_servicio == 'imprenta') {
 				$('#tablaCarrito').append(
@@ -338,46 +382,25 @@ $('#btnCarritoImprenta').on('click',function(){
 				);
 			}	
 		});
-	}
 });
-// $('#btnCarritoBanquete').on('click',function(){
-// 	if ($('#cbxbanquete').prop('checked')) {
-// 		var banquete = {
-// 			tipo_servicio: 'banquete',
-// 			nombre: $('#cmbLocales option:selected').text(),
-// 			direccion: $('#txtLocalAddress').val(),
-// 			capacidad: $('#txtLocalCap').val(),
-// 			costo: $('#txtCostoLocal').val(),
-// 			fecha_renta: $('#txtLocal_fecha').val(),
-// 			id_cotizacion: respuesta_cotizacion
-// 		}	
-// 		datos_cotizacion.push(banquete);
-// 		$.each(datos_cotizacion, function( key, value ) {	
-// 			if (value.tipo_servicio == 'banquete') {
-// 				$('#tablaCarrito').append(
-// 					'<tr>'+
-// 						'<td>'+value.tipo_servicio+'</td>'+
-// 						'<td>'+value.nombre+'</td>'+
-// 						'<td>'+value.costo+'</td>'+
-// 					'</tr>'
-// 					// '<option value="">'+"Seleccionar..."+'</option>'
-// 				);
-// 			}	
-// 		});
+$('#btnCarritoBanquete').on('click',function(){
+
+		$.each(datos_cotizacion, function( key, value ) {	
+			if (value.tipo_servicio == 'banquete') {
+				$('#tablaCarrito').append(
+					'<tr>'+
+						'<td>'+value.tipo_servicio+'</td>'+
+						'<td>'+value.nombre+'</td>'+
+						'<td>'+value.costo+'</td>'+
+					'</tr>'
+					// '<option value="">'+"Seleccionar..."+'</option>'
+				);
+			}	
+		});
 		
-// 	}
-// });
+});
 $('#btnCarritoDecoracion').on('click',function(){
-	if ($('#cbxdecoracion').prop('checked')) {
-		var decoracion = {
-			tipo_servicio: 'decoracion',
-			nombre: $('#cmbPaqueteDecoracion option:selected').text(),
-			descripcion: $('#txtDesc_decoracion').val(),
-			costo: $('#txtCostoDecoracion').val(),
-			fecha_renta: $('#filtroDecoracion_fecha').val(),
-			id_cotizacion: respuesta_cliente
-		}
-		datos_cotizacion.push(decoracion);
+
 		$.each(datos_cotizacion, function( key, value ) {	
 		if (value.tipo_servicio == 'decoracion') {
 			$('#tablaCarrito').append(
@@ -390,7 +413,6 @@ $('#btnCarritoDecoracion').on('click',function(){
 			);
 		}	
 	});
-	}
 });
 // $('#').on('click',function(){
 
