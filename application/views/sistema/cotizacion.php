@@ -218,15 +218,24 @@
 							</div>
 							<div class="col-md-12">
 								<br>								
-								<h4>Seleccionar paquetes disponibles</h4>
+								<h4>Seleccionar pedido</h4>
 								<br>
 								<div class="col-md-4">
-									<label>Paquete</label>
+									<label>Tipo de Servicio</label>
+									<select class="form-control" id="cmbPaqueteBanquete">
+										<option value="">Seleccionar...</option>											
+										<option value="1">Comidas</option>
+										<option value="2">Bebidas</option>
+										<option value="3">Postres</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label>Nombre</label>
 									<select class="form-control" id="cmbPaqueteBanquete">
 										<option value="">Seleccionar...</option>										
-										<option value="1">Paquete banquete 1</option>
-										<option value="2">Paquete banquete 2</option>
-										<option value="3">Paquete banquete 3</option>
+										<option value="1">Producto banquete 1</option>
+										<option value="2">Producto banquete 2</option>
+										<option value="3">Producto banquete 3</option>
 									</select>
 								</div>
 								<div class="col-md-4">
