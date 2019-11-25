@@ -34,4 +34,10 @@ class Cotizaciones_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('cotizacion', $costo);
 	}
+	public function get_datos_cotizacion($id)
+	{
+		$this->db->where('id_cotizacion',$id);
+		$resultado = $this->db->get('detalle_cotizacion_venta');
+		return $resultado->result();
+	}
 }

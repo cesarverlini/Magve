@@ -364,6 +364,7 @@
 						<div class="col-xs-10 text-left" style="margin-top: 50px;">
 							<a type="button" href="" class="btn btn-default">Cancelar</a>
 							<button type="button" id="btnprueba" class="btn btn-primary">Enviar Cotizacion</button>
+							<a href="<?=base_url()?>sistema/cotizaciones/cotizacion_pdf" target="_blank" type="button" class="btn btn-primary"><i class="fa fa-download"></i> Descargar PDF</a>
 							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
 						</div>
 						<div class="col-xs-2">

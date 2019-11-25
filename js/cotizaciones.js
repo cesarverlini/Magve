@@ -446,7 +446,7 @@ $('#filtroLocal_fecha').change(function()
 	$.each( prueba, function( key, value ) {	
 		$('#cmbLocales').append(
 			'<option value="'+value.id+'">'+value.nombre+'</option>'
-		);		
+		);	
 	});
 	// console.log(prueba);
 });
@@ -456,12 +456,14 @@ $('#filtroLocal_fecha').change(function()
 // var output = (day<10 ? '0' : '') + day + '/' + (month<10 ? '0' : '') + month + '/' +  d.getFullYear();
 
 	$('#btnapi').on('click',function(){
+		$fecha = '2019-11-29';
 		var data = {
-			id_local: 2,
+			id_local: 1,
 			id_cliente: 1,
-			fecha_renta: '2019-11-22'
+			fecha_renta: '2019-11-29',
 		}
 		// prueba = cargar_ajax_put.run_server_ajax('Locales/local/'+data.id_local+'/'+data.id_cliente+'/'+data.fecha_renta);
+		// console.log(data);
 		prueba = cargar_ajax_put.run_server_ajax('Locales/local',data);
 		console.log(prueba);
 

@@ -101,7 +101,7 @@
                         </a>
                     </li>  
                     <li>
-                        <a href="<?php echo base_url('ventas'); ?>">
+                        <a href="<?php echo base_url('sistema/clientes'); ?>">
                             <i class="fa fa-group"></i>
                             Clientes
                         </a>
