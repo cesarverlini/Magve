@@ -81,7 +81,7 @@
                             <!-- <li><a href="<?php echo base_url();?>mantenimiento/categorias"><i class="fa fa-circle-o"></i>Clientes</a></li>
                             <li><a href="<?php echo base_url();?>mantenimiento/clientes"><i class="fa fa-circle-o"></i>Cotizaciones</a></li>
 							<li><a href="<?php echo base_url(); ?>mantenimiento/productos"><i class="fa fa-circle-o"></i>Ventas</a></li> -->
-							<li><a href="<?php echo base_url();?>mantenimiento/categorias"><i class="fa fa-circle-o"></i>Clientes</a></li>
+							<li><a href="<?php echo base_url();?>sistema/clientes"><i class="fa fa-circle-o"></i>Clientes</a></li>
                             <li><a href="<?php echo base_url();?>sistema/cotizaciones"><i class="fa fa-circle-o"></i>Cotizaciones</a></li>
                             <li>
                                 <a href="<?php echo base_url('ventas'); ?>">

@@ -31,7 +31,7 @@
 	$(function () {
 		
 		// DataTables
-		$('#example1').dataTable( {
+		$('#tablaClientes').dataTable( {
 			language: {
 					"decimal": "",
 					"emptyTable": "No hay información",
