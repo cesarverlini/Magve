@@ -35,12 +35,36 @@
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <!-- carrito de compras -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="badge badge-warning navbar-badge">3</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="padding:15px;width:300px;">
+                                <span class="dropdown-item dropdown-header">Carrito de compras</span>
+                                <div class="dropdown-divider"></div>
+                                <hr style="padding:0;margin:10px;">
+
+                                <a href="#" class="dropdown-item" style="color:#333;">
+                                    <span class="" style="display:block"><i class="fa fa-check"></i> Local Las Torres</span>
+                                    <span class="float-right text-muted text-sm">Servicio</span>
+                                </a>
+                                <a href="#" class="dropdown-item" style="color:#333;">
+                                    <span class="" style="display:block"><i class="fa fa-check"></i> Paquete de fotografía</span>
+                                    <span class="float-right text-muted text-sm">Servicio</span>
+                                </a>
+                                <hr>
+                                <div>
+                                <a href="#" style="font-size:13px;float:left;">Ver todo</a>
+                                <a href="#" style="font-size:13px;float:right;">Pagar</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- fin carrito de compras -->
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -69,28 +93,37 @@
             <section class="sidebar">      
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">Navegacion de Modulos</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cogs"></i><span>Sistema</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                    <li class="header">Modulos</li>
+                    <li>
+                        <a href="<?php echo base_url('ventas'); ?>">
+                            <i class="fa fa-cubes"></i>
+                            Servicios
                         </a>
-                        <ul class="treeview-menu">
-                            <!-- <li><a href="<?php echo base_url();?>mantenimiento/categorias"><i class="fa fa-circle-o"></i>Clientes</a></li>
-                            <li><a href="<?php echo base_url();?>mantenimiento/clientes"><i class="fa fa-circle-o"></i>Cotizaciones</a></li>
-							<li><a href="<?php echo base_url(); ?>mantenimiento/productos"><i class="fa fa-circle-o"></i>Ventas</a></li> -->
-							<li><a href="<?php echo base_url();?>sistema/clientes"><i class="fa fa-circle-o"></i>Clientes</a></li>
-                            <li><a href="<?php echo base_url();?>sistema/cotizaciones"><i class="fa fa-circle-o"></i>Cotizaciones</a></li>
-                            <li>
-                                <a href="<?php echo base_url('ventas'); ?>">
-                                    <i class="fa fa-circle-o"></i>
-                                    Ventas
-                                </a>
-                            </li>
-                        </ul>
-                    </li>                   
+                    </li>  
+                    <li>
+                        <a href="<?php echo base_url('ventas'); ?>">
+                            <i class="fa fa-group"></i>
+                            Clientes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('sistema/clientes'); ?>">
+                            <i class="fa fa-truck"></i>
+                            Proveedores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('sistema/cotizaciones'); ?>">
+                            <i class="fa fa-cube"></i>
+                            Cotización
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('ventas'); ?>">
+                            <i class="fa fa-shopping-bag"></i>
+                            Ventas
+                        </a>
+                    </li>                
                 </ul>
             </section>
             <!-- /.sidebar -->
