@@ -23,8 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://magve/'; /* virtual host ubuntu */
 //$config['base_url'] = 'http://localhost/magve/'; /* xamp */
+=======
+$config['base_url'] = 'http://localhost/magve/';
+>>>>>>> 26477713102fde6dfde063f4e4c65c057d678ab9
 
 /*
 |--------------------------------------------------------------------------

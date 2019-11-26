@@ -131,7 +131,7 @@ $('#navStep7').on('click', function(){
 	$('#step-6').hide();
 });
 
-
+var base_url = "http://localhost/magve/";
 $(document).ready(function () {
 	$('#navStep2').hide();
 	$('#navStep3').hide();
@@ -152,7 +152,7 @@ $(document).ready(function () {
 	$(".fecha_renta").attr("min", output);
 
 	var Bebidas = [];
-	var base_url = "http://localhost/magve/";
+	
 	// $('#tablaBebidas').DataTable();
 	// $('#btnAddBebida').on('click', function(e){
 	// 	var nombre = $('#cmbBebida option:selected').text(); // no se si agregar el nombre o el valor del input
@@ -229,6 +229,7 @@ $(document).ready(function () {
 });
 var datos_cotizacion = [];
 var respuesta_cliente = 0;
+var url_pdf;
 $('#btnprueba').on('click',function(e){	
 	var arrayDatos = [];
 	if ($('#nombreCliente').val() != "" && $('#correoCliente').val() != "" && $('#telefonoCliente').val() != "" ) 
@@ -307,8 +308,8 @@ $('#btnprueba').on('click',function(e){
 		if (respuesta_cliente) 
 		{
 			var id_cotizacion = respuesta_cliente;
-			if ($('#cbxfotografia').prop('checked')) { locales['id_cotizacion'] = id_cotizacion}
-			if ($('#cbxlocal').prop('checked')) { fotografia['id_cotizacion'] = id_cotizacion}
+			if ($('#cbxlocal').prop('checked')) { locales['id_cotizacion'] = id_cotizacion}
+			if ($('#cbxfotografia').prop('checked')) { fotografia['id_cotizacion'] = id_cotizacion}
 			if ($('#cbximprenta').prop('checked')) { imprenta['id_cotizacion'] = id_cotizacion}
 			if ($('#cbxbanquete').prop('checked')) { banquete['id_cotizacion'] = id_cotizacion}
 			if ($('#cbxdecoracion').prop('checked')) { decoracion['id_cotizacion'] = id_cotizacion}
@@ -316,8 +317,15 @@ $('#btnprueba').on('click',function(e){
 			$.each(datos_cotizacion, function( key, value ) {		
 				var respuesta;
 					respuesta += cargar_ajax.run_server_ajax('sistema/cotizaciones/crear_detalle_cotizacion',value);
-					console.log(respuesta);	
-			});				
+					// console.log(respuesta);	
+			});	
+			var idcot = {
+				id: id_cotizacion
+			}
+			url_pdf = base_url+"sistema/cotizaciones/cotizacion_pdf/"+id_cotizacion;
+			$("#btnPDF").click();
+			// cargar_ajax.run_server_ajax('sistema/cotizaciones/cotizacion_pdf',idcot);
+
 			// var cotizacion_id = {
 			// 	id_cotizacion: respuesta_cliente
 			// }
@@ -329,6 +337,11 @@ $('#btnprueba').on('click',function(e){
 	
 
 });
+$("#btnPDF").click(function() {
+	// url = $(this).attr("href");
+	window.open(url_pdf, '_blank');
+	return false;
+ });
 //===================================================================================================================================================== 
 // 																	BTN'S CARRITO
 //=====================================================================================================================================================

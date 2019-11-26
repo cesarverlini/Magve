@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2019 a las 18:22:50
+-- Tiempo de generación: 26-11-2019 a las 21:20:37
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -37,13 +37,6 @@ CREATE TABLE `clientes` (
   `correo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`id`, `nombre`, `apellido_p`, `apellido_m`, `telefono`, `correo`) VALUES
-(36, 'Cesar Verduzco', NULL, NULL, '6622286175', 'cesarvb02@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -57,15 +50,6 @@ CREATE TABLE `cotizacion` (
   `total` int(11) DEFAULT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `cotizacion`
---
-
-INSERT INTO `cotizacion` (`id`, `id_cliente`, `id_empleado`, `total`, `fecha_registro`) VALUES
-(18, 36, 1, 22000, '2019-11-19 10:20:03'),
-(19, NULL, NULL, NULL, '2019-11-19 10:20:04'),
-(20, NULL, NULL, NULL, '2019-11-19 10:20:04');
 
 -- --------------------------------------------------------
 
@@ -82,20 +66,12 @@ CREATE TABLE `detalle_cotizacion_venta` (
   `capacidad` varchar(45) DEFAULT NULL,
   `fecha_renta` varchar(45) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
-  `cantidad` varchar(45) DEFAULT NULL,
+  `cantidad` varchar(45) DEFAULT '1',
   `sabor` varchar(45) DEFAULT NULL,
   `marca` varchar(45) DEFAULT NULL,
   `id_proveedor` int(11) DEFAULT NULL,
   `costo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `detalle_cotizacion_venta`
---
-
-INSERT INTO `detalle_cotizacion_venta` (`id`, `id_cotizacion`, `tipo_servicio`, `nombre`, `direccion`, `capacidad`, `fecha_renta`, `descripcion`, `cantidad`, `sabor`, `marca`, `id_proveedor`, `costo`) VALUES
-(13, 18, 'local', 'Local 2', 'Leocadio Salcedo', '150', '2019-11-20', NULL, NULL, NULL, NULL, NULL, 20000),
-(14, 18, 'fotografia', 'Paquete 2', NULL, NULL, NULL, 'Muchas Fotos', NULL, NULL, NULL, NULL, 2000);
 
 -- --------------------------------------------------------
 
@@ -300,19 +276,19 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_cotizacion_venta`
 --
 ALTER TABLE `detalle_cotizacion_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT de la tabla `fotopaquetes`
