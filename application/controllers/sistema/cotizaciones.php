@@ -142,6 +142,7 @@ class Cotizaciones extends CI_Controller {
 	public function cotizacion_pdf()
 	{		
 		$fecha_actual=date("d-m-Y");
+		$id = $this->uri->segment(4);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
 		$pdf = new fpdf_manager('L','mm','A4');
@@ -158,35 +159,38 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(0,6,utf8_decode('Fecha de impresión:').$fecha_actual,0,0,'R');
 		$pdf->Ln();
 
+		$data = $this->Cotizaciones_model->get_cotizacion($id);
+		// var_dump($data);
+
 		$pdf->SetFont('Arial','B',11);
 		$pdf->setFillColor(0,214,252); 							
 		$pdf->Cell(97,6,"",0,1,'C');
 		$pdf->Cell(90,6,"",0,1,'R');
 		$pdf->Cell(38,7,utf8_decode("Fecha"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode("25-11-2019"),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($fecha_actual),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Cliente"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode("Cesar Ignacio Verduzco Bartolini"),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($data->nombre),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Telefono"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode("6622286175"),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($data->telefono),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Correo"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode("cesarvb02@gmail.com"),1,1,'C');
-		$pdf->Cell(38,7,utf8_decode("Direccion"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode("Leocadio Salcedo #1297"),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($data->correo),1,1,'C');
+		// $pdf->Cell(38,7,utf8_decode("Direccion"),1,0,'C',1);
+		// $pdf->Cell(238,7,utf8_decode("Leocadio Salcedo #1297"),1,1,'C');
 		$pdf->Ln();
 
 		$pdf->Cell(12,7,utf8_decode("N°"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Tipo Servicio"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Nombre"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Descripcion"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Cantidad"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Costo Unitario"),1,0,'C',1);
-		$pdf->Cell(44,7,utf8_decode("Costo Total"),1,1,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Tipo Servicio"),1,0,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Nombre"),1,0,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Descripcion"),1,0,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Cantidad"),1,0,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Costo Unitario"),1,1,'C',1);
+		// $pdf->Cell(44,7,utf8_decode("Costo Total"),1,1,'C',1);
 
-		$datos_matriz = $this->Cotizaciones_model->get_datos_cotizacion(38);
+		$datos_matriz = $this->Cotizaciones_model->get_datos_cotizacion($id);
 		$i = 1;
 		$pdf->SetFont('Arial','',9);
 		foreach ($datos_matriz as $row) {
-			$pdf->SetWidths(array(12,44,44,44,44,44,44));
+			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
 						$i++,
 						utf8_decode($row->tipo_servicio),
@@ -194,9 +198,16 @@ class Cotizaciones extends CI_Controller {
 						utf8_decode($row->descripcion),
 						utf8_decode($row->cantidad),
 						utf8_decode($row->costo),
-						utf8_decode('5000'),						
+						// utf8_decode('5000'),						
 					 ));
 		}
+
+		$pdf->Ln();
+		$pdf->Cell(216,7,"",0,0,'C',0);
+		$pdf->SetFont('Arial','B',15);
+		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
+		$pdf->Cell(30,7,utf8_decode($data->total),0,0,'C');
+
 
 				
 		// $pdf->setXY(20,28);

@@ -84,12 +84,12 @@
 										<label for="cbxbanquete">Banquete</label>
 									</li>
 									<li class="list-group-item">
-										<input type="checkbox" id="cbximprenta" name="cbxmusica">
-										<label for="cbxmusica">Musica</label>
+										<input type="checkbox" id="cbximprenta" name="cbximprenta">
+										<label for="cbximprenta">Imprenta</label>
 									</li>
 									<li class="list-group-item">
-										<input type="checkbox" id="cbxdecoracion" name="cbxreposteria">
-										<label for="cbxreposteria">Reposteria</label>
+										<input type="checkbox" id="cbxdecoracion" name="cbxdecoracion">
+										<label for="cbxdecoracion">Decoraciones</label>
 									</li>
 								</ul>
 							</div>
@@ -111,7 +111,7 @@
 							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
                        	 	</div>
                             <!-- </form> -->
-							<button type="button" id="btnapi" class="btn btn-primary">prueba</button>
+							<!-- <button type="button" id="btnapi" class="btn btn-primary">prueba</button> -->
                         </div>
                          <!--  ========================================================================================================================================
                                                                   	VISTA DE LOCALES
@@ -364,11 +364,12 @@
 						<div class="col-xs-10 text-left" style="margin-top: 50px;">
 							<a type="button" href="" class="btn btn-default">Cancelar</a>
 							<button type="button" id="btnprueba" class="btn btn-primary">Enviar Cotizacion</button>
-							<a href="<?=base_url()?>sistema/cotizaciones/cotizacion_pdf" target="_blank" type="button" class="btn btn-primary"><i class="fa fa-download"></i> Descargar PDF</a>
+							<a href="#" target="_blank" type="button" id="btnPDF" class="btn btn-primary hide"><i class="fa fa-download"></i> Descargar PDF</a>
+							<!-- <a href="#" target="_blank" type="button" id="btnPDF"class="btn btn-primary"><i class="fa fa-download"></i> Descargar PDF</a> -->
 							<!-- <button type="button" class="btn btn-primary" id="cesar">Probar</button> -->
 						</div>
 						<div class="col-xs-2">
-							<label id="TotalCotizacion">Costo Total:</label>
+							<!-- <label id="TotalCotizacion">Costo Total:</label> -->
 						</div>
                 </div>
             </div>
