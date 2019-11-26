@@ -9,6 +9,8 @@ $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
 
 // servicios
 $route['servicios'] = 'sistema/servicios';
+$route['servicios/email'] = 'sistema/servicios/send_mail';
+
 //$route['servicios'] = 'sistema/servicios';
 
 
