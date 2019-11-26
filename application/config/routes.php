@@ -7,6 +7,11 @@ $route['default_controller'] = 'auth';
 $route['ventas'] = 'sistema/ventas';
 $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
 
+// servicios
+$route['servicios'] = 'sistema/servicios';
+//$route['servicios'] = 'sistema/servicios';
+
+
 // rutas del sistema
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
