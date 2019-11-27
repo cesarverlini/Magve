@@ -95,7 +95,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Modulos</li>
                     <li>
-                        <a href="<?php echo base_url('ventas'); ?>">
+                        <a href="<?php echo base_url('servicios'); ?>">
                             <i class="fa fa-cubes"></i>
                             Servicios
                         </a>

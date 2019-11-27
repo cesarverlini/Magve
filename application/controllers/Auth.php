@@ -35,7 +35,9 @@ class Auth extends CI_Controller {
 				'rol' => $res->rol_id,
 				'login' => TRUE
 			);
+
 			$this->session->set_userdata($data);
+			$this->session->set_userdata(array('prueba' => 'hola'));
 			redirect(base_url()."dashboard");
 		}
 	}
