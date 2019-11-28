@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// requerimos la clase para poder hacer uso de los metodos de la api
+require(APPPATH.'libraries/servicios/locales.php');
 
 class Servicios extends CI_Controller {
 
@@ -35,12 +37,13 @@ class Servicios extends CI_Controller {
     // solicitar información de local
     public function local($id_local){
         $data['title'] = 'Detalles de local';
-        //$data['local'] = llamado a la api.
-        
         $data['id_local'] = $id_local;
+        $data['info_local'] = json_decode(file_get_contents(Locales::ver_local($id_local)));
+        // libraries -> servicios -> locales -> API_Domain
 
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/local_detalle.php');
         $this->load->view('adminlte-3.0.1/footer');
+
 	}
 }

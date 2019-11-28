@@ -52,7 +52,7 @@ $(function () {
 	locales = cargar_ajax_get.run_server_ajax('Locales/local/');
 	if (locales.locales) 
 	{
-		$.each( locales.locales, function( key, value ) {	
+		$.each( locales.locales, function( key, value ) {
 			$('#Locales_disponibles').append(
 				'<div class="col-md-4">'+
 					'<div class="card" style="">'+

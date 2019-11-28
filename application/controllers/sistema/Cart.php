@@ -76,13 +76,4 @@ class Cart extends CI_Controller{
         }
         return $s;
     }
-
-    public static function total_items(){
-        $items = array_values(unserialize($this->session->userdata('cart')));
-        $s = 0;
-        foreach ($items as $item) {
-            $s += 1 * $item['quantity'];
-        }
-        return $s;
-    }
 }

@@ -9,6 +9,5 @@ $(function () {
 		$('#direccion').text(local.direccion);
 		$('#costo').text("$ "+local.costo);
 		$('#capacidad').text("Este local tiene capacidad para "+local.capacidad+" personas");
-
 	});	
 })
