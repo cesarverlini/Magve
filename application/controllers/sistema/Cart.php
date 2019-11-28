@@ -5,6 +5,7 @@ class Cart extends CI_Controller{
     public function index(){
         $data['items'] = array_values(unserialize($this->session->userdata('cart')));
         $data['total'] = $this->total();
+        $data['total_items'] = $this->total_items();
         $data['title'] = "Carrito de compras";
 
         $this->load->view('adminlte-3.0.1/header', $data);
@@ -71,6 +72,15 @@ class Cart extends CI_Controller{
         $s = 0;
         foreach ($items as $item) {
             $s += $item['price'] * $item['quantity'];
+        }
+        return $s;
+    }
+
+    private function total_items(){
+        $items = array_values(unserialize($this->session->userdata('cart')));
+        $s = 0;
+        foreach ($items as $item) {
+            $s += 1 * $item['quantity'];
         }
         return $s;
     }

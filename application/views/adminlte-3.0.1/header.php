@@ -79,13 +79,12 @@
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-shopping-cart"></i>
           <span class="badge badge-success navbar-badge">
-            <?php 
-                $items = array_values(unserialize($this->session->userdata('cart')));
-                $s = 0;
-                foreach ($items as $item) {
-                    $s += 1 * $item['quantity'];
-                }
-                echo $s;
+            <?php
+              if(!isset($total_items)){
+                echo "0";
+              }else{
+                echo $total_items;
+              }
             ?>
           </span>
         </a>
@@ -93,15 +92,21 @@
           <span class="dropdown-item dropdown-header">Productos agregados</span>
 
           <!--- ITEMS DEL CARRITO EN MENU SUPERIOR -->
-          <?php foreach ($items as $item) { ?>
-
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-cube mr-2"></i>
-            <?php echo $item['name']; ?>
-            <span class="float-right text-muted text-sm"><?php echo $item['quantity']; ?></span>
-          </a>
-
+          <?php 
+          if(isset($items)){
+            foreach ($items as $item) { ?>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-cube mr-2"></i>
+              <?php echo $item['name']; ?>
+              <span class="float-right text-muted text-sm"><?php echo $item['quantity']; ?></span>
+            </a>
+            <?php } ?>
+            <?php }else{ ?>
+              <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              No hay productos en el carrito
+            </a>
           <?php } ?>
           <!--- ITEMS DEL CARRITO EN MENU SUPERIOR -->
 
