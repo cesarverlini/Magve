@@ -26,6 +26,63 @@
             $ruta = ($this->router->fetch_method() == 'vista') ? $this->uri->segment(2) : $this->router->fetch_method();
             $JSFile = base_url().'assets/js/'.$this->router->fetch_class().'/'.$ruta.'.js';
             echo '<script src="'.$JSFile.'"></script>';
-        ?>
+		?>
+		<script type="text/javascript">
+			// FUNCIONES PARA CARGAR AJAX DESDE CUALQUIER ARCHIVO JS o <script> DEL SISTEMA
+			var cargar_ajax = {
+				run_server_ajax: function(_url, _data = null){
+					var json_result = $.ajax({
+					url: '<?= base_url(); ?>' + _url,
+					dataType: "json",
+					method: "post",
+					async: false,
+					type: 'post',
+					data: _data, 
+					done: function(response) {
+						return response;
+					}
+					}).responseJSON;
+					return json_result;
+				}
+			}
+
+			var cargar_ajax_put = {
+				run_server_ajax: function(_url, _data = null){
+					var json_result = $.ajax({
+					url: 'http://api.integradoraenm.com/index.php/' + _url,
+					dataType: "json",
+					method: "put",
+					async: false,
+					type: 'post',
+					data: _data, 
+					done: function(response) {
+						return response;
+					}
+					}).responseJSON;
+					return json_result;
+				}
+			}
+			// url: 'http://localhost/api_locales/index.php/' + _url,
+
+			var cargar_ajax_get = {
+				run_server_ajax: function(_url, _data = null){
+					var json_result = $.ajax({
+					url:'http://api.integradoraenm.com/index.php/' + _url,
+					dataType: "json",
+					method: "get",
+					async: false,
+					type: 'post',
+					data: _data, 
+					done: function(response) {
+						return response;
+					}
+					}).responseJSON;
+
+				return json_result;
+				}
+			}
+			// FUNCION PARA CARGAR MENSAJES SWAL DESDE LOS CONTROLADORES
+			<?php if(isset($mensajes_swal)){ echo  $mensajes_swal;}?>
+			</script>
     </body>
 </html>

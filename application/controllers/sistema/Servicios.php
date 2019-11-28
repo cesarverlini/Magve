@@ -12,8 +12,7 @@ class Servicios extends CI_Controller {
         $data['title'] = "Servicios";
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/index');
-        $this->load->view('adminlte-3.0.1/footer');
-        
+        $this->load->view('adminlte-3.0.1/footer');        
     }
 
     // metodo para cargar vistas dentro de los servicio
@@ -43,6 +42,5 @@ class Servicios extends CI_Controller {
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/local_detalle.php');
         $this->load->view('adminlte-3.0.1/footer');
-    }
-
+	}
 }

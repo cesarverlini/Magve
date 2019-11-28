@@ -9,11 +9,12 @@ class Cotizaciones extends CI_Controller {
 	}
 	
 	public function index()
-	{		
-		$this->load->view("layouts/header");
-		$this->load->view("layouts/aside");
+	{	
+		$data['title'] = "Cotizacion";
+        $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/cotizacion");
-		$this->load->view("layouts/footer");
+        $this->load->view('adminlte-3.0.1/footer');     
+
 	}
 	public function crear_detalle_cotizacion()
 	{

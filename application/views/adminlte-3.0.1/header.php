@@ -146,7 +146,7 @@
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="#" class="btn btn-default btn-flat">Perfil</a>
-            <a href="#" class="btn btn-default btn-flat float-right">Salir</a>
+						<a href="<?php echo base_url(); ?>auth/logout" class="btn btn-default btn-flat float-right">Salir</a>
           </li>
         </ul>
       </li>
@@ -176,12 +176,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="../widgets.html" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>
                     <p>Panel principal<span class="right badge badge-info">Nuevo</span></p>
                 </a>
-            </li>
+            </li> -->
 
             <!-- termina link -->
             <li class="nav-header">SISTEMA</li>
@@ -195,7 +195,7 @@
           <!-- Termina link --> 
 
             <li class="nav-item">
-                <a href="../widgets.html" class="nav-link">
+                <a href="<?php echo base_url('sistema/cart'); ?>" class="nav-link">
                     <i class="nav-icon fas fa-cubes"></i>
                     <p>Cotizar<span class="right badge badge-warning">1</span></p>
                 </a>
@@ -204,7 +204,7 @@
           <!-- Termina link -->
 
             <li class="nav-item">
-                <a href="../widgets.html" class="nav-link">
+                <a href="<?php echo base_url('ventas'); ?>" class="nav-link">
                     <i class="nav-icon fas fa-shopping-bag"></i>
                     <p>Ventas<span class="right badge badge-danger"></span></p>
                 </a>

@@ -24,7 +24,8 @@ class Cart extends CI_Controller{
         // );
 
         $item = array(
-            'id' => $id,
+			'id' => $id,
+			'service' => 'local',
             'name' => 'producto prueba',
             'photo' => '',
             'price' => '100',

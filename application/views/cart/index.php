@@ -48,17 +48,19 @@
                         <thead>                  
                         <tr>
                             <th style="width: 50px">ID</th>
+                            <th>Tipo</th>
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
-                            <th style="width: 100px"></th>
+                            <th style="width: 100px">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($items as $item) { ?>
                             <tr>
                                 <td><?php echo $item['id']; ?></td>
+                                <td><?php echo $item['service']; ?></td>
                                 <td><?php echo $item['name']; ?></td>
                                 <td><?php echo $item['price']; ?></td>
                                 <td><?php echo $item['quantity']; ?></td>
@@ -69,7 +71,7 @@
                             </tr>
                         <?php } ?>
                             <tr>
-        			            <td colspan="4" align="right">Total</td>
+        			            <td colspan="5" align="right">Total</td>
         			            <td colspan="2">$<?php echo $total; ?></td>
         		            </tr>
                         </tbody>
