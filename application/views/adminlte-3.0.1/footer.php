@@ -49,7 +49,7 @@
 			var cargar_ajax_put = {
 				run_server_ajax: function(_url, _data = null){
 					var json_result = $.ajax({
-					url: 'http://api.integradoraenm.com/index.php/' + _url,
+					url: 'http://localhost/api_locales/index.php/' + _url,
 					dataType: "json",
 					method: "put",
 					async: false,
@@ -62,12 +62,14 @@
 					return json_result;
 				}
 			}
+			// url: 'http://api.integradoraenm.com/index.php/' + _url,
+
 			// url: 'http://localhost/api_locales/index.php/' + _url,
 
 			var cargar_ajax_get = {
 				run_server_ajax: function(_url, _data = null){
 					var json_result = $.ajax({
-					url:'http://api.integradoraenm.com/index.php/' + _url,
+					url:'http://localhost/api_locales/index.php/' + _url,
 					dataType: "json",
 					method: "get",
 					async: false,

@@ -24,65 +24,65 @@ $(function () {
         hasGrid : true
       })
 
-			var d = new Date();
+	var d = new Date();
 
-			var month = d.getMonth()+1;
-			var day = d.getDate();
+	var month = d.getMonth()+1;
+	var day = d.getDate();
 
-			var output = d.getFullYear() + '-' +
-				(month<10 ? '0' : '') + month + '-' +
-				(day<10 ? '0' : '') + day;
+	var output = d.getFullYear() + '-' +
+		(month<10 ? '0' : '') + month + '-' +
+		(day<10 ? '0' : '') + day;
 
-			$(".fecha_renta").attr("min", output);
+	$(".fecha_renta").attr("min", output);
 
-			//=======================================================================================================================================
-			//																					OBTENER LISTADO DE LOCALES SIN NINGUN FILTRO
-			//=======================================================================================================================================
-					locales = cargar_ajax_get.run_server_ajax('Locales/local/');
-					if (locales.locales) 
-					{
-						$.each( locales.locales, function( key, value ) {	
-							$('#Locales_disponibles').append(
-								'<div class="col-md-4">'+
-									'<div class="card" style="">'+
-											'<img src="'+base_url+'assets/img/servicios/locales.jpg" class="card-img-top" alt="...">'+
-											'<div class="card-body">'+
-													'<h5 class="card-title">'+value.nombre+'</h5>'+
-													'<p class="card-text">'+value.direccion+'</p>'+
-													'<a href="'+base_url+'servicios/locales/'+value.id+'" class="btn btn-primary mandar_info">Ver local</a>'+
-											'</div>'+
-									'</div>'+
-								'</div>'
-							);
-						});	
-					}
-			
-			//=======================================================================================================================================
-			//																					OBTENER LOCALES MEDIANTE FECHA
-			//=======================================================================================================================================
-			$('#filtroLocal_fecha').change(function()
-			{			
-				var fecha_seleccionada = $(this).val();
-				locales = cargar_ajax_get.run_server_ajax('Locales/disponibilidad/'+fecha_seleccionada);
-				$('#Locales_disponibles').empty();	
-				$.each( locales, function( key, value ) {		
-					prueba = [value];
-					$('#Locales_disponibles').append(
-						'<div class="col-md-4">'+
-							'<div class="card" style="">'+
-									'<img src="'+base_url+'assets/img/servicios/locales.jpg" class="card-img-top" alt="...">'+
-									'<div class="card-body">'+
-											'<h5 class="card-title">'+value.nombre+'</h5>'+
-											'<p class="card-text">'+value.direccion+'</p>'+
-											'<a href="'+base_url+'servicios/locales/'+value.id+'" class="btn btn-primary mandar_info">Ver local</a>'+
-									'</div>'+
+	//=======================================================================================================================================
+	//																					OBTENER LISTADO DE LOCALES SIN NINGUN FILTRO
+	//=======================================================================================================================================
+	locales = cargar_ajax_get.run_server_ajax('Locales/local/');
+	if (locales.locales) 
+	{
+		$.each( locales.locales, function( key, value ) {	
+			$('#Locales_disponibles').append(
+				'<div class="col-md-4">'+
+					'<div class="card" style="">'+
+							'<img src="'+base_url+'assets/img/servicios/locales.jpg" class="card-img-top" alt="...">'+
+							'<div class="card-body">'+
+									'<h5 class="card-title">'+value.nombre+'</h5>'+
+									'<p class="card-text">'+value.direccion+'</p>'+
+									'<a href="'+base_url+'servicios/locales/'+value.id+'" class="btn btn-primary mandar_info">Ver local</a>'+
 							'</div>'+
-						'</div>'
-				);
-			});	
-			// $(".mandar_info").click(function( event ) {
-			// 	event.preventDefault();					
-			// });	
-		});
+					'</div>'+
+				'</div>'
+			);
+		});	
+	}
+	
+	//=======================================================================================================================================
+	//																					OBTENER LOCALES MEDIANTE FECHA
+	//=======================================================================================================================================
+	$('#filtroLocal_fecha').change(function()
+	{			
+		var fecha_seleccionada = $(this).val();
+		locales = cargar_ajax_get.run_server_ajax('Locales/disponibilidad/'+fecha_seleccionada);
+		$('#Locales_disponibles').empty();	
+		$.each( locales, function( key, value ) {		
+			prueba = [value];
+			$('#Locales_disponibles').append(
+				'<div class="col-md-4">'+
+					'<div class="card" style="">'+
+							'<img src="'+base_url+'assets/img/servicios/locales.jpg" class="card-img-top" alt="...">'+
+							'<div class="card-body">'+
+									'<h5 class="card-title">'+value.nombre+'</h5>'+
+									'<p class="card-text">'+value.direccion+'</p>'+
+									'<a href="'+base_url+'servicios/locales/'+value.id+'" class="btn btn-primary mandar_info">Ver local</a>'+
+							'</div>'+
+					'</div>'+
+				'</div>'
+			);
+		});	
+	// $(".mandar_info").click(function( event ) {
+	// 	event.preventDefault();					
+	// });	
+	});
 })
 	
