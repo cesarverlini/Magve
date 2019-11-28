@@ -1,91 +1,106 @@
 <section class="content">
-<div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Servicios disponibles en Magve Eventos</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
-                      <div class="ribbon-wrapper">
-                        <div class="ribbon bg-primary">
-                          Ribbon
-                        </div>
-                      </div>
-                      Ribbon Default <br />
-                      <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
-                      <div class="ribbon-wrapper ribbon-lg">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Servicios disponibles en Magve Eventos</h3>
+          </div>
+
+          <!-- /.card-header -->
+
+          <div class="card-body">
+            <div class="row">
+
+              <!-- LOCALES -->
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/locales'); ?>">
+                    <div class="locales portada position-relative p-3" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-info">
-                          Ribbon Large
+                          Locales
                         </div>
                       </div>
-                      Ribbon Large <br />
-                      <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
+                      <!-- <a href="#"><h3>Ver más</h3></a> -->
                     </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                  </a>
+                </div>
+
+                <!-- BANQUETES -->
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/banquetes'); ?>">
+                    <div class="banquetes portada position-relative p-3" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-secondary">
-                          Ribbon Extra Large
+                        <div class="ribbon bg-info">
+                          Banquetes
                         </div>
                       </div>
-                      Ribbon Extra Large <br />
-                      <small>.ribbon-wrapper.ribbon-xl .ribbon</small>
                     </div>
-                  </div>
-				</div>
+                  </a>
+                </div>
+
+                <!-- REPOSTERIA -->
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/reposteria'); ?>">
+                    <div class="reposteria portada position-relative p-3" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-info">
+                          Repostería
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+				      </div>
 				
-                <div class="row mt-4">
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
-                      <div class="ribbon-wrapper ribbon-lg">
-                        <div class="ribbon bg-success text-lg">
-                          Ribbon
-                        </div>
-                      </div>
-                      Ribbon Large <br /> with Large Text <br />
-                      <small>.ribbon-wrapper.ribbon-lg .ribbon.text-lg</small>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+              <!-- FOTOGRAFIA --->
+
+              <div class="row mt-3">
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/fotografia'); ?>">
+                    <div class="fotografia portada position-relative p-3" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-warning text-lg">
-                          Ribbon
+                        <div class="ribbon bg-info">
+                          Fotografía
                         </div>
                       </div>
-                      Ribbon Extra Large <br /> with Large Text <br />
-                      <small>.ribbon-wrapper.ribbon-xl .ribbon.text-lg</small>
                     </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                  </a>
+                </div>
+
+                <!-- MUSICA -->
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/musica'); ?>#">
+                    <div class="musica portada position-relative p-3" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-danger text-xl">
-                          Ribbon
+                        <div class="ribbon bg-info">
+                          Musica
                         </div>
                       </div>
-                      Ribbon Extra Large <br /> with Extra Large Text <br />
-                      <small>.ribbon-wrapper.ribbon-xl .ribbon.text-xl</small>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- PUBLICIDAD -->
+                <div class="col-sm-4">
+                  <a href="<?php echo base_url('servicios/publicidad'); ?>">
+                  <div class="invitacion portada position-relative p-3" style="height: 180px">
+                    <div class="ribbon-wrapper ribbon-xl">
+                      <div class="ribbon bg-info">
+                        Publicidad
+                      </div>
                     </div>
                   </div>
+                  </a>
                 </div>
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.col -->
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
       </div>
+      <!-- /.row -->
+    </div>
 </section>

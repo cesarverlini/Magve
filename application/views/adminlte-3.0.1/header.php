@@ -6,9 +6,16 @@
    <title>AdminLTE 3 | Legacy User Menu</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/fontawesome-free/css/all.min.css">
-   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
    <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>dist/css/adminlte.min.css">
-   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <!--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">-->
+   <!-- Ion Slider -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+   <!-- custom css load --> 
+   <?php
+      $ruta = ($this->router->fetch_method() == 'vista') ? $this->uri->segment(2) : $this->router->fetch_method();
+      $CSSFile = base_url().'assets/css/'.$this->router->fetch_class().'/'.$ruta.'.css';
+      echo '<link rel="stylesheet" href="'.$CSSFile.'">';
+   ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -71,59 +78,66 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-shopping-cart"></i>
-          <span class="badge badge-success navbar-badge">7</span>
+          <span class="badge badge-success navbar-badge">
+            <?php 
+                $items = array_values(unserialize($this->session->userdata('cart')));
+                $s = 0;
+                foreach ($items as $item) {
+                    $s += 1 * $item['quantity'];
+                }
+                echo $s;
+            ?>
+          </span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">7 Productos agregados</span>
+          <span class="dropdown-item dropdown-header">Productos agregados</span>
+
+          <!--- ITEMS DEL CARRITO EN MENU SUPERIOR -->
+          <?php foreach ($items as $item) { ?>
+
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+            <i class="fas fa-cube mr-2"></i>
+            <?php echo $item['name']; ?>
+            <span class="float-right text-muted text-sm"><?php echo $item['quantity']; ?></span>
           </a>
+
+          <?php } ?>
+          <!--- ITEMS DEL CARRITO EN MENU SUPERIOR -->
+
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Ver todo el carrito</a>
+          <a href="<?php echo base_url('carrito'); ?>" class="dropdown-item dropdown-footer">Ver todo el carrito</a>
         </div>
       </li>
 
         <!-- ================================================== -->
-        <!-- Navegacion arrba a la derecha usuario
+        <!-- Navegacion arrba a la derecha usuario -->
         <!-- ================================================== -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img src="<?php echo base_url('assets/adminlte-3.0.1/'); ?>dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">Isaí Madueño</span>
+          <span class="d-none d-md-inline"><?php echo $this->session->userdata("nombre")?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
             <img src="<?php echo base_url('assets/adminlte-3.0.1/'); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            <p>Isaí Madueño - Web Developer<small>Activo desde Nov. 26, 2019.</small></p>
+            <p><?php echo $this->session->userdata("nombre")?> - Web Developer<small>Activo desde Nov. 26, 2019.</small></p>
           </li>
           <!-- Menu Body -->
-          <li class="user-body">
+          <!--<li class="user-body">
             <div class="row">
               <div class="col-4 text-center">
                 <a href="#">Ventas</a>
               </div>
               <div class="col-4 text-center">
-                <a href="#">Cotizaciones</a>
+                <a href="#">Ventas</a>
               </div>
               <div class="col-4 text-center">
                 <a href="#">Pendiente</a>
               </div>
             </div>
-            <!-- /.row -->
-          </li>
+          </li>-->
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="#" class="btn btn-default btn-flat">Perfil</a>
@@ -167,7 +181,7 @@
             <!-- termina link -->
             <li class="nav-header">SISTEMA</li>
             <li class="nav-item">
-                <a href="../widgets.html" class="nav-link">
+                <a href="<?php echo base_url('servicios'); ?>" class="nav-link">
                     <i class="nav-icon fas fa-cube"></i>
                     <p>Servicios<span class="right badge badge-info">6</span></p>
                 </a>
@@ -193,6 +207,34 @@
 
           <!-- Termina link --> 
           <li class="nav-header">PERSONAS</li>
+
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        Clientes
+                        <i class="fas fa-angle-left right"></i>
+                        <span class="badge badge-info right"><!-- numero --></span>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Todos los proveedores</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../layout/boxed.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Alta de proveedores</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Termina link -->
+            
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-truck"></i>
@@ -246,37 +288,6 @@
             </li>
 
             <!-- Termina link --> 
-
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>
-                        Clientes
-                        <i class="fas fa-angle-left right"></i>
-                        <span class="badge badge-info right"><!-- numero --></span>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Todos los proveedores</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../layout/boxed.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Alta de proveedores</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-          <!-- Termina link -->
-        
-
-          <!-- Termina link -->
           
           <li class="nav-header">OTROS ENLACES</li>
           <li class="nav-item">
@@ -299,7 +310,7 @@
       <div class="container-fluid"><!----- HEADER ---->
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Servicios</h1>
+            <h1><?= $title; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

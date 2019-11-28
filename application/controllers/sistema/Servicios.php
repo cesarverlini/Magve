@@ -4,41 +4,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Servicios extends CI_Controller {
 
     public function __construct(){
-        parent::__construct();	
-		//$this->load->model('Clientes_model');
+        parent::__construct();
+        //$this->load->model('Servicios_model');
     }
 
     public function index(){
-        //$this->load->view('servicios/index');
-        $this->load->view('adminlte-3.0.1/header');
+        $data['title'] = "Servicios";
+        $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/index');
         $this->load->view('adminlte-3.0.1/footer');
         
     }
 
-    // envento para enviar un correo
-    public function send_mail(){
-        // cargamos la librería de email
+    // metodo para cargar vistas dentro de los servicio
+    public function vista($page = 'index')
+	{
+        if(!file_exists(APPPATH.'views/servicios/'.$page.'.php')){
+            $page = 'error_servicio';
+        }
 
-        $this->load->library('email');
-
-        $config['protocol'] = 'sendmail';
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
-
-        $this->email->initialize($config);
-
-        $this->email->from('isai.madueno.23@gmail.com', 'Isai Madueno');
-        $this->email->to('isai.madueno.23@gmail.com');
-
-        $this->email->subject('Prueba desde codeigniter');
-        $this->email->message('Prueba para enviar una cotización por email desde CI3');
-
-        if($this->email->send()){
-            echo "si se envio";
+        if($page != 'index'){
+            $data['title'] = ucfirst($page);
+            $this->load->view('adminlte-3.0.1/header', $data);
+            $this->load->view('servicios/'.$page.'.php');
+            $this->load->view('adminlte-3.0.1/footer');
         }else{
-            echo "algo salio mal";
+            redirect('servicios');
         }
     }
+
+    // solicitar información de local
+    public function local($id_local){
+        $data['title'] = 'Detalles de local';
+        //$data['local'] = llamado a la api.
+        
+        $data['id_local'] = $id_local;
+
+        $this->load->view('adminlte-3.0.1/header', $data);
+        $this->load->view('servicios/local_detalle.php');
+        $this->load->view('adminlte-3.0.1/footer');
+    }
+
 }

@@ -9,11 +9,21 @@ $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
 
 // servicios
 $route['servicios'] = 'sistema/servicios';
-$route['servicios/email'] = 'sistema/servicios/send_mail';
+// servicios -> carga servicio
+$route['servicios/(:any)'] = 'sistema/servicios/vista/$1';
+// servicio local
+$route['servicios/locales/(:num)'] = 'sistema/servicios/local/$1';
+
+//carrito ver carrito
+$route['carrito'] = 'sistema/cart';
+$route['carrito/comprar/(:num)'] = 'sistema/cart/buy/$1';
+$route['carrito/quitar/(:num)'] = 'sistema/cart/remove/$1';
+
+
+
+
 
 //$route['servicios'] = 'sistema/servicios';
-
-
 // rutas del sistema
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

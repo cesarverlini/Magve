@@ -1,0 +1,45 @@
+.portada {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: 0.3s;
+    filter: grayscale(80%);
+  }
+
+.portada:hover{
+    filter: grayscale(0);
+}
+.portada a{
+    position: absolute;
+    transition: 0.8s;
+    bottom: 0;
+    left: 0;
+    margin-left: 20px;
+}
+.portada a:hover{
+    color: white;
+}
+
+.musica{
+    background-image: url("../../img/servicios/musica.jpg");
+}
+
+.locales{
+    background-image: url("../../img/servicios/locales.jpg");
+}
+
+.banquetes{
+    background-image: url("../../img/servicios/banquetes.jpg");
+}
+
+.reposteria{
+    background-image: url("../../img/servicios/reposteria.jpg");
+}
+
+.invitacion{
+    background-image: url("../../img/servicios/invitacion.jpg");
+}
+
+.fotografia{
+    background-image: url("../../img/servicios/fotografia.jpg");
+}
