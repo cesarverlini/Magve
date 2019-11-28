@@ -10,12 +10,35 @@ class Cotizaciones extends CI_Controller {
 	
 	public function index()
 	{	
-		$data['title'] = "Cotizacion";
+		$data['title'] = "Datos Cliente";
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/cotizacion");
         $this->load->view('adminlte-3.0.1/footer');     
 
 	}
+	public function confirmacion()
+	{
+		$data['title'] = "Confirmacion";
+
+		$cliente = array(
+			'nombre' => $this->input->post("nombre"),
+			'apellido_p' => $this->input->post("apellido_p"),
+			'apellido_m' => $this->input->post("apellido_m"),
+			'correo' => $this->input->post("correo"),
+			'telefono' => $this->input->post("telefono"),
+		);
+        $this->load->view('adminlte-3.0.1/header', $data);
+		$this->load->view("sistema/confirmacion",$cliente);
+        $this->load->view('adminlte-3.0.1/footer');    
+	}
+	// public function index()
+	// {	
+	// 	$data['title'] = "Cotizacion";
+    //     $this->load->view('adminlte-3.0.1/header', $data);
+	// 	$this->load->view("sistema/cotizacion");
+    //     $this->load->view('adminlte-3.0.1/footer');     
+
+	// }
 	public function crear_detalle_cotizacion()
 	{
 		// $this->Crear_Cotizacion();

@@ -44,6 +44,5 @@ class Servicios extends CI_Controller {
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/local_detalle.php');
         $this->load->view('adminlte-3.0.1/footer');
-
 	}
 }

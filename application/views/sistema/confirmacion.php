@@ -10,29 +10,34 @@
           <!-- /.card-header -->
 
           <div class="card-body">
-			  <form action="<?php echo base_url('confirmacion');?>" method="post" class="col-md-12">
+			  <form action="<?php echo base_url('');?>" method="post" class="col-md-12">
 				<div class="row">	
 					<div class="col-md-4">
 						<label for="nombre">Nombre</label>
-						<input class="form-control" type="text" id="nombre" name="nombre">
+						<br/>
+						<label name="nombre"><?php echo $nombre?></label>
 					</div>
 					<div class="col-md-4">
 						<label for="apellido_p">Apellido Paterno</label>
-						<input class="form-control" type="text" id="apellido_p" name="apellido_p">
+						<br>
+						<label name="apellido_p"><?php echo $apellido_p?></label>
 					</div>
 					<div class="col-md-4">
 						<label for="apellido_m">Apellido Materno</label>
-						<input class="form-control" type="text" id="apellido_m" name="apellido_m">
+						<br>
+						<label name="apellido_m"><?php echo $apellido_m?></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<label for="correo">Correo Electronico</label>
-						<input class="form-control" type="text" id="correo" name="correo">
+						<br>
+						<label name="correo"><?php echo $correo?></label>
 					</div>
 					<div class="col-md-6">
 						<label for="telefono">Numero de Telefono</label>
-						<input class="form-control" type="text" id="telefono" name="telefono">
+						<br>
+						<label name="telefono"><?php echo $telefono?></label>
 					</div>
 				</div>
 				<div class="row">

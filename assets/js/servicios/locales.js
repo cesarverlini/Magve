@@ -27,10 +27,10 @@ $(function () {
 	/*
 	* Cargando locales y filtrado de locales
 	*/
-	//var base_url = 'http://localhost/magve';
+	var base_url = 'http://localhost/magve/';
 	// =======================================
-	const url = document.location.host;
-	const base_url = 'http://'+url+'/';
+	// const url = document.location.host;
+	// const base_url = 'http://'+url+'/';
 	// =======================================
 	var locales = [];
 	var seleccionado = [];
