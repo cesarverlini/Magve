@@ -1,7 +1,5 @@
 $(function () {
-		var base_url = "http://localhost/magve/";
-		var locales = [];
-		var seleccionado = [];
+	// range picker locales costo
     $('#rango_costo').ionRangeSlider({
       min     : 10000,
       max     : 200000,
@@ -13,6 +11,7 @@ $(function () {
       hasGrid : true
     })
 
+	// range picker locales capacidad
     $('#rango_capacidad').ionRangeSlider({
         min     : 10,
         max     : 1000,
@@ -22,10 +21,22 @@ $(function () {
         postfix : 'Personas',
         prettify: false,
         hasGrid : true
-      })
+	})
+	  
 
+	/*
+	* Cargando locales y filtrado de locales
+	*/
+	//var base_url = 'http://localhost/magve';
+	// =======================================
+	const url = document.location.host;
+	const base_url = 'http://'+url+'/';
+	// =======================================
+	var locales = [];
+	var seleccionado = [];
+
+	// JS Date
 	var d = new Date();
-
 	var month = d.getMonth()+1;
 	var day = d.getDate();
 

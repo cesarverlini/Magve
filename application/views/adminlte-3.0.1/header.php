@@ -12,9 +12,16 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
    <!-- custom css load --> 
    <?php
+
+      // Cargamos de forma dinamica el archivo CSS para esta vista
       $ruta = ($this->router->fetch_method() == 'vista') ? $this->uri->segment(2) : $this->router->fetch_method();
       $CSSFile = base_url().'assets/css/'.$this->router->fetch_class().'/'.$ruta.'.css';
       echo '<link rel="stylesheet" href="'.$CSSFile.'">';
+
+
+      // Requerimos la clase Cart para hacer uso de sus metodos para el conteo
+      // global de items
+      require_once(APPPATH.'/controllers/sistema/Cart.php');
    ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -80,11 +87,12 @@
           <i class="fas fa-shopping-cart"></i>
           <span class="badge badge-success navbar-badge">
             <?php
-              if(!isset($total_items)){
-                echo "0";
-              }else{
-                echo $total_items;
+              $items = array_values(unserialize($this->session->userdata('cart')));
+              $s = 0;
+              foreach ($items as $item) {
+                  $s += 1 * $item['quantity'];
               }
+              echo $s;
             ?>
           </span>
         </a>

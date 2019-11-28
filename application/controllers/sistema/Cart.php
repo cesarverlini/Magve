@@ -3,9 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Cart extends CI_Controller{
 
     public function index(){
+
         $data['items'] = array_values(unserialize($this->session->userdata('cart')));
         $data['total'] = $this->total();
-        $data['total_items'] = $this->total_items();
         $data['title'] = "Carrito de compras";
 
         $this->load->view('adminlte-3.0.1/header', $data);
@@ -77,7 +77,7 @@ class Cart extends CI_Controller{
         return $s;
     }
 
-    private function total_items(){
+    public static function total_items(){
         $items = array_values(unserialize($this->session->userdata('cart')));
         $s = 0;
         foreach ($items as $item) {
