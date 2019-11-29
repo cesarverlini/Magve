@@ -9,7 +9,6 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-						
 						<strong><i class="fas fa-map-marker-alt mr-1"></i> Direccion</strong>
                         <p class="text-muted" id="direccion">
                             <?= $info_local->locales[0]->direccion; ?>

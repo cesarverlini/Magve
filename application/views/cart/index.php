@@ -45,7 +45,7 @@
                 
                 <div class="card-footer clearfix">
                     <a href="<?php echo site_url('servicios'); ?>">Continuar comprando</a>
-                    <a href="#"> | </a>
+                    &nbsp;|&nbsp;
                     <a href="<?php echo site_url('datos_cliente'); ?>">Guardar Cotización</a>
                     <ul class="pagination pagination-sm m-0 float-right">
                         <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>

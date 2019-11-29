@@ -28,42 +28,21 @@
                         <h3 class="card-title">Listado de locales</h3>
                     </div>
                     <div class="card-body">
-                        <div class="row" id="Locales_disponibles">
-
-                            <!-- <div class="col-md-4">
+                        <div class="row">
+                            <?php 
+                                foreach($locales->locales as $local){
+                            ?>
+                            <div class="col-md-4">
                                 <div class="card" style="">
-                                    <img src="<?php echo base_url('assets/img/servicios/locales.jpg');?>" class="card-img-top" alt="...">
+                                    <img src="https://picsum.photos/id/1<?php echo $local->id; ?>/200" class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <h5 class="card-title">Nombre del local</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="<?php echo base_url('servicios/locales/1'); ?>" class="btn btn-primary">Ver local</a>
-                                    </div>
-                                </div>
-							</div> -->
-							
-
-                            <!-- <div class="col-md-4"> 
-                                <div class="card" style="">
-                                    <img src="<?php echo base_url('assets/img/servicios/locales.jpg');?>" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="<?php echo base_url('servicios/locales/2'); ?>" class="btn btn-primary">Ver local</a>
+                                        <h5 class="card-title"><?php echo $local->nombre; ?></h5>
+                                        <p class="card-text text-muted"><?php echo $local->direccion; ?></p>
+                                        <a href="<?php echo base_url('servicios/locales/'.$local->id); ?>" class="btn btn-primary">Ver local</a>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="card" style="">
-                                    <img src="<?php echo base_url('assets/img/servicios/locales.jpg');?>" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="<?php echo base_url('servicios/locales/3'); ?>" class="btn btn-primary">Ver local</a>
-                                    </div>
-                                </div>
-                            </div> -->
-
+                                <?php }?>
                         </div>
                     </div>
                 </div>
