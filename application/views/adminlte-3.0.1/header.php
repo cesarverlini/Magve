@@ -87,12 +87,16 @@
           <i class="fas fa-shopping-cart"></i>
           <span class="badge badge-success navbar-badge">
             <?php
-              $items = array_values(unserialize($this->session->userdata('cart')));
-              $s = 0;
-              foreach ($items as $item) {
-                  $s += 1 * $item['quantity'];
+              if(null !== $this->session->userdata('cart')){
+                $items = array_values(unserialize($this->session->userdata('cart')));
+                $s = 0;
+                foreach ($items as $item) {
+                    $s += 1 * $item['quantity'];
+                }
+                echo $s;
+              }else{
+                echo '0';
               }
-              echo $s;
             ?>
           </span>
         </a>

@@ -26,6 +26,9 @@ class Servicios extends CI_Controller {
 
         if($page != 'index'){
             $data['title'] = ucfirst($page);
+            if($page=='locales'){
+                $data['locales'] = json_decode(file_get_contents(Locales::ver_local()));
+            }
             $this->load->view('adminlte-3.0.1/header', $data);
             $this->load->view('servicios/'.$page.'.php');
             $this->load->view('adminlte-3.0.1/footer');

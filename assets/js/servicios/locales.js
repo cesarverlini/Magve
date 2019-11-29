@@ -27,10 +27,10 @@ $(function () {
 	/*
 	* Cargando locales y filtrado de locales
 	*/
-	var base_url = 'http://localhost/magve/';
+	//var base_url = 'http://localhost/magve/';
 	// =======================================
-	// const url = document.location.host;
-	// const base_url = 'http://'+url+'/';
+	 const url = document.location.host;
+	 const base_url = 'http://'+url+'/';
 	// =======================================
 	var locales = [];
 	var seleccionado = [];
@@ -56,10 +56,10 @@ $(function () {
 			$('#Locales_disponibles').append(
 				'<div class="col-md-4">'+
 					'<div class="card" style="">'+
-							'<img src="'+base_url+'assets/img/servicios/locales.jpg" class="card-img-top" alt="...">'+
+							'<img src="https://picsum.photos/200" class="card-img-top" alt="...">'+
 							'<div class="card-body">'+
 									'<h5 class="card-title">'+value.nombre+'</h5>'+
-									'<p class="card-text">'+value.direccion+'</p>'+
+									'<p class="card-text text-muted">'+value.direccion+'</p>'+
 									'<a href="'+base_url+'servicios/locales/'+value.id+'" class="btn btn-primary mandar_info">Ver local</a>'+
 							'</div>'+
 					'</div>'+
