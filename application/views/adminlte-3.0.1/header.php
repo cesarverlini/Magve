@@ -3,7 +3,7 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>AdminLTE 3 | Legacy User Menu</title>
+   <title>MAGVE | Magve Eventos</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/fontawesome-free/css/all.min.css">
    <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>dist/css/adminlte.min.css">
