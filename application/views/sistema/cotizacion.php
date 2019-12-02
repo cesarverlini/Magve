@@ -1,45 +1,37 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-10 offset-md-1">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Favor de introducir los datos del cliente</h3>
+            <h3 class="card-title">Completar el registro para la cotización - Datos del cliente</h3>
           </div>
 
           <!-- /.card-header -->
 
           <div class="card-body">
-			  <form action="<?php echo base_url('confirmacion');?>" method="post" class="col-md-12">
-				<div class="row">	
-					<div class="col-md-4">
-						<label for="nombre">Nombre</label>
-						<input class="form-control" type="text" id="nombre" name="nombre">
-					</div>
-					<div class="col-md-4">
-						<label for="apellido_p">Apellido Paterno</label>
-						<input class="form-control" type="text" id="apellido_p" name="apellido_p">
-					</div>
-					<div class="col-md-4">
-						<label for="apellido_m">Apellido Materno</label>
-						<input class="form-control" type="text" id="apellido_m" name="apellido_m">
+			  <form action="<?php echo base_url('confirmacion-cotizacion');?>" method="post" class="col-md-12">
+
+				<div class="row mb-4">	
+					<div class="col-md-12">
+						<label for="nombre">Nombre completo</label>
+						<input class="form-control" type="text" id="nombre" name="nombre" required="true">
 					</div>
 				</div>
+
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-9">
 						<label for="correo">Correo Electronico</label>
-						<input class="form-control" type="text" id="correo" name="correo">
+						<input class="form-control" type="text" id="correo" name="correo" required="true">
 					</div>
-					<div class="col-md-6">
-						<label for="telefono">Numero de Telefono</label>
-						<input class="form-control" type="text" id="telefono" name="telefono">
+					<div class="col-md-3 mb-4">
+						<label for="telefono">Teléfono</label>
+						<input class="form-control" type="text" id="telefono" name="telefono" required="true">
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-11"></div>
-					<div class="col-md-1">
-						<br>
-						<button type="submit" class="btn btn-primary">Siguiente</button>
+					<div class="col-md-5">
+						<button type="submit" class="btn btn-primary">Continuar con cotización</button>
 					</div>	
 				</div>
 			</form>					

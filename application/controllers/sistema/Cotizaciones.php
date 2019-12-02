@@ -9,7 +9,7 @@ class Cotizaciones extends CI_Controller {
 	}	
 	public function index()
 	{	
-		$data['title'] = "Datos Cliente";		
+		$data['title'] = "Datos del cliente";		
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/cotizacion");
         $this->load->view('adminlte-3.0.1/footer');     
@@ -17,12 +17,10 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function confirmacion()
 	{
-		$data['title'] = "Confirmacion";
+		$data['title'] = "Confirmacion de cotización";
 
 		$cliente = array(
 			'nombre' => $this->input->post("nombre"),
-			'apellido_p' => $this->input->post("apellido_p"),
-			'apellido_m' => $this->input->post("apellido_m"),
 			'correo' => $this->input->post("correo"),
 			'telefono' => $this->input->post("telefono"),
 			'carrito' => array_values(unserialize($this->session->userdata('cart'))),
