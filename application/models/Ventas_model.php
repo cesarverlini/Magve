@@ -15,5 +15,17 @@ class Ventas_model extends CI_Model {
         v.id_empleado = u.id");
 
         return $query->result_array();
-    }
+	}
+	public function autocomplete($correo)
+	{	
+		$data = $correo['search'];		
+		$query = $this->db->query("SELECT * FROM clientes where correo like '%$data%'");
+		return $query->result();
+	}
+	public function get_email()
+	{
+		$this->db->select('correo');
+		$data = $this->db->get('clientes');
+		return $data->result();
+	}
 }

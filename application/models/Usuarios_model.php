@@ -16,3 +16,4 @@ class Usuarios_model extends CI_Model {
 		}
 	}
 }
+//CREATE SCHEMA `examen` DEFAULT CHARACTER SET utf8 ;
