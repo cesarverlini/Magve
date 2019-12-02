@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Favor de introducir los datos del cliente</h3>
+            <h3 class="card-title">Favor de confirmar la información para generar cotización</h3>
           </div>
 
           <!-- /.card-header -->
