@@ -30,11 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL,
-  `apellido_p` varchar(255) DEFAULT NULL,
-  `apellido_m` varchar(255) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
-  `correo` varchar(255) DEFAULT NULL
+  `nombre_completo` varchar(255)  NOT NULL,
+  `telefono` varchar(10)  NOT NULL,
+  `correo` varchar(255)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -59,18 +57,12 @@ CREATE TABLE `cotizacion` (
 
 CREATE TABLE `detalle_cotizacion_venta` (
   `id` int(11) NOT NULL,
-  `id_cotizacion` int(11) DEFAULT NULL,
-  `tipo_servicio` varchar(45) DEFAULT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  `capacidad` varchar(45) DEFAULT NULL,
-  `fecha_renta` varchar(45) DEFAULT NULL,
+  `id_proveedor` int(11) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `cantidad` varchar(45) DEFAULT '1',
-  `sabor` varchar(45) DEFAULT NULL,
-  `marca` varchar(45) DEFAULT NULL,
-  `id_proveedor` int(11) DEFAULT NULL,
-  `costo` int(11) DEFAULT NULL
+  `costo` int(11) DEFAULT NULL,
+  `subtotal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -108,6 +100,7 @@ CREATE TABLE `locales` (
 
 CREATE TABLE `proveedor` (
   `id` int(11) NOT NULL,
+  `tipo_servicio` varchar(200) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `telefono` varchar(10) DEFAULT NULL,
   `correo` varchar(255) DEFAULT NULL,
@@ -118,8 +111,8 @@ CREATE TABLE `proveedor` (
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`id`, `nombre`, `telefono`, `correo`, `pagina_web`) VALUES
-(1, 'Banquete', NULL, NULL, NULL);
+INSERT INTO `proveedor` (`id`, `tipo_servicio`, `nombre`, `telefono`, `correo`, `pagina_web`) VALUES
+(1,'locales', 'Banquete', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -179,6 +172,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido_p`, `apellido_m`, `usuario`, `password`, `email`, `rol_id`, `telefono`) VALUES
 (1, 'Cesar', 'Verduzco', 'Bartolini', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'cesarvb02@gmail.com', 1, '6622286175');
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido_p`, `apellido_m`, `usuario`, `password`, `email`, `rol_id`, `telefono`) VALUES
+(2, 'Isaí', 'Madueño', 'Guerrero', 'imadueno', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'imadueno@szertegia.com', 1, '6622821151');
 
 -- --------------------------------------------------------
 
