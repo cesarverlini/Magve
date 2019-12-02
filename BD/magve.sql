@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2019 a las 21:20:37
+-- Tiempo de generación: 02-12-2019 a las 17:33:12
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -37,6 +37,16 @@ CREATE TABLE `clientes` (
   `correo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nombre`, `apellido_p`, `apellido_m`, `telefono`, `correo`) VALUES
+(64, 'Cesar', 'verduzco', 'Bartolini', NULL, 'cesarvb02@gmail.com'),
+(65, 'Daniel', 'Verduzco', 'Jimenes', NULL, 'vjdanyel@gmail.com'),
+(66, 'Cesar Ignacio', 'Verduzco', 'Bartolini', '6622286175', 'cesarvb02@gmail.com'),
+(67, 'Cesar Ignacio', 'Verduzco', 'Bartolini', '6622286175', 'cesarvb02@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +60,14 @@ CREATE TABLE `cotizacion` (
   `total` int(11) DEFAULT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`id`, `id_cliente`, `id_empleado`, `total`, `fecha_registro`) VALUES
+(51, 66, 1, 10600, '2019-12-02 09:19:53'),
+(52, 67, 1, 10600, '2019-12-02 09:31:12');
 
 -- --------------------------------------------------------
 
@@ -70,8 +88,16 @@ CREATE TABLE `detalle_cotizacion_venta` (
   `sabor` varchar(45) DEFAULT NULL,
   `marca` varchar(45) DEFAULT NULL,
   `id_proveedor` int(11) DEFAULT NULL,
-  `costo` int(11) DEFAULT NULL
+  `costo` int(11) DEFAULT NULL,
+  `sub_total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalle_cotizacion_venta`
+--
+
+INSERT INTO `detalle_cotizacion_venta` (`id`, `id_cotizacion`, `tipo_servicio`, `nombre`, `direccion`, `capacidad`, `fecha_renta`, `descripcion`, `cantidad`, `sabor`, `marca`, `id_proveedor`, `costo`, `sub_total`) VALUES
+(90, 52, 'Local', 'Finca Elvira', 'Carretera a Kino Km 17.5 Hermosillo - Sonora ', '350', NULL, NULL, '1', NULL, NULL, NULL, 10600, 10600);
 
 -- --------------------------------------------------------
 
@@ -276,19 +302,19 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_cotizacion_venta`
 --
 ALTER TABLE `detalle_cotizacion_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `fotopaquetes`
