@@ -98,30 +98,63 @@
 					<div class="col-md-4">
 						<label for="correo">Correo Electronico</label>
 						<input class="form-control" type="text" id="correo" name="correo" value="">
-						<!-- <input hidden class="form-control" type="text" id="idcliente" name="idcliente" value=""> -->
-						<br>							
-						<br>							
-						<br>							
+						<!-- <input hidden class="form-control" type="text" id="idcliente" name="idcliente" value=""> -->							
 					</div>
-				</div>	
-				<div class="row">				
 					<div class="col-md-4">
 						<label for="nombre">Nombre</label>
 						<input class="form-control" type="text" id="nombre" name="nombre" value="">
 					</div>
 					<div class="col-md-4">
-						<label for="apellido_p">Apellido Paterno</label>
-						<input class="form-control" type="text" id="apellido_p" name="apellido_p" value="">
-					</div>
-					<div class="col-md-4">
-						<label for="apellido_m">Apellido Materno</label>
-						<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="">
-					</div>	
-					<div class="col-md-4">
 						<label for="telefono">Numero de Telefono</label>
 						<input class="form-control" type="text" id="telefono" name="telefono" value="">
-					</div>		
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-4">
+						<br>
+						<br>
+						<br>
+						<label for="cmbCotizaciones">Cotizaciones</label>
+						<select class="form-control" id="cmbCotizaciones" name="cmbCotizaciones">
+							<!-- <option value="value1">Value 1</option> 
+							<option value="value2" selected>Value 2</option>
+							<option value="value3">Value 3</option> -->
+						</select>
+					</div>					
 				</div>
+				<div class="card-body">
+					<table class="table table-bordered" id="tabla_cotizacion">
+						<thead>                  
+							<tr>
+								<th style="width: 50px">ID</th>
+									<th>Tipo</th>
+									<th>Nombre</th>
+									<th>Precio</th>
+									<th>Cantidad</th>
+									<th>Subtotal</th>
+									<!-- <th style="width: 100px">Eliminar</th> -->
+								</tr>
+						</thead>
+						<tbody id="tblbodyCotizacion">
+						<!-- <?php foreach ($carrito as $item) { ?>
+								<tr>
+									<td><?php echo $item['id']; ?></td>
+									<td><?php echo $item['service']; ?></td>
+									<td><?php echo $item['name']; ?></td>
+									<td><?php echo $item['price']; ?></td>
+									<td><?php echo $item['quantity']; ?></td>
+									<td><?php echo $item['price'] * $item['quantity']; ?></td>
+											<a href="<?php echo site_url('carrito/quitar/'.$item['id']); ?>">X</a>
+									</td> -->
+								</tr>
+							<?php } ?> -->
+							<!-- <tr>
+								<td colspan="5" align="right">Total</td>
+								<td colspan="2">$<?php echo $total; ?></td>
+							</tr> -->
+						</tbody>
+					</table>
+          		</div>
 				<div class="row">
 					<div class="col-md-11"></div>
 					<div class="col-md-1">

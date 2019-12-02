@@ -25,6 +25,9 @@ $route['datos_cliente'] = 'sistema/cotizaciones';
 $route['confirmacion'] = 'sistema/cotizaciones/confirmacion';
 $route['save_cotizacion'] = 'sistema/cotizaciones/guardar';
 
+//clientes
+$route['clientes'] = 'sistema/clientes';
+
 
 
 //$route['servicios'] = 'sistema/servicios';

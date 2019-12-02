@@ -15,11 +15,11 @@ class Ventas extends CI_Controller {
     */
     public function index(){
 
-        $cotizacion['cotizaciones'] = $this->Ventas_model->get_cotizaciones();
+        // $cotizacion['cotizaciones'] = $this->Ventas_model->get_cotizaciones();
 		
 		$data['title'] = "Venta";		
         $this->load->view('adminlte-3.0.1/header', $data);
-		$this->load->view('ventas/index', $cotizacion);
+		$this->load->view('ventas/index');
         $this->load->view('adminlte-3.0.1/footer');  
 
         // $this->load->view('layouts/header');
@@ -50,6 +50,18 @@ class Ventas extends CI_Controller {
 	{
 		$data = $this->input->post();
 		$respuesta = $this->Ventas_model->autocomplete($data);
+		echo json_encode($respuesta);
+	}
+	public function get_cotizaciones()
+	{
+		$data = $this->input->post('id');
+		$respuesta = $this->Ventas_model->get_cotizaciones($data);
+		echo json_encode($respuesta);
+	}
+	public function get_detalles()
+	{
+		$data = $this->input->post('id');
+		$respuesta = $this->Ventas_model->get_detalles($data);
 		echo json_encode($respuesta);
 	}
 }

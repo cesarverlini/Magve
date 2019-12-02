@@ -16,11 +16,11 @@
               <label>Nombre: </label>
             </div>
             <div class="col-md-4" style="text-align: right;">
-							<label><?php echo $nombre?> <?php echo $apellido_p?> <?php echo $apellido_m?></label>
+							<label><?php echo $nombre?></label>
 							<br>
 							<input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $nombre?>">
-							<input class="form-control" type="text" id="apellido_p" name="apellido_p" value="<?php echo $apellido_p?>">
-							<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="<?php echo $apellido_m?>">
+							<!-- <input class="form-control" type="text" id="apellido_p" name="apellido_p" value="<?php echo $apellido_p?>">
+							<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="<?php echo $apellido_m?>"> -->
             </div>					
           </div>
           <div class="row">				
@@ -40,38 +40,38 @@
             </div>					
           </div>			
           <div class="card-body">
-                      <table class="table table-bordered">
-                          <thead>                  
-                          <tr>
-                              <th style="width: 50px">ID</th>
-                              <th>Tipo</th>
-                              <th>Nombre</th>
-                              <th>Precio</th>
-                              <th>Cantidad</th>
-                              <th>Subtotal</th>
-                              <!-- <th style="width: 100px">Eliminar</th> -->
-                              </tr>
-                          </thead>
-                          <tbody>
-                          <?php foreach ($carrito as $item) { ?>
-                              <tr>
-                                  <td><?php echo $item['id']; ?></td>
-                                  <td><?php echo $item['service']; ?></td>
-                                  <td><?php echo $item['name']; ?></td>
-                                  <td><?php echo $item['price']; ?></td>
-                                  <td><?php echo $item['quantity']; ?></td>
-                                  <td><?php echo $item['price'] * $item['quantity']; ?></td>
-                                  <!-- <td align="center">
-                                      <a href="<?php echo site_url('carrito/quitar/'.$item['id']); ?>">X</a>
-                                  </td> -->
-                              </tr>
-                          <?php } ?>
-                              <tr>
-                            <td colspan="5" align="right">Total</td>
-                            <td colspan="2">$<?php echo $total; ?></td>
-                          </tr>
-                          </tbody>
-                      </table>
+						<table class="table table-bordered">
+								<thead>                  
+								<tr>
+										<th style="width: 50px">ID</th>
+										<th>Tipo</th>
+										<th>Nombre</th>
+										<th>Precio</th>
+										<th>Cantidad</th>
+										<th>Subtotal</th>
+										<!-- <th style="width: 100px">Eliminar</th> -->
+										</tr>
+								</thead>
+								<tbody>
+								<?php foreach ($carrito as $item) { ?>
+										<tr>
+												<td><?php echo $item['id']; ?></td>
+												<td><?php echo $item['service']; ?></td>
+												<td><?php echo $item['name']; ?></td>
+												<td><?php echo $item['price']; ?></td>
+												<td><?php echo $item['quantity']; ?></td>
+												<td><?php echo $item['price'] * $item['quantity']; ?></td>
+												<!-- <td align="center">
+														<a href="<?php echo site_url('carrito/quitar/'.$item['id']); ?>">X</a>
+												</td> -->
+										</tr>
+								<?php } ?>
+										<tr>
+									<td colspan="5" align="right">Total</td>
+									<td colspan="2">$<?php echo $total; ?></td>
+								</tr>
+								</tbody>
+						</table>
           </div>
           <div class="row">
             <div class="col-md-10"></div>

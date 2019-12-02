@@ -20,6 +20,7 @@ class Cart extends CI_Controller{
 		$costo = $this->input->post('costo');
 		$capacidad = $this->input->post('capacidad');
 		// $descripcion = $this->input->post('descripcion');
+		$descripcion = "alguna descripcion";
 		
         // $product = $this->productModel->find($id);
         // $item = array(
@@ -36,6 +37,7 @@ class Cart extends CI_Controller{
 			'name' => $nombre,
 			'address' => $direccion,
 			'capacity' => $capacidad,
+			'descripcion' => $descripcion,
             'photo' => '',
             'price' => $costo,
             'quantity' => 1

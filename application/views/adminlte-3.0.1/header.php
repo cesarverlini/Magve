@@ -223,6 +223,16 @@
                 </a>
             </li>
 
+					<!-- Termina link --> 
+					
+					
+					<li class="nav-item">
+                <a href="<?php echo base_url('clientes'); ?>" class="nav-link">
+                    <i class="nav-icon fas fa-shopping-bag"></i>
+                    <p>Clientes<span class="right badge badge-danger"></span></p>
+                </a>
+            </li>
+
           <!-- Termina link --> 
           <li class="nav-header">PERSONAS</li>
 

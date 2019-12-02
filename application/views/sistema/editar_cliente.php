@@ -1,26 +1,17 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Informacion de cliente</h3>
+          </div>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-        Categorias
-        <small>Nuevo</small>
-        </h1>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-        <!-- Default box -->
-        <div class="box box-solid">
-            <div class="box-body">
-                <div class="row">
+          <!-- /.card-header -->
+
+          <div class="card-body">
+		  	<div class="row">
                     <div class="col-md-12">
-                        <?php if($this->session->flashdata("error")):?>
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>                            
-                             </div>
-                        <?php endif;?>
                         <form action="<?php echo base_url();?>sistema/clientes/update" method="POST">
                             <input type="hidden" value="<?php echo $cliente->id;?>" name="idCliente">
                             <div class="form-group">
@@ -40,12 +31,13 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-            <!-- /.box-body -->
+                </div>				
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
-        <!-- /.box -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+</section>
