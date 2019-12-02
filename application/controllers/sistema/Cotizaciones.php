@@ -69,7 +69,7 @@ class Cotizaciones extends CI_Controller {
 				// 'id_servicio' => $value['id'],
 			);
 			$this->Cotizaciones_model->insert_servicios($data);									
-		}
+		}		
 	}
 	private function total(){
         $items = array_values(unserialize($this->session->userdata('cart')));
