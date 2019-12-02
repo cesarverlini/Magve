@@ -1,8 +1,8 @@
-<div class="content-wrapper">
+<!-- <div class="content-wrapper">
 	<section class="content-header">
 		<h1>Checkout <small>Proceso de venta</small>
 	</section>
-	<!-- Main content -->
+	
 	<section class="container-fluid" style="margin-left:20px;margin-top:20px;padding:25px;">
 		<hr style="width:100%;height:2px;background:#c7c5c1;">
 		<div class="row">
@@ -28,9 +28,9 @@
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button">Buscar</button>
 					</span>
-				</div><!-- /input-group -->
-			</div><!-- /.col-lg-6 -->
-		</div><!-- /.row -->
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -44,12 +44,7 @@
 						<th>Fecha de cotización</th>
 						<th>Acción</th>
 					</tr>
-					<!-- <tr>
-						<td>1</td>
-						<td>Isaí Madueño Guerrero</td>
-						<td>Hace mucho</td>
-						<td><a href="#">Ver cotización</a></td>
-					</tr> -->
+				
 					<?php foreach($cotizaciones as $row){ ?>
 						<tr>
 							<td><?php echo $row['id']; ?></td>
@@ -83,5 +78,64 @@
 				</div>
 			</div>
 		</div>
-	</section><!-- /.content -->
-</div><!-- /.content-wrapper -->
+	</section>
+</div> -->
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Favor de introducir los datos del cliente</h3>
+          </div>
+
+          <!-- /.card-header -->
+
+          <div class="card-body">
+			  <form action="<?php echo base_url('confirmacion');?>" method="post" class="col-md-12">				
+				<div class="row">
+					<div class="col-md-4">
+						<label for="correo">Correo Electronico</label>
+						<input class="form-control" type="text" id="correo" name="correo" value="">
+						<!-- <input hidden class="form-control" type="text" id="idcliente" name="idcliente" value=""> -->
+						<br>							
+						<br>							
+						<br>							
+					</div>
+				</div>	
+				<div class="row">				
+					<div class="col-md-4">
+						<label for="nombre">Nombre</label>
+						<input class="form-control" type="text" id="nombre" name="nombre" value="">
+					</div>
+					<div class="col-md-4">
+						<label for="apellido_p">Apellido Paterno</label>
+						<input class="form-control" type="text" id="apellido_p" name="apellido_p" value="">
+					</div>
+					<div class="col-md-4">
+						<label for="apellido_m">Apellido Materno</label>
+						<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="">
+					</div>	
+					<div class="col-md-4">
+						<label for="telefono">Numero de Telefono</label>
+						<input class="form-control" type="text" id="telefono" name="telefono" value="">
+					</div>		
+				</div>
+				<div class="row">
+					<div class="col-md-11"></div>
+					<div class="col-md-1">
+						<br>
+						<button type="submit" class="btn btn-primary">Siguiente</button>
+					</div>	
+				</div>
+			</form>					
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+</section>

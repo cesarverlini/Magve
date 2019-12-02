@@ -15,11 +15,16 @@ class Ventas extends CI_Controller {
     */
     public function index(){
 
-        $data['cotizaciones'] = $this->Ventas_model->get_cotizaciones();
+        $cotizacion['cotizaciones'] = $this->Ventas_model->get_cotizaciones();
+		
+		$data['title'] = "Venta";		
+        $this->load->view('adminlte-3.0.1/header', $data);
+		$this->load->view('ventas/index', $cotizacion);
+        $this->load->view('adminlte-3.0.1/footer');  
 
-        $this->load->view('layouts/header');
-        $this->load->view('ventas/index', $data);
-        $this->load->view('layouts/footer');
+        // $this->load->view('layouts/header');
+        // $this->load->view('ventas/index', $data);
+        // $this->load->view('layouts/footer');
     }
 
     public function check_cotizacion($id_cotizacion = null){
@@ -34,5 +39,17 @@ class Ventas extends CI_Controller {
         $this->load->view('layouts/header');
         $this->load->view('ventas/check_cotizacion', $data);
         $this->load->view('layouts/footer');
-    }
+	}
+	public function correos()
+	{
+		$respuesta = $this->Ventas_model->get_email();
+		// $data = $this->input->post('correo');
+		echo json_encode($respuesta);
+	}
+	public function autocomplete()
+	{
+		$data = $this->input->post();
+		$respuesta = $this->Ventas_model->autocomplete($data);
+		echo json_encode($respuesta);
+	}
 }

@@ -41,9 +41,10 @@
       	<div class="input-group input-group-sm">
         		<input class="form-control form-control-navbar" type="search" placeholder="Busqueda" aria-label="Search">
         		<div class="input-group-append">
-          		<button class="btn btn-navbar" type="submit">
-            		<i class="fas fa-search"></i>
-         		</button>
+							<button class="btn btn-navbar" type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+						<input hidden type="text" id="base_url" value="<?php echo base_url();?>">
       		</div>
       	</div>
     	</form>
@@ -71,7 +72,7 @@
                 			<p class="text-sm">Call me whenever you can...</p>
                 			<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               			</div>
-            		</div>
+								</div>
             		<!-- Message End -->
           		</a>
           		<div class="dropdown-divider"></div>
