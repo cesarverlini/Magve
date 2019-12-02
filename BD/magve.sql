@@ -79,16 +79,8 @@ CREATE TABLE `detalle_cotizacion_venta` (
   `id_producto` int(11) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `cantidad` varchar(45) DEFAULT '1',
-<<<<<<< HEAD
   `costo` int(11) DEFAULT NULL,
   `subtotal` int(11) DEFAULT NULL
-=======
-  `sabor` varchar(45) DEFAULT NULL,
-  `marca` varchar(45) DEFAULT NULL,
-  `id_proveedor` int(11) DEFAULT NULL,
-  `costo` int(11) DEFAULT NULL,
-  `sub_total` int(11) DEFAULT NULL
->>>>>>> 1f21deee78df72c2a84f45b7133fa2cba5f1c2a8
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

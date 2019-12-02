@@ -11,37 +11,25 @@
 
           <div class="card-body">
 			      <form action="<?php echo base_url('save_cotizacion');?>" method="post" class="col-md-12">
+              <h4>Datos del cliente</h4>
+              <hr>
               <div class="row">	
-                <div class="col-md-8">
-                  <label>Nombre: </label>
+                <div class="col-md-12 d-flex mb-2">
+                  <strong>Nombre:</strong>&nbsp;<span class="text-muted"><?php echo $nombre?></span>
                 </div>
 
-                <div class="col-md-4" style="text-align: right;">
-							    <label><?php echo $nombre?></label>
-							    <br>
-                  <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $nombre?>">
-                </div>					
-              </div>
-
-              <div class="row">				
-                <div class="col-md-8">
-                  <label for="correo">Correo Electronico</label>
-                </div>
-                <div class="col-md-4" style="text-align: right;">
-							    <label name="correo"><?php echo $correo?></label>
-							    <input class="form-control" type="text" id="correo" name="correo" value="<?php echo $correo?>">								
-                </div>					
-
-                <div class="col-md-8">
-                  <label for="telefono">Numero de Telefono</label>
+                <div class="col-md-12 d-flex mb-2">
+                  <strong>Correo electronico:</strong>&nbsp;<span class="text-muted"><?php echo $correo?></span>
                 </div>
 
-                <div class="col-md-4" style="text-align: right;">
-							    <label name="telefono"><?php echo $telefono?></label>
-							    <input class="form-control" type="text" id="telefono" name="telefono" value="<?php echo $telefono?>">						
-                </div>					
-              </div>			
+                <div class="col-md-12 d-flex mb-2">
+                  <strong>Teléfono:</strong>&nbsp;<span class="text-muted"><?php echo $telefono?></span>
+                </div>
+					
+              </div><!--end row-->
 
+              <hr>
+              <h4>Productos agregados al carrito</h4>
               <div class="card-body">
                 <table class="table table-bordered">
                   <thead>                  
@@ -76,7 +64,7 @@
               <div class="row">
                 <div class="col-md-10"></div>
                 <div class="col-md-2 mb-4" style="text-align: right;">
-                  <button type="submit" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
+                  <button type="submit" id="guardar" class="btn btn-primary">Generar Cotizacion</button>
                 </div>	
               </div>
             </form>					
