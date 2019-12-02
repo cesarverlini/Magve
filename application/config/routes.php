@@ -23,6 +23,7 @@ $route['carrito/quitar/(:num)'] = 'sistema/cart/remove/$1';
 $route['cotizacion'] = 'sistema/cotizaciones';
 $route['datos_cliente'] = 'sistema/cotizaciones';
 $route['confirmacion'] = 'sistema/cotizaciones/confirmacion';
+$route['save_cotizacion'] = 'sistema/cotizaciones/guardar';
 
 
 

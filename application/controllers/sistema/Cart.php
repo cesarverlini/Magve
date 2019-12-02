@@ -14,6 +14,13 @@ class Cart extends CI_Controller{
     }
 
     public function buy($id){
+		$servicio = $this->input->post('servicio');
+		$nombre = $this->input->post('nombre');
+		$direccion = $this->input->post('direccion');
+		$costo = $this->input->post('costo');
+		$capacidad = $this->input->post('capacidad');
+		// $descripcion = $this->input->post('descripcion');
+		
         // $product = $this->productModel->find($id);
         // $item = array(
         //     'id' => $product->id,
@@ -25,12 +32,22 @@ class Cart extends CI_Controller{
 
         $item = array(
 			'id' => $id,
-			'service' => 'local',
-            'name' => 'producto prueba',
+			'service' => $servicio,
+			'name' => $nombre,
+			'address' => $direccion,
+			'capacity' => $capacidad,
             'photo' => '',
-            'price' => '100',
+            'price' => $costo,
             'quantity' => 1
-        );
+		);
+		// $item = array(
+		// 	'id' => $id,
+		// 	'service' => 'local',
+        //     'name' => 'producto prueba',
+        //     'photo' => '',
+        //     'price' => '100',
+        //     'quantity' => 1
+        // );
 
 
         if(!$this->session->has_userdata('cart')) {

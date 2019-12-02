@@ -6,11 +6,10 @@ class Cotizaciones extends CI_Controller {
 	public function __construct(){
 		parent::__construct();	
 		$this->load->model('Cotizaciones_model');
-	}
-	
+	}	
 	public function index()
 	{	
-		$data['title'] = "Datos Cliente";
+		$data['title'] = "Datos Cliente";		
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/cotizacion");
         $this->load->view('adminlte-3.0.1/footer');     
@@ -26,10 +25,59 @@ class Cotizaciones extends CI_Controller {
 			'apellido_m' => $this->input->post("apellido_m"),
 			'correo' => $this->input->post("correo"),
 			'telefono' => $this->input->post("telefono"),
+			'carrito' => array_values(unserialize($this->session->userdata('cart'))),
+			'total' => $this->total()
 		);
+        // $data['total'] = $this->total();
+
+		// $cart = array_values(unserialize($this->session->userdata('cart')));
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/confirmacion",$cliente);
         $this->load->view('adminlte-3.0.1/footer');    
+	}
+	public function guardar()
+	{
+		$carrito = array_values(unserialize($this->session->userdata('cart')));
+		$cliente = array(
+			'nombre' =>  $this->input->post('nombre'),	
+			'apellido_p' =>  $this->input->post('apellido_p'),	
+			'apellido_m' =>  $this->input->post('apellido_m'),	
+			'correo' =>  $this->input->post('correo'),	
+			'telefono' =>  $this->input->post('telefono'),	
+		);
+		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
+		
+		$cotizacion = array(				
+			'id_empleado' => 1, 
+			'id_cliente' => $id_cliente,
+			'total' => 	$this->total()	
+		);
+		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
+
+		foreach ($carrito as $value) {
+			$data = array(
+				'id_cotizacion' => $id_cotizacion,
+				'tipo_servicio' => $value['service'],
+				'nombre' => $value['name'],
+				'direccion' => $value['address'],
+				'capacidad' => $value['capacity'],
+				// 'fecha_renta' => $value['fecha'],
+				// 'descripcion' => $value['descripcion'],
+				'cantidad' => $value['quantity'],
+				'costo' => $value['price'],
+				'sub_total' => intval($value['quantity']) * intval($value['price']),
+				// 'id_servicio' => $value['id'],
+			);
+			$this->Cotizaciones_model->insert_servicios($data);									
+		}
+	}
+	private function total(){
+        $items = array_values(unserialize($this->session->userdata('cart')));
+        $s = 0;
+        foreach ($items as $item) {
+            $s += $item['price'] * $item['quantity'];
+        }
+        return $s;
 	}
 	// public function index()
 	// {	
@@ -37,132 +85,7 @@ class Cotizaciones extends CI_Controller {
     //     $this->load->view('adminlte-3.0.1/header', $data);
 	// 	$this->load->view("sistema/cotizacion");
     //     $this->load->view('adminlte-3.0.1/footer');     
-
 	// }
-	public function crear_detalle_cotizacion()
-	{
-		// $this->Crear_Cotizacion();
-		// var_dump($this->input->post());
-		if($this->input->is_ajax_request()){	
-			// $datos = ($this->input->post());
-			// var_dump($datos);
-			// foreach ($datos as $key => $value) {
-				
-			// }
-			if ($this->input->post('tipo_servicio') == 'local') {
-				$locales = array(
-					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-					'nombre' => trim($this->input->post('nombre')), 
-					'direccion' => trim($this->input->post('direccion')), 
-					'capacidad' => trim($this->input->post('capacidad')), 
-					'costo' => trim($this->input->post('costo')), 
-					'fecha_renta' => trim($this->input->post('fecha_renta')),
-					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-				);
-				$this->Cotizaciones_model->insert_servicios($locales);		
-			}else if ($this->input->post('tipo_servicio') == 'fotografia') {
-				$fotos = array(
-					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-					'nombre' => trim($this->input->post('nombre')), 
-					'descripcion' => trim($this->input->post('descripcion')), 
-					'costo' => trim($this->input->post('costo')), 
-					'fecha_renta' => trim($this->input->post('fecha_renta')),
-					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-				);
-				$this->Cotizaciones_model->insert_servicios($fotos);		
-			}
-			else if ($this->input->post('tipo_servicio') == 'banquete') {
-				$banquete = array(
-					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-					'nombre' => trim($this->input->post('nombre')), 
-					'descripcion' => trim($this->input->post('descripcion')), 
-					'costo' => trim($this->input->post('costo')), 
-					'fecha_renta' => trim($this->input->post('fecha_renta')),
-					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-				);
-				$this->Cotizaciones_model->insert_servicios($banquete);		
-			}
-			else if ($this->input->post('tipo_servicio') == 'imprenta') {
-				$impresiones = array(
-					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-					'nombre' => trim($this->input->post('nombre')), 
-					'descripcion' => trim($this->input->post('descripcion')), 
-					'costo' => trim($this->input->post('costo')),
-					'fecha_renta' => trim($this->input->post('fecha_renta')),
-					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-				);
-				$this->Cotizaciones_model->insert_servicios($impresiones);		
-			}
-			else if ($this->input->post('tipo_servicio') == 'decoracion') {
-				$decoraciones = array(
-					'tipo_servicio' => trim($this->input->post('tipo_servicio')),
-					'nombre' => trim($this->input->post('nombre')), 
-					'descripcion' => trim($this->input->post('descripcion')), 
-					'costo' => trim($this->input->post('costo')), 
-					'fecha_renta' => trim($this->input->post('fecha_renta')),
-					'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-				);
-				$this->Cotizaciones_model->insert_servicios($decoraciones);		
-			}			
-			
-		}else{
-			show_404();
-		}
-	}
-	function Crear_Cotizacion()
-	{
-		if($this->input->is_ajax_request()){
-			// var_dump($this->input->post());
-			$cotizacion = array(				
-				'id_empleado' => $this->input->post('id_empleado'), 
-				'id_cliente' => $this->input->post('id')			
-			);
-			$respuesta = $this->Cotizaciones_model->insert_cotizacion($cotizacion);					
-			echo $respuesta;
-		}
-	}
-	public function Crear_Cliente()
-	{
-		if($this->input->is_ajax_request()){
-			$cliente = array(				
-				'nombre' => trim($this->input->post('nombre')), 
-				'correo' => trim($this->input->post('correo')), 
-				'telefono' => trim($this->input->post('telefono')), 
-			);
-			$respuesta = $this->Cotizaciones_model->insert_clientes($cliente);
-			// echo $respuesta;
-			$cotizacion = array(				
-				'id_empleado' => 1, 
-				'id_cliente' => $respuesta,
-				'total' => 	trim($this->input->post('total'))		
-			);
-			$respuestacot = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
-			echo $respuestacot;
-		}
-
-	}
-	public function definir_total()
-	{
-		if($this->input->is_ajax_request()){
-			// $cotizacion = array(				
-			// 	'id_cotizacion' => trim($this->input->post('id_cotizacion')), 
-			// );
-			$id_cotizacion = trim($this->input->post('id_cotizacion'));
-			$respuesta = $this->Cotizaciones_model->get_detalles($id_cotizacion);
-			if ($respuesta) {
-				$costo = 0;
-				foreach ($respuesta->result() as $row) {
-					$costo += $row->costo;
-				}
-				// echo $costo_total;
-				$costo_total = array(
-					'total' => $costo
-				);
-				$respuesta = $this->Cotizaciones_model->set_costototal($id_cotizacion,$costo_total);
-				
-			}
-		}
-	}
 	public function cotizacion_pdf()
 	{		
 		$fecha_actual=date("d-m-Y");
