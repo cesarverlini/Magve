@@ -70,7 +70,7 @@
 
                 <!-- MUSICA -->
                 <div class="col-sm-4">
-                  <a href="<?php echo base_url('servicios/musica'); ?>#">
+                  <a href="<?php echo base_url('servicios/musica'); ?>">
                     <div class="musica portada position-relative p-3" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-info">

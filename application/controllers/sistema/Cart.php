@@ -4,9 +4,14 @@ class Cart extends CI_Controller{
 
     public function index(){
 
-        $data['items'] = array_values(unserialize($this->session->userdata('cart')));
-        $data['total'] = $this->total();
+        if(unserialize($this->session->userdata('cart'))){
+            $data['items'] = array_values(unserialize($this->session->userdata('cart')));
+            $data['total'] = $this->total();
+        }else{
+            $data['error'] = TRUE;
+        }
         $data['title'] = "Carrito de compras";
+
 
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('cart/index');

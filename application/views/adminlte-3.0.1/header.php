@@ -208,7 +208,7 @@
           <!-- Termina link --> 
 
             <li class="nav-item">
-                <a href="<?php echo base_url('sistema/cart'); ?>" class="nav-link">
+                <a href="<?php echo base_url('carrito'); ?>" class="nav-link">
                     <i class="nav-icon fas fa-cubes"></i>
                     <p>Cotizar<span class="right badge badge-warning">1</span></p>
                 </a>
