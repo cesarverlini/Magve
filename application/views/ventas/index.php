@@ -156,10 +156,11 @@
 					</table>
           		</div>
 				<div class="row">
-					<div class="col-md-11"></div>
-					<div class="col-md-1">
+					<!-- <div class="col-md-10"></div> -->
+					<div class="col-md-2">
 						<br>
-						<button type="submit" class="btn btn-primary">Siguiente</button>
+						<!-- <button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button> -->
+						<a href="<?php echo base_url('correo');?>" target="_blank" id="Contrato" type="button" class="btn btn-primary">Generar Contrato (NO ESTA TERMINADO)</a>
 					</div>	
 				</div>
 			</form>					

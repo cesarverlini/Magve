@@ -5,10 +5,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'magve',
+	'hostname' => 'mysql.s464.sureserver.com:3306',
+	'username' => 'Magveuser',
+	'password' => 'm4gv3123',
+	'database' => 'integra_magve',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

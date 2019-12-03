@@ -1,9 +1,11 @@
 $(document).ready(function(){
 	$('#tabla_cotizacion').hide();
+	// $('#Contrato').hide();
 	var base_url = $('#base_url').val();
 	$('#correo').autocomplete({	
 		source: function(req,res){	
 			$('#tabla_cotizacion').hide();
+			$('#Contrato').hide();
 			$('#tblbodyCotizacion').empty();
 			$.ajax({
 				url: base_url+"sistema/ventas/autocomplete",
@@ -43,8 +45,10 @@ $(document).ready(function(){
 		id = $('#cmbCotizaciones').val();
 		if (id == "") {
 			$('#tabla_cotizacion').hide();
+			$('#Contrato').hide();
 		}else{
 			$('#tabla_cotizacion').show();
+			$('#Contrato').show();
 			$('#tblbodyCotizacion').empty();
 			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_detalles", $data = { 'id': id});
 			
@@ -75,9 +79,12 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	$('#Contrato').on('click',function(){
+		console.log($('#cmbCotizaciones').val());
+	});
 	
 });
 $(function(){
-	
 })
 
