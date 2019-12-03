@@ -21,6 +21,8 @@ class Cotizaciones extends CI_Controller {
 
 		$cliente = array(
 			'nombre' => $this->input->post("nombre"),
+			// 'apellido_p' => $this->input->post("apellido_p"),
+			// 'apellido_m' => $this->input->post("apellido_m"),
 			'correo' => $this->input->post("correo"),
 			'telefono' => $this->input->post("telefono"),
 			'carrito' => array_values(unserialize($this->session->userdata('cart'))),
@@ -37,9 +39,9 @@ class Cotizaciones extends CI_Controller {
 	{
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
 		$cliente = array(
-			'nombre' =>  $this->input->post('nombre'),	
-			'apellido_p' =>  $this->input->post('apellido_p'),	
-			'apellido_m' =>  $this->input->post('apellido_m'),	
+			'nombre_completo' =>  $this->input->post('nombre'),	
+			// 'apellido_p' =>  $this->input->post('apellido_p'),	
+			// 'apellido_m' =>  $this->input->post('apellido_m'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
@@ -52,22 +54,40 @@ class Cotizaciones extends CI_Controller {
 		);
 		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
 
+
 		foreach ($carrito as $value) {
+			if ($value['service'] == "Local") {		
+				$id_proveedor = 2;	
+			}else if ($value['service'] == "Reposteria") {		
+				$id_proveedor = 3;	
+			}else if ($value['service'] == "Musica") {		
+				$id_proveedor = 4;	
+			}else if ($value['service'] == "Fotografia") {	
+				$id_proveedor = 5;	
+			}else if ($value['service'] == "Imprenta") {
+				$id_proveedor = 6;	
+			}else if ($value['service'] == "Banquete") {
+				$id_proveedor = 7;	
+			}
+
 			$data = array(
 				'id_cotizacion' => $id_cotizacion,
-				'tipo_servicio' => $value['service'],
+				'id_proveedor' => $id_proveedor,
+				'id_producto' => $value['id'],
 				'nombre' => $value['name'],
-				'direccion' => $value['address'],
-				'capacidad' => $value['capacity'],
-				// 'fecha_renta' => $value['fecha'],
-				// 'descripcion' => $value['descripcion'],
+				'descripcion' => $value['descripcion'],
 				'cantidad' => $value['quantity'],
 				'costo' => $value['price'],
-				'sub_total' => intval($value['quantity']) * intval($value['price']),
+				'subtotal' => intval($value['quantity']) * intval($value['price']),
+				// 'tipo_servicio' => $value['service'],
+				// 'direccion' => $value['address'],
+				// 'capacidad' => $value['capacity'],
 				// 'id_servicio' => $value['id'],
 			);
-			$this->Cotizaciones_model->insert_servicios($data);									
-		}		
+			$this->Cotizaciones_model->insert_servicios($data);
+		}	
+		redirect('/servicios', 'refresh');	
+		
 	}
 	private function total(){
         $items = array_values(unserialize($this->session->userdata('cart')));

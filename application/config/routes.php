@@ -25,6 +25,11 @@ $route['informacion-del-cliente'] = 'sistema/cotizaciones';
 $route['confirmacion-cotizacion'] = 'sistema/cotizaciones/confirmacion';
 $route['save_cotizacion'] = 'sistema/cotizaciones/guardar';
 
+//clientes
+$route['clientes'] = 'sistema/clientes';
+
+
+
 //$route['servicios'] = 'sistema/servicios';
 // rutas del sistema
 $route['404_override'] = '';
