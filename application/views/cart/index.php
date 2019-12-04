@@ -7,7 +7,7 @@
                         <h3 class="card-title">Articulos</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php if($error){ ?>
+                <?php if(isset($error)){ ?>
                     <div class="card-body">
                         <h4>No hay articulos agregados.</h4>
                     </div>
@@ -50,12 +50,12 @@
                 <!-- /.card-body -->
                 
                 <div class="card-footer clearfix">
-                    <?php if(!$error){ ?>
+                    <?php if(isset($error)){ ?>
+                        <a href="<?php echo site_url('servicios'); ?>">Agregar articulos</a>
+                    <?php }else{ ?>
                         <a href="<?php echo site_url('servicios'); ?>">Continuar comprando</a>
                         &nbsp;|&nbsp;
                         <a href="<?php echo site_url('informacion-del-cliente'); ?>">Guardar Cotización</a>
-                    <?php }else{ ?>
-                        <a href="<?php echo site_url('servicios'); ?>">Agregar articulos</a>
                     <?php } ?>
                     <ul class="pagination pagination-sm m-0 float-right">
                         <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
