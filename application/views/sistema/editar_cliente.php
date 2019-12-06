@@ -12,22 +12,22 @@
           <div class="card-body">
 		  	<div class="row">
                     <div class="col-md-12">
-                        <form action="<?php echo base_url();?>sistema/clientes/update" method="POST">
-                            <input type="hidden" value="<?php echo $cliente->id;?>" name="idCliente">
+                        <form action="<?php echo base_url('editar_cliente');?>" method="POST">
+                            <input type="hidden" value="<?php echo $cliente->id;?>" name="idCliente" id="idCliente">
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $cliente->nombre?>">
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $cliente->nombre_completo?>">
                             </div>
                             <div class="form-group">
                                 <label for="correo">Correo:</label>
                                 <input type="text" class="form-control" id="correo" name="correo" value="<?php echo $cliente->correo?>">
-							</div>
-							<div class="form-group">
+														</div>
+														<div class="form-group">
                                 <label for="telefono">Telefono:</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $cliente->telefono?>">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-flat">Guardar</button>
+                                <button type="button" id="editar" class="btn btn-success btn-flat">Guardar</button>
                             </div>
                         </form>
                     </div>

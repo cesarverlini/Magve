@@ -51,4 +51,9 @@ class Cotizaciones_model extends CI_Model {
 		// $resultado = $this->db->get();
 		return $resultado->row();
 	}
+	public function existe_correo($correo)
+	{
+		$resultado = $this->db->where('correo',$correo)->get('clientes');
+		return $resultado->row();
+	}
 }

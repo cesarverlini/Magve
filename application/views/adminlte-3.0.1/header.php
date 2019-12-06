@@ -9,7 +9,10 @@
    <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>dist/css/adminlte.min.css">
    <!--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">-->
    <!-- Ion Slider -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/js/sweetalert/dist/sweetalert2.min.css'); ?>">
+	<!-- <script src=""></script> -->
+	
    <!-- custom css load --> 
    <?php
 

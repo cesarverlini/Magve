@@ -30,22 +30,24 @@ class Clientes extends CI_Controller {
 	}
 	public function update()
 	{
-		$id = $this->input->post('idCliente');
+		$id = $this->input->post('id');
 		$nombre = $this->input->post('nombre');
 		$correo = $this->input->post('correo');
 		$telefono = $this->input->post('telefono');
 
 		$data = array(
-			'nombre' =>$nombre,
+			'nombre_completo' =>$nombre,
 			'correo' =>$correo,
 			'telefono'=>$telefono
 		);
 
 		if ($this->Clientes_model->editar_cliente($id,$data)) {
-			redirect(base_url()."sistema/clientes");
+			echo "true";
+			// redirect(base_url()."sistema/clientes");
 		}else{
-			$this->session->set_flashdata("error","no se pudo actualizar la informacion del cliente");
-			redirect(base_url()."sistema/clientes/editar_clientes/".$id);
+			echo "false";
+			// $this->session->set_flashdata("error","no se pudo actualizar la informacion del cliente");
+			// redirect(base_url()."sistema/clientes/editar_clientes/".$id);
 		}
 	}
 }

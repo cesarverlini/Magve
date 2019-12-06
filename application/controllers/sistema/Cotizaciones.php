@@ -17,31 +17,49 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function confirmacion()
 	{
-		$data['title'] = "Confirmacion de cotización";
+		$nombre = $this->input->post("nombre");
+		$correo = $this->input->post("correo");
+		$telefono = $this->input->post("telefono");
 
-		$cliente = array(
-			'nombre' => $this->input->post("nombre"),
-			// 'apellido_p' => $this->input->post("apellido_p"),
-			// 'apellido_m' => $this->input->post("apellido_m"),
-			'correo' => $this->input->post("correo"),
-			'telefono' => $this->input->post("telefono"),
-			'carrito' => array_values(unserialize($this->session->userdata('cart'))),
-			'total' => $this->total()
-		);
-        // $data['total'] = $this->total();
+		// $respuesta = $this->Cotizaciones_model->existe_correo($correo);
+		// if ($respuesta) {
+		// 	echo "true";
+		// }else{			
+			$data['title'] = "Confirmacion de cotización";
 
-		// $cart = array_values(unserialize($this->session->userdata('cart')));
-        $this->load->view('adminlte-3.0.1/header', $data);
-		$this->load->view("sistema/confirmacion",$cliente);
-        $this->load->view('adminlte-3.0.1/footer');    
+			$cliente = array(
+				'nombre' => $nombre,
+				'correo' => $correo,
+				'telefono' => $telefono,
+				'carrito' => array_values(unserialize($this->session->userdata('cart'))),
+				'total' => $this->total()
+			);
+			// $data['total'] = $this->total();
+
+			// $cart = array_values(unserialize($this->session->userdata('cart')));
+			$this->load->view('adminlte-3.0.1/header', $data);
+			$this->load->view("sistema/confirmacion",$cliente);
+			$this->load->view('adminlte-3.0.1/footer');    
+		// }
+	}
+	public function existe_correo()
+	{
+		$nombre = $this->input->post("nombre");
+		$correo = $this->input->post("correo");
+		$telefono = $this->input->post("telefono");
+
+		$respuesta = $this->Cotizaciones_model->existe_correo($correo);
+		if ($respuesta) {
+			echo "true";
+		}else{
+			echo "false";
+		}
 	}
 	public function guardar()
 	{
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
 		$cliente = array(
 			'nombre_completo' =>  $this->input->post('nombre'),	
-			// 'apellido_p' =>  $this->input->post('apellido_p'),	
-			// 'apellido_m' =>  $this->input->post('apellido_m'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
@@ -88,8 +106,8 @@ class Cotizaciones extends CI_Controller {
 				// 'id_servicio' => $value['id'],
 			);
 			$this->Cotizaciones_model->insert_servicios($data);
-		}	
-		redirect('/servicios', 'refresh');	
+		}
+		redirect('/servicios', 'refresh');			
 		
 	}
 	private function total(){
