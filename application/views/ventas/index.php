@@ -95,25 +95,31 @@
           <div class="card-body">
 			  <form action="<?php echo base_url('confirmacion');?>" method="post" class="col-md-12">				
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<label for="correo">Correo Electronico</label>
 						<input class="form-control" type="text" id="correo" name="correo" value="">
 						<!-- <input hidden class="form-control" type="text" id="idcliente" name="idcliente" value=""> -->							
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
+						<label for="folio">Folio de la Cotizacion</label>
+						<input class="form-control" type="text" id="folio" name="folio" value="">		
+						<br>
+						<br>
+						<br>	
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-6">						
 						<label for="nombre">Nombre</label>
 						<input class="form-control" type="text" id="nombre" name="nombre" value="">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<label for="telefono">Numero de Telefono</label>
 						<input class="form-control" type="text" id="telefono" name="telefono" value="">
 					</div>
 				</div>	
 				<div class="row">
-					<div class="col-md-4">
-						<br>
-						<br>
-						<br>
+					<div class="col-md-4" id="divcotizaciones">
 						<label for="cmbCotizaciones">Cotizaciones</label>
 						<select class="form-control" id="cmbCotizaciones" name="cmbCotizaciones">
 							<!-- <option value="value1">Value 1</option> 
@@ -159,8 +165,8 @@
 					<!-- <div class="col-md-10"></div> -->
 					<div class="col-md-2">
 						<br>
-						<!-- <button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button> -->
-						<a href="<?php echo base_url('correo');?>" target="_blank" id="Contrato" type="button" class="btn btn-primary">Generar Contrato (NO ESTA TERMINADO)</a>
+						<button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button>
+						<!-- <a href="<?php echo base_url('contrato');?>" target="_blank" id="Contrato" type="button" class="btn btn-primary">Generar Contrato (NO ESTA TERMINADO)</> -->
 					</div>	
 				</div>
 			</form>					

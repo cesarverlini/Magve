@@ -46,11 +46,14 @@ class Cotizaciones extends CI_Controller {
 			'telefono' =>  $this->input->post('telefono'),	
 		);
 		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
-		
+		$fecha = date('d-m-y');
+		$fecha = explode("-",$fecha);
+		$folio = $fecha[0].$fecha[1].$fecha[2];
 		$cotizacion = array(				
 			'id_empleado' => 1, 
 			'id_cliente' => $id_cliente,
-			'total' => 	$this->total()	
+			'total' => 	$this->total(),
+			'folio' => intval($id_cliente) . intval($folio)
 		);
 		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
 
@@ -173,55 +176,6 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
 		$pdf->Cell(30,7,utf8_decode($data->total),0,0,'C');
 
-
-				
-		// $pdf->setXY(20,28);
-		// $pdf->MultiCell(30,5,utf8_decode("Cliente"),1,'C',1);
-		// $pdf->setXY(35,28);
-		// $pdf->Cell(30,18,utf8_decode("Identificación"),1,0,'C',1);
-		// $pdf->setXY(65,28);
-		// $pdf->MultiCell(30,6,utf8_decode("Resultado hacia la Orgnanización"),1,'C',1);
-		// $pdf->setXY(95,28);
-		// $pdf->MultiCell(22,9,utf8_decode("Nivel de Influencia"),1,'C',1);
-		// $pdf->setXY(117,28);
-		// $pdf->MultiCell(20,9,utf8_decode("Nivel de Interés"),1,'C',1);
-		// $pdf->setXY(137,28);
-		// $pdf->MultiCell(23,18,utf8_decode("Control"),1,'C',1);
-		// $pdf->setXY(160,28);
-		// $pdf->MultiCell(27,6,utf8_decode("Necesidades y Espectativas"),1,'C',1);
-		// $pdf->setXY(187,28);
-		// $pdf->MultiCell(17,9,utf8_decode("¿Qué hacer?"),1,'C',1);
-		// $pdf->setXY(204,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Cómo hacer?"),1,'C',1);
-		// $pdf->setXY(224,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Cuándo hacerlo?"),1,'C',1);
-		// $pdf->setXY(244,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Quien lo hace?"),1,'C',1);
-		// $pdf->setXY(264,28);
-		// $pdf->MultiCell(24,9,utf8_decode("¿Cómo se monitorea?"),1,'C',1);
-
-		// $datos_matriz = $this->Stakeholders_model->get_matriz($this->uri->segment(3));
-		// $i = 1;
-		// $pdf->SetFont('Arial','',9);
-		// foreach ($datos_matriz as $row) {
-		// 	$pdf->SetWidths(array(10,15,30,30,22,20,23,27,17,20,20,20,24));
-		// 	$pdf->Row(array(
-		// 				$i++,
-		// 				utf8_decode($row->grupo_interes),
-		// 				utf8_decode($row->nombre_interesado),
-		// 				utf8_decode($row->resultado_organizacion),
-		// 				utf8_decode($row->nivel_influencia),
-		// 				utf8_decode($row->nivel_interes),
-		// 				utf8_decode($row->control),
-		// 				utf8_decode($row->necesidades_expectativas),
-		// 				utf8_decode($row->que_hacer),
-		// 				utf8_decode($row->como_hacerlo),
-		// 				utf8_decode($row->cuando_hacerlo),
-		// 				utf8_decode($row->quien_lo_hace),
-		// 				utf8_decode($row->como_monitorea)
-		// 			 ));
-		// }
-		
 		$pdf->Ln();
 		// $pdf->SetY(-30);
 		// $pdf->Cell(0,3,$pdf->PageNo(),0,0,'C');

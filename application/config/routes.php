@@ -28,8 +28,7 @@ $route['save_cotizacion'] = 'sistema/cotizaciones/guardar';
 //clientes
 $route['clientes'] = 'sistema/clientes';
 //contrato
-$route['contrato'] = 'sistema/ventas/contrato';
-$route['correo'] = 'sistema/ventas/correo';
+$route['contrato/(:num)'] = 'sistema/ventas/contrato/$1';
 
 
 

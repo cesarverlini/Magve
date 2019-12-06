@@ -1,6 +1,8 @@
 $(document).ready(function(){
+	contrato_id = 0;
 	$('#tabla_cotizacion').hide();
-	// $('#Contrato').hide();
+	$('#divcotizaciones').hide();
+	$('#Contrato').hide();
 	var base_url = $('#base_url').val();
 	$('#correo').autocomplete({	
 		source: function(req,res){	
@@ -28,6 +30,7 @@ $(document).ready(function(){
 			  });			
 		},
 		select: function(event, selectedData){
+			$('#divcotizaciones').show();
 			$('#nombre').val(selectedData.item.nombre);
 			$('#correo').val(selectedData.item.label);
 			$('#telefono').val(selectedData.item.telefono);
@@ -36,55 +39,95 @@ $(document).ready(function(){
 			$.each(respuesta, function(e,v){
 				$('#cmbCotizaciones').append(
 					'<option value="">Seleccionar...</option>' +
-					'<option value="'+v.id+'">'+v.fecha_registro+'</option>' 
+					'<option value="'+v.id+'">'+v.folio+'</option>' 
 				);
 			});
 		}
 	});
+	$('#folio').autocomplete({	
+		source: function(req,res){	
+			// $('#tabla_cotizacion').hide();
+			// $('#Contrato').hide();
+			$('#tblbodyCotizacion').empty();
+			$.ajax({
+				url: base_url+"sistema/ventas/autocomplete_folio",
+				type: 'post',
+				dataType: "json",
+				data: {
+				  search: req.term
+				},
+				success: function( data ) {
+					 res($.map(data, function (value, key) {						 
+						return {
+							label: value.folio,
+							value: key.folio,
+							id: value.id,
+							id_cliente: value.id_cliente
+						};
+					}));
+				}
+			  });			
+		},
+		select: function(event, selectedData){
+			$('#divcotizaciones').hide();
+			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cliente", $data = { 'id': selectedData.item.id_cliente});
+			id_cotizacion = selectedData.item.id
+			$('#nombre').val(respuesta[0].nombre_completo);
+			$('#correo').val(respuesta[0].correo);
+			$('#telefono').val(respuesta[0].telefono);
+			obtener_detalle(id_cotizacion);
+		}
+	});
+	
 	$('#cmbCotizaciones').change(function(){
-		id = $('#cmbCotizaciones').val();
-		if (id == "") {
+		id_cotizacion = $('#cmbCotizaciones').val();
+		if (id_cotizacion == "") {
 			$('#tabla_cotizacion').hide();
 			$('#Contrato').hide();
 		}else{
-			$('#tabla_cotizacion').show();
-			$('#Contrato').show();
-			$('#tblbodyCotizacion').empty();
-			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_detalles", $data = { 'id': id});
-			
-			$.each(respuesta, function(e,v){
-				if (v.id_proveedor = 2) {
-					$proveedor = "Local";
-				}else if (v.id_proveedor = 3) {
-					$proveedor = "Reposteria";
-				}else if (v.id_proveedor = 4) {
-					$proveedor = "Musica";
-				}else if (v.id_proveedor = 5) {
-					$proveedor = "Fotografia";
-				}else if (v.id_proveedor = 6) {
-					$proveedor = "Imprenta";
-				}else if (v.id_proveedor = 7) {
-					$proveedor = "Banquete";
-				}
-				$('#tblbodyCotizacion').append(
-					'<tr>'+
-						'<td>'+v.id+'</td>'+
-						'<td>'+$proveedor+'</td>'+
-						'<td>'+v.nombre+'</td>'+
-						'<td>'+v.costo+'</td>'+
-						'<td>'+v.cantidad+'</td>'+
-						'<td>'+v.subtotal+'</td>'+
-					'</tr>'
-				);
-			});
+			obtener_detalle(id_cotizacion);		
 		}
 	});
 
-	$('#Contrato').on('click',function(){
-		console.log($('#cmbCotizaciones').val());
+	// $('#Contrato').on('click',function(){
+	// 	console.log($('#cmbCotizaciones').val());
+	// });
+	function obtener_detalle(id)
+	{
+		$('#tabla_cotizacion').show();
+		$('#Contrato').show();
+		$('#tblbodyCotizacion').empty();
+		var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_detalles", $data = { 'id': id});
+			
+		$.each(respuesta, function(e,v){
+			if (v.id_proveedor = 2) {
+				$proveedor = "Local";
+			}else if (v.id_proveedor = 3) {
+				$proveedor = "Reposteria";
+			}else if (v.id_proveedor = 4) {
+				$proveedor = "Musica";
+			}else if (v.id_proveedor = 5) {
+				$proveedor = "Fotografia";
+			}else if (v.id_proveedor = 6) {
+				$proveedor = "Imprenta";
+			}else if (v.id_proveedor = 7) {
+				$proveedor = "Banquete";
+			}
+			$('#tblbodyCotizacion').append(
+				'<tr>'+
+					'<td>'+v.id+'</td>'+
+					'<td>'+$proveedor+'</td>'+
+					'<td>'+v.nombre+'</td>'+
+					'<td>'+v.costo+'</td>'+
+					'<td>'+v.cantidad+'</td>'+
+					'<td>'+v.subtotal+'</td>'+
+				'</tr>'
+			);
+		});
+	}
+	$('#Contrato').click(function(){
+		// console.log(id_cotizacion);
+		window.open(base_url+"contrato/"+id_cotizacion);
 	});
-	
 });
-$(function(){
-})
 
