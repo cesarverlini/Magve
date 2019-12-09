@@ -20,6 +20,7 @@ $route['carrito/comprar/(:num)'] = 'sistema/cart/buy/$1';
 $route['carrito/quitar/(:num)'] = 'sistema/cart/remove/$1';
 
 //cotizaciones
+$route['cotizacion_pdf/(:num)'] = 'sistema/cotizaciones/cotizacion_pdf/$1';
 $route['cotizacion'] = 'sistema/cotizaciones';
 $route['informacion-del-cliente'] = 'sistema/cotizaciones';
 $route['confirmacion-cotizacion'] = 'sistema/cotizaciones/confirmacion';

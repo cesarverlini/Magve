@@ -77,8 +77,9 @@
 								<div class="col-md-10"></div>
 								<div class="col-md-2" style="text-align: right;">
 									<br>
-									<button type="submit" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
+									<button type="button" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
 									<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-primary">Pagar</a>
+									<!-- <a href="<?php echo base_url('cotizacion_pdf/69');?>" type="button" class="btn btn-primary">asdasd</a> -->
 
 								</div>	
 							</div>

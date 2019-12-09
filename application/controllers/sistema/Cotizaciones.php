@@ -60,10 +60,11 @@ class Cotizaciones extends CI_Controller {
 
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
 		$cliente = array(
-			'nombre_completo' =>  $this->input->post('nombre'),	
+			'nombre_completo' =>  $this->input->post('nombre_completo'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
+		// var_dump($cliente);
 		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
 		$fecha = date('d-m-y');
 		$fecha = explode("-",$fecha);
@@ -107,8 +108,9 @@ class Cotizaciones extends CI_Controller {
 				// 'id_servicio' => $value['id'],
 			);
 			$this->Cotizaciones_model->insert_servicios($data);
-		}		
-		$this->cotizacion_pdf($id_cotizacion);
+		}
+		echo json_encode($id_cotizacion);
+		// $this->cotizacion_pdf($id_cotizacion);
 		// redirect('/servicios', 'refresh');						
 		
 	}
@@ -127,10 +129,11 @@ class Cotizaciones extends CI_Controller {
 	// 	$this->load->view("sistema/cotizacion");
     //     $this->load->view('adminlte-3.0.1/footer');     
 	// }
-	public function cotizacion_pdf($id)
+	public function cotizacion_pdf()
 	{		
 		$fecha_actual=date("d-m-Y");
-		//$id = $this->uri->segment(4);
+		$id = $this->uri->segment(2);
+		// var_dump($id);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
 		$pdf = new fpdf_manager('L','mm','A4');
