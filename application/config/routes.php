@@ -20,6 +20,7 @@ $route['carrito/comprar/(:num)'] = 'sistema/cart/buy/$1';
 $route['carrito/quitar/(:num)'] = 'sistema/cart/remove/$1';
 
 //cotizaciones
+$route['cotizacion_pdf/(:num)'] = 'sistema/cotizaciones/cotizacion_pdf/$1';
 $route['cotizacion'] = 'sistema/cotizaciones';
 $route['informacion-del-cliente'] = 'sistema/cotizaciones';
 $route['confirmacion-cotizacion'] = 'sistema/cotizaciones/confirmacion';
@@ -31,7 +32,9 @@ $route['editar_cliente'] = 'sistema/clientes/update';
 //contrato
 $route['contrato/(:num)'] = 'sistema/ventas/contrato/$1';
 
-
+$route['pagar'] = 'sistema/Pago';
+$route['transferencia'] = 'sistema/Pago/Transferencia';
+$route['deposito'] = 'sistema/Pago/Deposito';
 
 
 //$route['servicios'] = 'sistema/servicios';

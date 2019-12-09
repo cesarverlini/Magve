@@ -67,13 +67,15 @@ class Cotizaciones extends CI_Controller {
 		}
 	}
 	public function guardar()
-	{
+	{	
+
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
 		$cliente = array(
-			'nombre_completo' =>  $this->input->post('nombre'),	
+			'nombre_completo' =>  $this->input->post('nombre_completo'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
+		// var_dump($cliente);
 		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
 		$fecha = date('d-m-y');
 		$fecha = explode("-",$fecha);
@@ -123,7 +125,13 @@ class Cotizaciones extends CI_Controller {
 			}
 			$this->session->set_userdata('cart', serialize($cart));
 		}
+<<<<<<< HEAD
 		redirect('servicios');			
+=======
+		echo json_encode($id_cotizacion);
+		// $this->cotizacion_pdf($id_cotizacion);
+		// redirect('/servicios', 'refresh');						
+>>>>>>> 4b6e3670286ba86182878be80f5751f63b37555d
 		
 	}
 	private function total(){
@@ -144,7 +152,8 @@ class Cotizaciones extends CI_Controller {
 	public function cotizacion_pdf()
 	{		
 		$fecha_actual=date("d-m-Y");
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(2);
+		// var_dump($id);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
 		$pdf = new fpdf_manager('L','mm','A4');
@@ -171,7 +180,7 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(38,7,utf8_decode("Fecha"),1,0,'C',1);
 		$pdf->Cell(238,7,utf8_decode($fecha_actual),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Cliente"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->nombre),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($data->nombre_completo),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Telefono"),1,0,'C',1);
 		$pdf->Cell(238,7,utf8_decode($data->telefono),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Correo"),1,0,'C',1);
@@ -192,10 +201,23 @@ class Cotizaciones extends CI_Controller {
 		$i = 1;
 		$pdf->SetFont('Arial','',9);
 		foreach ($datos_matriz as $row) {
+			if ($row->id_proveedor == 2) {		
+				$tipo_servicio = "Local";
+			}else if ($row->id_proveedor == 3) {		
+				$tipo_servicio = "Reposteria";
+			}else if ($row->id_proveedor == 4) {		
+				$tipo_servicio = "Musica";
+			}else if ($row->id_proveedor == 5) {	
+				$tipo_servicio = "Fotografia";
+			}else if ($row->id_proveedor == 6) {
+				$tipo_servicio = "Imprenta";
+			}else if ($row->id_proveedor == 7) {
+				$tipo_servicio = "Banquete";
+			}
 			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
 						$i++,
-						utf8_decode($row->tipo_servicio),
+						utf8_decode($tipo_servicio),
 						utf8_decode($row->nombre),
 						utf8_decode($row->descripcion),
 						utf8_decode($row->cantidad),
