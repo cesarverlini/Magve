@@ -198,5 +198,4 @@ class Ventas extends CI_Controller {
 
 		$contrato = $pdf->Output($Nombre_archivo, 'I');	
 	}
-	
 }

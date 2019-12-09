@@ -31,7 +31,9 @@ $route['editar_cliente'] = 'sistema/clientes/update';
 //contrato
 $route['contrato/(:num)'] = 'sistema/ventas/contrato/$1';
 
-
+$route['pagar'] = 'sistema/Pago';
+$route['transferencia'] = 'sistema/Pago/Transferencia';
+$route['deposito'] = 'sistema/Pago/Deposito';
 
 
 //$route['servicios'] = 'sistema/servicios';

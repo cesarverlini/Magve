@@ -78,6 +78,8 @@
 								<div class="col-md-2" style="text-align: right;">
 									<br>
 									<button type="submit" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
+									<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-primary">Pagar</a>
+
 								</div>	
 							</div>
 						</form>					

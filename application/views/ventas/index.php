@@ -166,10 +166,10 @@
 					<div class="col-md-2">
 						<br>
 						<button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button>
-						<!-- <a href="<?php echo base_url('contrato');?>" target="_blank" id="Contrato" type="button" class="btn btn-primary">Generar Contrato (NO ESTA TERMINADO)</> -->
 					</div>	
 				</div>
 			</form>					
+			<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-primary">Pagar</a>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
