@@ -17,10 +17,19 @@
 						<input class="form-control" type="text" id="nombre" name="nombre" >
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mb-3">
 					<div class="col-md-9">
 						<label for="correo">Correo Electronico</label>
 						<input class="form-control" type="text" id="correo" name="correo" >
+						<small class="text-danger">
+							<?php 
+							
+							if(null != $this->session->flashdata('bad_email')){
+								echo $this->session->flashdata('bad_email');
+							}
+
+							?>
+						</small>
 					</div>
 					<div class="col-md-3 mb-4">
 						<label for="telefono">Teléfono</label>

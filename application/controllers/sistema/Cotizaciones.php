@@ -17,9 +17,20 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function confirmacion()
 	{
+
+		$this->form_validation->set_rules('correo', 'correo', 'required|valid_email');
+
+		if($this->form_validation->run() == FALSE){
+			$this->session->set_flashdata('bad_email', 'La dirección de email no es valida');
+			redirect('informacion-del-cliente');
+			return;
+		}
+
+
 		$nombre = $this->input->post("nombre");
 		$correo = $this->input->post("correo");
 		$telefono = $this->input->post("telefono");
+		
 
 		// $respuesta = $this->Cotizaciones_model->existe_correo($correo);
 		// if ($respuesta) {
@@ -106,8 +117,13 @@ class Cotizaciones extends CI_Controller {
 				// 'id_servicio' => $value['id'],
 			);
 			$this->Cotizaciones_model->insert_servicios($data);
+			$cart = array_values(unserialize($this->session->userdata('cart')));
+			for ($i = 0; $i < count($cart); $i ++) {
+				unset($cart[$i]);
+			}
+			$this->session->set_userdata('cart', serialize($cart));
 		}
-		redirect('/servicios', 'refresh');			
+		redirect('servicios');			
 		
 	}
 	private function total(){
