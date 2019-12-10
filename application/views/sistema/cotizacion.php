@@ -11,6 +11,27 @@
 
           <div class="card-body">
 			  <form action="<?php echo base_url('confirmacion-cotizacion');?>" method="post" class="col-md-12" id="formcot">
+			  <h3><span class="text-success"></span> Sí el cliente esta registrado buscar cliente por...</h3>
+			  <div class="row mb-3">
+					<div class="col-md-9">
+						<label for="correo">Correo Electronico</label>
+						<input class="form-control" type="text" id="buscarcorreo" name="buscarcorreo" >
+						<input hidden class="form-control" type="text" id="id_cliente" name="id_cliente" >
+						<small class="text-danger">
+							<?php 
+							
+							if(null != $this->session->flashdata('bad_email')){
+								echo $this->session->flashdata('bad_email');
+							}
+
+							?>
+						</small>
+					</div>
+				</div>
+			  <hr>
+			  <h3 class="my-3">Información del cliente</h3>
+
+
 				<div class="row mb-4">	
 					<div class="col-md-12">
 						<label for="nombre">Nombre completo</label>

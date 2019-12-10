@@ -79,7 +79,6 @@
 								<td colspan="5" align="right">Total</td>
 								<td colspan="2">$<?php echo $total; ?></td>
 							</tr> -->
-<<<<<<< HEAD
 									</tbody>
 								</table>
 							</div>
@@ -103,26 +102,3 @@
 			<!-- /.row -->
 		</div>
 </section>
-=======
-						</tbody>
-					</table>
-          		</div>
-				<div class="row">
-					<!-- <div class="col-md-10"></div> -->
-					<div class="col-md-2">
-						<br>
-						<button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button>
-					</div>	
-				</div>
-			</form>					
-			<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-primary">Pagar</a>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-</section>
->>>>>>> 4b6e3670286ba86182878be80f5751f63b37555d

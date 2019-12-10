@@ -26,7 +26,7 @@ class Cotizaciones extends CI_Controller {
 			return;
 		}
 
-
+		$id = $this->input->post("id_cliente");
 		$nombre = $this->input->post("nombre");
 		$correo = $this->input->post("correo");
 		$telefono = $this->input->post("telefono");
@@ -39,6 +39,7 @@ class Cotizaciones extends CI_Controller {
 			$data['title'] = "Confirmacion de cotización";
 
 			$cliente = array(
+				'id' => $id,
 				'nombre' => $nombre,
 				'correo' => $correo,
 				'telefono' => $telefono,
@@ -55,28 +56,39 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function existe_correo()
 	{
-		$nombre = $this->input->post("nombre");
-		$correo = $this->input->post("correo");
-		$telefono = $this->input->post("telefono");
-
-		$respuesta = $this->Cotizaciones_model->existe_correo($correo);
-		if ($respuesta) {
-			echo "true";
+		$id = $this->input->post("id");
+		if ($id == "") {
+			$nombre = $this->input->post("nombre");
+			$correo = $this->input->post("correo");
+			$telefono = $this->input->post("telefono");
+			$respuesta = $this->Cotizaciones_model->existe_correo($correo);
+			if ($respuesta) {
+				echo "true";
+			}else{
+				echo "false"; //me refiero a false, que el correo no existe en la BD por lo cual se puede proseguir con el proceso
+			}	
 		}else{
-			echo "false";
+			echo "false"; 
 		}
+		
 	}
 	public function guardar()
 	{	
 
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
-		$cliente = array(
+		$id = $this->input->post('id');
+		$cliente = array(			
 			'nombre_completo' =>  $this->input->post('nombre_completo'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
-		// var_dump($cliente);
-		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
+		if ($id == "") {
+			$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
+		}else{
+			$id_cliente = $id;
+			// echo $id_cliente;
+		}
+		
 		$fecha = date('d-m-y');
 		$fecha = explode("-",$fecha);
 		$folio = $fecha[0].$fecha[1].$fecha[2];
@@ -125,13 +137,8 @@ class Cotizaciones extends CI_Controller {
 			}
 			$this->session->set_userdata('cart', serialize($cart));
 		}
-<<<<<<< HEAD
-		redirect('servicios');			
-=======
-		echo json_encode($id_cotizacion);
-		// $this->cotizacion_pdf($id_cotizacion);
-		// redirect('/servicios', 'refresh');						
->>>>>>> 4b6e3670286ba86182878be80f5751f63b37555d
+		echo $id_cotizacion;
+		// redirect('servicios');	
 		
 	}
 	private function total(){
@@ -141,6 +148,12 @@ class Cotizaciones extends CI_Controller {
             $s += $item['price'] * $item['quantity'];
         }
         return $s;
+	}
+	public function autocomplete()
+	{
+		$data = $this->input->post();
+		$respuesta = $this->Cotizaciones_model->autocomplete($data);
+		echo json_encode($respuesta);
 	}
 	// public function index()
 	// {	

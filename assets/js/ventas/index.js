@@ -35,11 +35,15 @@ $(document).ready(function(){
 			$('#correo').val(selectedData.item.label);
 			$('#telefono').val(selectedData.item.telefono);
 			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cotizaciones", $data = { 'id': selectedData.item.id});
+			console.log(respuesta);
 			$('#cmbCotizaciones').empty();
+			$('#cmbCotizaciones').append(
+				'<option value="">Seleccionar...</option>'
+			);
 			$.each(respuesta, function(e,v){
 				$('#cmbCotizaciones').append(
-					'<option value="">Seleccionar...</option>' +
-					'<option value="'+v.id+'">'+v.folio+'</option>' 
+					// '<option value="">Seleccionar...</option>' +
+					'<option value="'+v.id+'" name="'+v.total+'" >'+v.folio+'</option>' 
 				);
 			});
 		}
@@ -62,7 +66,8 @@ $(document).ready(function(){
 							label: value.folio,
 							value: key.folio,
 							id: value.id,
-							id_cliente: value.id_cliente
+							id_cliente: value.id_cliente,
+							total: value.total
 						};
 					}));
 				}
@@ -71,7 +76,8 @@ $(document).ready(function(){
 		select: function(event, selectedData){
 			$('#divcotizaciones').hide();
 			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cliente", $data = { 'id': selectedData.item.id_cliente});
-			id_cotizacion = selectedData.item.id
+			total =  selectedData.item.total;
+			id_cotizacion = selectedData.item.id;
 			$('#nombre').val(respuesta[0].nombre_completo);
 			$('#correo').val(respuesta[0].correo);
 			$('#telefono').val(respuesta[0].telefono);
@@ -81,6 +87,8 @@ $(document).ready(function(){
 	
 	$('#cmbCotizaciones').change(function(){
 		id_cotizacion = $('#cmbCotizaciones').val();
+		
+		total = $('#cmbCotizaciones option:selected').attr("name");
 		if (id_cotizacion == "") {
 			$('#tabla_cotizacion').hide();
 			$('#Contrato').hide();
@@ -121,9 +129,13 @@ $(document).ready(function(){
 					'<td>'+v.costo+'</td>'+
 					'<td>'+v.cantidad+'</td>'+
 					'<td>'+v.subtotal+'</td>'+
-				'</tr>'
+				'</tr>'			
 			);
 		});
+		$('#tblbodyCotizacion').append(
+			'<td colspan="5" align="right">Total</td>'+
+			'<td colspan="2">$'+total+'</td>'
+		);
 	}
 	$('#Contrato').click(function(){
 		// console.log(id_cotizacion);
