@@ -19,6 +19,10 @@ class BancoApi extends CI_Controller {
         $this->Deposito();
     }
 
+    /*
+    * con esta función vamos a hacer el pago a los proveedores
+    * con nuestros datos y los de ellos
+    */
     public function Transferencia(){
         $data = [
             'Tarjeta_Origen'=>5799433668183788,
@@ -56,6 +60,11 @@ class BancoApi extends CI_Controller {
         echo $result['mensaje']; 
     }
 
+    /*
+    * La funcion deposito es para cuando el cliente
+    * nos pague en el momento el monto de la compra
+    * mediante una interfaz de "terminal" ( pendiente crear ) ( ver plantilla de logos bancos)
+    */
     public function Deposito(){
 
         $data = array(
