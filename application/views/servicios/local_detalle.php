@@ -48,7 +48,7 @@
 								<input type="text" id="costo" name="costo" value="<?php echo $info_local->locales[0]->costo;?>">						
 								<input type="text" id="capacidad" name="capacidad" value="<?php echo $info_local->locales[0]->capacidad;?>">						
 								<!-- <input type="text" id="direccion" name="direccion" value="<?php echo $info_local->locales[0]->descripcion;?>">						 -->
-								<button type="submit" class="btn btn-xs bg-gradient-primary">Agregar al carrito</button>
+								<button type="submit" class="btn btn-xs bg-gradient-primary"><i class="fas fa-cart-plus"></i>&nbsp;Agregar al carrito</button>
 							</form>
 								
                             <!-- <a href="<?php echo base_url('carrito/comprar/'.$id_local); ?>" class="btn btn-xs bg-gradient-primary">Agregar al carrito</a> -->
@@ -59,18 +59,37 @@
                                 <img src="https://picsum.photos/300" alt="">
                             </div>
                             <div class="col-md-8">
-                                <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis qui autem neque facere! Nemo deserunt accusantium quam, commodi ab nulla fugiat culpa repudiandae praesentium exercitationem beatae, eligendi corporis odio recusandae?
+                                <p class="pt-0">
+                                <h4 class="p-0 m-0">Descripción</h4><br>
+                                Lorem ipsum dolor sit amet consectetur adipisicing 
+                                elit. Officiis qui autem neque facere! Nemo deserunt 
+                                accusantium quam, commodi ab nulla fugiat culpa repudiandae 
+                                praesentium exercitationem beatae, eligendi corporis odio recusandae?
                                 </p>
 
                                 <hr>
 
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis qui autem neque facere! Nemo deserunt accusantium quam, commodi ab nulla fugiat culpa repudiandae praesentium exercitationem beatae, eligendi corporis odio recusandae?
+                                <h4 class="p-0 m-0">Opiniones</h4><br>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Officiis qui autem neque facere! Nemo deserunt accusantium quam, 
+                                commodi ab nulla fugiat culpa repudiandae praesentium exercitationem 
+                                beatae, eligendi corporis odio recusandae?
                                 </p>
-                                <hr>
-                                <a href="<?php echo base_url(''); ?>" class="btn btn-block btn-lg bg-gradient-primary">Ver galería</a>
+                                <!--<a href="<?php echo base_url(''); ?>" class="btn btn-block btn-lg bg-gradient-primary">Ver galería</a>-->
                             </div>
+                        </div>
+                        <hr>
+                        <h4 class="p-0 m-0">Galería de fotos</h4><br>
+                        <div class="row">
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
+                            <div class="col-md-2"><img src="https://via.placeholder.com/150C/" alt=""></div>     
+                            <div class="col-md-2 mt-2"><img src="https://via.placeholder.com/150C/" alt=""></div>                   
+                            <div class="col-md-2 mt-2"><img src="https://via.placeholder.com/150C/" alt=""></div>
                         </div>
                     </div>
                     <hr>
