@@ -10,38 +10,37 @@
           <!-- /.card-header -->
 
           <div class="card-body">
-			  <form action="<?php echo base_url('save_cotizacion');?>" method="post" class="col-md-12">
-          <div class="row">
-
-            <div class="col-md-8">
-              <label>Nombre: </label>
-            </div>
-            <div class="col-md-4" style="text-align: right;">
+				<form action="<?php echo base_url('save_cotizacion');?>" method="post" class="col-md-12">
+					<div class="row">	
+						<div class="col-md-8">
+							<label>Nombre: </label>
+						</div>
+						<div class="col-md-4" style="text-align: right;">
 							<label><?php echo $nombre?></label>
 							<br>
 							<input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $nombre?>">
+							<input class="form-control" type="text" id="id_cliente" name="id_cliente" value="<?php echo $id?>">
 							<!-- <input class="form-control" type="text" id="apellido_p" name="apellido_p" value="<?php echo $apellido_p?>">
 							<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="<?php echo $apellido_m?>"> -->
-            </div>				
-          </div>
-          
-          <div class="row">				
-            <div class="col-md-8">
-              <label for="correo">Correo Electronico</label>
-            </div>
-            <div class="col-md-4" style="text-align: right;">
+						</div>					
+					</div>
+					<div class="row">				
+						<div class="col-md-8">
+							<label for="correo">Correo Electronico</label>
+						</div>
+						<div class="col-md-4" style="text-align: right;">
 							<label name="correo"><?php echo $correo?></label>
 							<input class="form-control" type="text" id="correo" name="correo" value="<?php echo $correo?>">								
-            </div>					
-            <div class="col-md-8">
-              <label for="telefono">Numero de Telefono</label>
-            </div>
-            <div class="col-md-4" style="text-align: right;">
+						</div>					
+						<div class="col-md-8">
+							<label for="telefono">Numero de Telefono</label>
+						</div>
+						<div class="col-md-4" style="text-align: right;">
 							<label name="telefono"><?php echo $telefono?></label>
 							<input class="form-control" type="text" id="telefono" name="telefono" value="<?php echo $telefono?>">						
-            </div>					
-          </div>			
-          <div class="card-body">
+						</div>					
+					</div>			
+					<div class="card-body">
 						<table class="table table-bordered">
 								<thead>                  
 								<tr>
@@ -74,15 +73,18 @@
 								</tr>
 								</tbody>
 						</table>
-          </div>
-          <div class="row">
-            <div class="col-md-10"></div>
-            <div class="col-md-2" style="text-align: right;">
-              <br>
-              <button type="submit" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
-            </div>	
-          </div>
-        </form>					
+					</div>
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2" style="text-align: right;">
+							<br>
+							<button type="button" id="guardar" class="btn btn-primary">Enviar Cotizacion</button>
+							<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-primary">Pagar</a>
+							<!-- <a href="<?php echo base_url('cotizacion_pdf/69');?>" type="button" class="btn btn-primary">asdasd</a> -->
+
+						</div>	
+					</div>
+				</form>					
             <!-- /.card-body -->
           </div>
           <!-- /.card -->

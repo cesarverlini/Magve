@@ -17,40 +17,86 @@ class Cotizaciones extends CI_Controller {
 	}
 	public function confirmacion()
 	{
-		$data['title'] = "Confirmacion de cotización";
 
-		$cliente = array(
-			'nombre' => $this->input->post("nombre"),
-			// 'apellido_p' => $this->input->post("apellido_p"),
-			// 'apellido_m' => $this->input->post("apellido_m"),
-			'correo' => $this->input->post("correo"),
-			'telefono' => $this->input->post("telefono"),
-			'carrito' => array_values(unserialize($this->session->userdata('cart'))),
-			'total' => $this->total()
-		);
-        // $data['total'] = $this->total();
+		$this->form_validation->set_rules('correo', 'correo', 'required|valid_email');
 
-		// $cart = array_values(unserialize($this->session->userdata('cart')));
-        $this->load->view('adminlte-3.0.1/header', $data);
-		$this->load->view("sistema/confirmacion",$cliente);
-        $this->load->view('adminlte-3.0.1/footer');    
+		if($this->form_validation->run() == FALSE){
+			$this->session->set_flashdata('bad_email', 'La dirección de email no es valida');
+			redirect('informacion-del-cliente');
+			return;
+		}
+
+		$id = $this->input->post("id_cliente");
+		$nombre = $this->input->post("nombre");
+		$correo = $this->input->post("correo");
+		$telefono = $this->input->post("telefono");
+		
+
+		// $respuesta = $this->Cotizaciones_model->existe_correo($correo);
+		// if ($respuesta) {
+		// 	echo "true";
+		// }else{			
+			$data['title'] = "Confirmacion de cotización";
+
+			$cliente = array(
+				'id' => $id,
+				'nombre' => $nombre,
+				'correo' => $correo,
+				'telefono' => $telefono,
+				'carrito' => array_values(unserialize($this->session->userdata('cart'))),
+				'total' => $this->total()
+			);
+			// $data['total'] = $this->total();
+
+			// $cart = array_values(unserialize($this->session->userdata('cart')));
+			$this->load->view('adminlte-3.0.1/header', $data);
+			$this->load->view("sistema/confirmacion",$cliente);
+			$this->load->view('adminlte-3.0.1/footer');    
+		// }
+	}
+	public function existe_correo()
+	{
+		$id = $this->input->post("id");
+		if ($id == "") {
+			$nombre = $this->input->post("nombre");
+			$correo = $this->input->post("correo");
+			$telefono = $this->input->post("telefono");
+			$respuesta = $this->Cotizaciones_model->existe_correo($correo);
+			if ($respuesta) {
+				echo "true";
+			}else{
+				echo "false"; //me refiero a false, que el correo no existe en la BD por lo cual se puede proseguir con el proceso
+			}	
+		}else{
+			echo "false"; 
+		}
+		
 	}
 	public function guardar()
-	{
+	{	
+
 		$carrito = array_values(unserialize($this->session->userdata('cart')));
-		$cliente = array(
-			'nombre_completo' =>  $this->input->post('nombre'),	
-			// 'apellido_p' =>  $this->input->post('apellido_p'),	
-			// 'apellido_m' =>  $this->input->post('apellido_m'),	
+		$id = $this->input->post('id');
+		$cliente = array(			
+			'nombre_completo' =>  $this->input->post('nombre_completo'),	
 			'correo' =>  $this->input->post('correo'),	
 			'telefono' =>  $this->input->post('telefono'),	
 		);
-		$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
+		if ($id == "") {
+			$id_cliente = $this->Cotizaciones_model->insert_clientes($cliente);
+		}else{
+			$id_cliente = $id;
+			// echo $id_cliente;
+		}
 		
+		$fecha = date('d-m-y');
+		$fecha = explode("-",$fecha);
+		$folio = $fecha[0].$fecha[1].$fecha[2];
 		$cotizacion = array(				
 			'id_empleado' => 1, 
 			'id_cliente' => $id_cliente,
-			'total' => 	$this->total()	
+			'total' => 	$this->total(),
+			'folio' => intval($id_cliente) . intval($folio)
 		);
 		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
 
@@ -85,8 +131,14 @@ class Cotizaciones extends CI_Controller {
 				// 'id_servicio' => $value['id'],
 			);
 			$this->Cotizaciones_model->insert_servicios($data);
-		}	
-		redirect('/servicios', 'refresh');	
+			$cart = array_values(unserialize($this->session->userdata('cart')));
+			for ($i = 0; $i < count($cart); $i ++) {
+				unset($cart[$i]);
+			}
+			$this->session->set_userdata('cart', serialize($cart));
+		}
+		echo $id_cotizacion;
+		// redirect('servicios');	
 		
 	}
 	private function total(){
@@ -96,6 +148,12 @@ class Cotizaciones extends CI_Controller {
             $s += $item['price'] * $item['quantity'];
         }
         return $s;
+	}
+	public function autocomplete()
+	{
+		$data = $this->input->post();
+		$respuesta = $this->Cotizaciones_model->autocomplete($data);
+		echo json_encode($respuesta);
 	}
 	// public function index()
 	// {	
@@ -107,7 +165,8 @@ class Cotizaciones extends CI_Controller {
 	public function cotizacion_pdf()
 	{		
 		$fecha_actual=date("d-m-Y");
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(2);
+		// var_dump($id);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
 		$pdf = new fpdf_manager('L','mm','A4');
@@ -134,7 +193,7 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(38,7,utf8_decode("Fecha"),1,0,'C',1);
 		$pdf->Cell(238,7,utf8_decode($fecha_actual),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Cliente"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->nombre),1,1,'C');
+		$pdf->Cell(238,7,utf8_decode($data->nombre_completo),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Telefono"),1,0,'C',1);
 		$pdf->Cell(238,7,utf8_decode($data->telefono),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Correo"),1,0,'C',1);
@@ -155,10 +214,23 @@ class Cotizaciones extends CI_Controller {
 		$i = 1;
 		$pdf->SetFont('Arial','',9);
 		foreach ($datos_matriz as $row) {
+			if ($row->id_proveedor == 2) {		
+				$tipo_servicio = "Local";
+			}else if ($row->id_proveedor == 3) {		
+				$tipo_servicio = "Reposteria";
+			}else if ($row->id_proveedor == 4) {		
+				$tipo_servicio = "Musica";
+			}else if ($row->id_proveedor == 5) {	
+				$tipo_servicio = "Fotografia";
+			}else if ($row->id_proveedor == 6) {
+				$tipo_servicio = "Imprenta";
+			}else if ($row->id_proveedor == 7) {
+				$tipo_servicio = "Banquete";
+			}
 			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
 						$i++,
-						utf8_decode($row->tipo_servicio),
+						utf8_decode($tipo_servicio),
 						utf8_decode($row->nombre),
 						utf8_decode($row->descripcion),
 						utf8_decode($row->cantidad),
@@ -173,55 +245,6 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
 		$pdf->Cell(30,7,utf8_decode($data->total),0,0,'C');
 
-
-				
-		// $pdf->setXY(20,28);
-		// $pdf->MultiCell(30,5,utf8_decode("Cliente"),1,'C',1);
-		// $pdf->setXY(35,28);
-		// $pdf->Cell(30,18,utf8_decode("Identificación"),1,0,'C',1);
-		// $pdf->setXY(65,28);
-		// $pdf->MultiCell(30,6,utf8_decode("Resultado hacia la Orgnanización"),1,'C',1);
-		// $pdf->setXY(95,28);
-		// $pdf->MultiCell(22,9,utf8_decode("Nivel de Influencia"),1,'C',1);
-		// $pdf->setXY(117,28);
-		// $pdf->MultiCell(20,9,utf8_decode("Nivel de Interés"),1,'C',1);
-		// $pdf->setXY(137,28);
-		// $pdf->MultiCell(23,18,utf8_decode("Control"),1,'C',1);
-		// $pdf->setXY(160,28);
-		// $pdf->MultiCell(27,6,utf8_decode("Necesidades y Espectativas"),1,'C',1);
-		// $pdf->setXY(187,28);
-		// $pdf->MultiCell(17,9,utf8_decode("¿Qué hacer?"),1,'C',1);
-		// $pdf->setXY(204,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Cómo hacer?"),1,'C',1);
-		// $pdf->setXY(224,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Cuándo hacerlo?"),1,'C',1);
-		// $pdf->setXY(244,28);
-		// $pdf->MultiCell(20,9,utf8_decode("¿Quien lo hace?"),1,'C',1);
-		// $pdf->setXY(264,28);
-		// $pdf->MultiCell(24,9,utf8_decode("¿Cómo se monitorea?"),1,'C',1);
-
-		// $datos_matriz = $this->Stakeholders_model->get_matriz($this->uri->segment(3));
-		// $i = 1;
-		// $pdf->SetFont('Arial','',9);
-		// foreach ($datos_matriz as $row) {
-		// 	$pdf->SetWidths(array(10,15,30,30,22,20,23,27,17,20,20,20,24));
-		// 	$pdf->Row(array(
-		// 				$i++,
-		// 				utf8_decode($row->grupo_interes),
-		// 				utf8_decode($row->nombre_interesado),
-		// 				utf8_decode($row->resultado_organizacion),
-		// 				utf8_decode($row->nivel_influencia),
-		// 				utf8_decode($row->nivel_interes),
-		// 				utf8_decode($row->control),
-		// 				utf8_decode($row->necesidades_expectativas),
-		// 				utf8_decode($row->que_hacer),
-		// 				utf8_decode($row->como_hacerlo),
-		// 				utf8_decode($row->cuando_hacerlo),
-		// 				utf8_decode($row->quien_lo_hace),
-		// 				utf8_decode($row->como_monitorea)
-		// 			 ));
-		// }
-		
 		$pdf->Ln();
 		// $pdf->SetY(-30);
 		// $pdf->Cell(0,3,$pdf->PageNo(),0,0,'C');

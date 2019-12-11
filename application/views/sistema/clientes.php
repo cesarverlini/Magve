@@ -28,7 +28,7 @@
 									<?php foreach ($clientes as $cliente):?>
 										<tr>
 											<td><?php echo $cliente->id?></td>
-											<td><?php echo $cliente->nombre?></td>
+											<td><?php echo $cliente->nombre_completo?></td>
 											<td><?php echo $cliente->correo?></td>
 											<td><?php echo $cliente->telefono?></td>
 											<td>
