@@ -11,7 +11,8 @@
 
           <div class="card-body">
 			  <form action="<?php echo base_url('save_cotizacion');?>" method="post" class="col-md-12">
-          <div class="row">	
+          <div class="row">
+
             <div class="col-md-8">
               <label>Nombre: </label>
             </div>
@@ -21,8 +22,9 @@
 							<input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $nombre?>">
 							<!-- <input class="form-control" type="text" id="apellido_p" name="apellido_p" value="<?php echo $apellido_p?>">
 							<input class="form-control" type="text" id="apellido_m" name="apellido_m" value="<?php echo $apellido_m?>"> -->
-            </div>					
+            </div>				
           </div>
+          
           <div class="row">				
             <div class="col-md-8">
               <label for="correo">Correo Electronico</label>
