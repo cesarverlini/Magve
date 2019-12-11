@@ -14,17 +14,20 @@
 							<h3><span class="text-success">1</span> Buscar cotización por...</h3>
 							<div class="row">
 								<div class="col-md-5">
-									<label for="correo">Correo Electronico</label>
-									<input class="form-control" type="text" id="correo" name="correo" value="">
+									<label for="correo">Correo Electronico / Folio</label>
+									<input class="form-control" type="text" id="correofolio" name="correofolio" value="">
+									<br>
+									<br>
+									<br>
 									<!-- <input hidden class="form-control" type="text" id="idcliente" name="idcliente" value=""> -->
 								</div>
-								<div class="col-md-5">
+								<!-- <div class="col-md-5">
 									<label for="folio">Folio de la Cotizacion</label>
 									<input class="form-control" type="text" id="folio" name="folio" value="">
 									<br>
 									<br>
 									<br>
-								</div>
+								</div> -->
 							</div>
 
 							<div class="row">

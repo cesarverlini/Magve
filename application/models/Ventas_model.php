@@ -20,8 +20,14 @@ class Ventas_model extends CI_Model
 	public function autocomplete($correo)
 	{
 		$data = $correo['search'];
-		$query = $this->db->query("SELECT * FROM clientes where correo like '%$data%'");
-		return $query->result();
+		$correo = $this->db->query("SELECT * FROM clientes where correo like '%$data%'");
+		$folio = $this->db->query("SELECT * FROM cotizacion where folio like '%$data%'");
+		if ($correo->result()) {
+			return $correo->result();
+		}else{
+			return $folio->result();
+		}
+		// return $query->result();
 	}
 	public function autocomplete_folio($folio)
 	{

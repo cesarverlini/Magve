@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#divcotizaciones').hide();
 	$('#Contrato').hide();
 	var base_url = $('#base_url').val();
-	$('#correo').autocomplete({	
+	$('#correofolio').autocomplete({	
 		source: function(req,res){	
 			$('#tabla_cotizacion').hide();
 			$('#Contrato').hide();
@@ -17,35 +17,60 @@ $(document).ready(function(){
 				  search: req.term
 				},
 				success: function( data ) {
-					 res($.map(data, function (value, key) {						 
-						return {
-							label: value.correo,
-							value: key.correo,
-							nombre: value.nombre_completo,
-							telefono: value.telefono,
-							id: value.id
-						};
+					 res($.map(data, function (value, key) {
+						 if (value.correo) {
+							return {
+								label: value.correo,
+								value: key.correo,
+								nombre: value.nombre_completo,
+								telefono: value.telefono,
+								id: value.id,
+								correo: value.correo
+							};
+						 }else{
+							return {
+								label: value.folio,
+								value: key.folio,
+								id: value.id,
+								id_cliente: value.id_cliente,
+								total: value.total,
+								folio: value.folio
+							};
+						 }					 
+						
 					}));
 				}
 			  });			
 		},
 		select: function(event, selectedData){
-			$('#divcotizaciones').show();
-			$('#nombre').val(selectedData.item.nombre);
-			$('#correo').val(selectedData.item.label);
-			$('#telefono').val(selectedData.item.telefono);
-			var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cotizaciones", $data = { 'id': selectedData.item.id});
-			console.log(respuesta);
-			$('#cmbCotizaciones').empty();
-			$('#cmbCotizaciones').append(
-				'<option value="">Seleccionar...</option>'
-			);
-			$.each(respuesta, function(e,v){
+			if (selectedData.item.correo) {
+				$('#divcotizaciones').show();
+				$('#nombre').val(selectedData.item.nombre);
+				$('#correo').val(selectedData.item.label);
+				$('#telefono').val(selectedData.item.telefono);
+				var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cotizaciones", $data = { 'id': selectedData.item.id});
+				console.log(respuesta);
+				$('#cmbCotizaciones').empty();
 				$('#cmbCotizaciones').append(
-					// '<option value="">Seleccionar...</option>' +
-					'<option value="'+v.id+'" name="'+v.total+'" >'+v.folio+'</option>' 
+					'<option value="">Seleccionar...</option>'
 				);
-			});
+				$.each(respuesta, function(e,v){
+					$('#cmbCotizaciones').append(
+						// '<option value="">Seleccionar...</option>' +
+						'<option value="'+v.id+'" name="'+v.total+'" >'+v.folio+'</option>' 
+					);
+				});		
+			}else{
+				$('#divcotizaciones').hide();
+				var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cliente", $data = { 'id': selectedData.item.id_cliente});
+				total =  selectedData.item.total;
+				id_cotizacion = selectedData.item.id;
+				$('#nombre').val(respuesta[0].nombre_completo);
+				$('#correo').val(respuesta[0].correo);
+				$('#telefono').val(respuesta[0].telefono);
+				obtener_detalle(id_cotizacion);
+			}
+			
 		}
 	});
 	$('#folio').autocomplete({	
