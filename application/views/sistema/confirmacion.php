@@ -65,7 +65,7 @@
 					<div class="row">
 						<div class="d-block my-3">
 							<button type="button" id="guardar" class="btn btn-primary mr-2">Generar cotizacion</button>
-							<a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-success">Pagar</a>
+							<!-- <a href="<?php echo base_url('pagar');?>" type="button" class="btn btn-success">Pagar</a> -->
 							
 						</div>
 					</div>

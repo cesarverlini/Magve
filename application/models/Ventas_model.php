@@ -47,11 +47,15 @@ class Ventas_model extends CI_Model
 		}
 		// return $query->result();
 	}
-	public function autocomplete_folio($folio)
+	public function cotizacion_folio($folio)
 	{
-		$data = $folio['search'];
-		$query = $this->db->query("SELECT * FROM cotizacion where folio like '%$data%'");
-		return $query->result();
+		// $data = $folio['search'];
+		// $query = $this->db->query("SELECT * FROM cotizacion where folio like '%$data%'");
+		$resultado = $this->db->select('*')
+								->from('cotizacion')
+								->join('detalle_cotizacion_venta','id_cotizacion = cotizacion.id')
+								->where('folio',$folio)->get();
+		return $resultado->result();
 	}
 	public function get_cliente($id)
 	{

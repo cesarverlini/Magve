@@ -14,6 +14,7 @@
                         <hr>
                         <form action="<?php echo base_url('ventas/generar-venta'); ?>" method="POST">
                             <div class="form-group">
+								<input hidden id="folio" value="<?= $folio ?>">
                                 <label for="exampleInputEmail1">Ubicación del evento</label>
                                 <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento" aria-describedby="emailHelp">
                                 <small id="emailHelp" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
@@ -22,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-4 form-group">
                                 <label for="fechaEvento">Fecha del evento</label>
-                                <input type="date" class="form-control" name="fechaEvento" id="fechaEvento" aria-describedby="">
+                                <input type="date" class="form-control fecha_renta" name="fechaEvento" id="fechaEvento" aria-describedby="" value="<?php echo date('Y-m-d')?>">
                                 <small class="form-text text-muted">Sujeto a disponibilidad</small>
                                 </div>
                             </div>

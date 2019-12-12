@@ -90,10 +90,10 @@ class Ventas extends CI_Controller {
 		$respuesta = $this->Ventas_model->autocomplete($data);
 		echo json_encode($respuesta);
 	}
-	public function autocomplete_folio()
+	public function cotizacion_folio()
 	{
-		$data = $this->input->post();
-		$respuesta = $this->Ventas_model->autocomplete_folio($data);
+		$folio = $this->input->post('folio');
+		$respuesta = $this->Ventas_model->cotizacion_folio($folio);
 		// var_dump($respuesta);
 		echo json_encode($respuesta);
 	}
