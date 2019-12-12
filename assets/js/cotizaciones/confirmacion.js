@@ -17,7 +17,15 @@ $('#guardar').click(function()
 	}		
 	respuesta = cargar_ajax.run_server_ajax('sistema/cotizaciones/guardar',cliente);					
 	window.open(base_url+"cotizacion_pdf/"+respuesta, '_blank');
-	window.location.href =base_url;
+	Swal.fire({
+		icon: 'success',
+		title: 'Cotizacion guardada correctamente',
+	  	}).then((result) => {
+		if (result.value) {
+			  	window.location.href =base_url;
+		}
+	  })
+	// window.location.href =base_url;
 	// console.log(base_url);
 
 });

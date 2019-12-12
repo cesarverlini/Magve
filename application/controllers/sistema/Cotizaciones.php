@@ -100,9 +100,8 @@ class Cotizaciones extends CI_Controller {
 		);
 		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
 
-
 		foreach ($carrito as $value) {
-			if ($value['service'] == "Locales") {		
+			if ($value['service'] == "Local") {		
 				$id_proveedor = 2;	
 			}else if ($value['service'] == "Reposteria") {		
 				$id_proveedor = 3;	
@@ -114,7 +113,7 @@ class Cotizaciones extends CI_Controller {
 				$id_proveedor = 6;	
 			}else if ($value['service'] == "Banquetes") {
 				$id_proveedor = 7;	
-			}
+			}			
 
 			$data = array(
 				'id_cotizacion' => $id_cotizacion,
