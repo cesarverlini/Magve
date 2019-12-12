@@ -23,12 +23,12 @@ class BancoApi extends CI_Controller {
     * con esta función vamos a hacer el pago a los proveedores
     * con nuestros datos y los de ellos
     */
-    public function Transferencia(){
+    public static function Transferencia($tc_numero, $tc_nip, $td_numero, $monto){
         $data = [
-            'Tarjeta_Origen'=>5799433668183788,
-             'Numeros_Verificadores' => 506,
-             'Tarjeta_Destino'=>8189866056894415, 
-             'Monto'=>300
+            'Tarjeta_Origen'=>intval($tc_numero),
+             'Numeros_Verificadores' => intval($tc_nip),
+             'Tarjeta_Destino'=> intval($td_numero), 
+             'Monto'=> intval($monto)
         ];
 
         $data_string = json_encode($data);
@@ -49,15 +49,18 @@ class BancoApi extends CI_Controller {
         curl_close($curl);
 
 
-        $result = json_decode($result, true);
+        // $result = json_decode($result, true);
+        return json_decode($result, true);
 
+        // print_r($data);
+        // print_r($result);
 
-        echo "<br>";
-        echo $result['id_Transaccion'];
-        echo "<br>";
-        echo $result['fecha'];
-        echo "<br>";
-        echo $result['mensaje']; 
+        // echo "<br>";
+        // echo $result['id_Transaccion'];
+        // echo "<br>";
+        // echo $result['fecha'];
+        // echo "<br>";
+        // echo $result['mensaje']; 
     }
 
     /*
@@ -69,7 +72,7 @@ class BancoApi extends CI_Controller {
 
         $data = array(
              'Tarjeta_Destino' => 5799433668183788,
-             'Monto' => 5000
+             'Monto' => 55000
         );
 
         $data_string = json_encode($data);
@@ -99,6 +102,61 @@ class BancoApi extends CI_Controller {
         echo "<br>";
         echo $result['mensaje']; 
         echo "<br>";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // =============================================================
+
+    public static function Transfer(){
+        $data = [
+            'Tarjeta_Origen'=> 5799433668183788,
+             'Numeros_Verificadores' => 506,
+             'Tarjeta_Destino'=> 9296838398409083, 
+             'Monto'=> 200
+        ];
+
+        $data_string = json_encode($data);
+
+        $curl = curl_init('https://bancossoftwarecomplejo.azurewebsites.net/api/Transaccions/Transferencia');
+
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($data_string))
+        );
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string); 
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+
+        $result = json_decode($result, true);
+
+        print_r($data);
+        print_r($result);
+
+        echo "<br>";
+        echo $result['id_Transaccion'];
+        echo "<br>";
+        echo $result['fecha'];
+        echo "<br>";
+        echo $result['mensaje']; 
     }
 
 }

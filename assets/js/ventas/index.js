@@ -3,6 +3,8 @@ $(document).ready(function(){
 	$('#tabla_cotizacion').hide();
 	$('#divcotizaciones').hide();
 	$('#Contrato').hide();
+	$('#btn-compra').hide();
+	$('#detalle-titulo').hide();
 	var base_url = $('#base_url').val();
 	$('#correofolio').autocomplete({	
 		source: function(req,res){	
@@ -129,6 +131,8 @@ $(document).ready(function(){
 	{
 		$('#tabla_cotizacion').show();
 		$('#Contrato').show();
+		$('#btn-compra').show();
+		$('#detalle-titulo').show();
 		$('#tblbodyCotizacion').empty();
 		var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_detalles", $data = { 'id': id});
 			

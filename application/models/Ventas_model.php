@@ -17,6 +17,13 @@ class Ventas_model extends CI_Model
 			->get();
 		return $resultado->result();
 	}
+
+	public function detalle_venta($folio){
+		$query = $this->db->query("select v.nombre_completo, v.telefono, v.correo, u.nombre, u.apellido_p,
+		c.total from cotizacion c inner join clientes v on c.id_cliente = v.id inner join usuarios u on
+		c.id_empleado = u.id where folio = ".$folio);
+		return $query->row();
+	}
 	public function autocomplete($correo)
 	{
 		$data = $correo['search'];

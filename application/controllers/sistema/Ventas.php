@@ -14,18 +14,53 @@ class Ventas extends CI_Controller {
     * crear venta en base a cotización
     */
     public function index(){
-
-        // $cotizacion['cotizaciones'] = $this->Ventas_model->get_cotizaciones();
 		
 		$data['title'] = "Venta";		
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view('ventas/index');
-        $this->load->view('adminlte-3.0.1/footer');  
+        $this->load->view('adminlte-3.0.1/footer');
+	}
+	
+	// realizar venta desde una cotización recibida
+	public function cotiza_venta($folio_cotizacion = null){
 
-        // $this->load->view('layouts/header');
-        // $this->load->view('ventas/index', $data);
-        // $this->load->view('layouts/footer');
-    }
+		$data['title'] = "Proceso de confirmación de venta";
+		$data['folio'] = $folio_cotizacion;
+		$data['detalle'] = $this->Ventas_model->detalle_venta($folio_cotizacion);
+
+        $this->load->view('adminlte-3.0.1/header', $data);
+		$this->load->view('ventas/cotiza_venta');
+        $this->load->view('adminlte-3.0.1/footer');
+	}
+
+	public function generar_venta(){
+		// datos tarjeta
+		$tarjeta = $this->input->post('tarjeta');
+		$nip = $this->input->post('nip');
+		$cvv = $this->input->post('cvv'); // opcional
+
+		// datos para la venta
+		$monto = $this->input->post('monto');
+		// TAJETA DE MAGVE
+		$destino = 9296838398409083;
+
+		// Llamamos a la API y usamos el metodo transferencia
+		require_once(APPPATH.'controllers/BancoApi.php');
+		// en "r" se guarda el array de la respuesta de la API
+		$r = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
+
+		print_r($r);
+
+
+		// validar si se recibió el pago
+		// si este campo esta presente si se hizo la transaccion
+		// si no, status_code aparece entonces no se hizo el pago
+		echo $r['id_Transaccion'];
+	}
+
+	public function procesar_pago(){
+		require_once(APPPATH.'controllersBancoApi.php');
+	}
 
     public function check_cotizacion($id_cotizacion = null){
 
@@ -40,6 +75,7 @@ class Ventas extends CI_Controller {
         $this->load->view('ventas/check_cotizacion', $data);
         $this->load->view('layouts/footer');
 	}
+
 	public function correos()
 	{
 		$respuesta = $this->Ventas_model->get_email();

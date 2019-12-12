@@ -5,7 +5,10 @@ $route['default_controller'] = 'auth';
 
 // Rutas para venta
 $route['ventas'] = 'sistema/ventas';
+//vamos a pasar el # de cotización a esta vista para hacer la compra
+$route['ventas/cotizacion-venta/(:num)'] = 'sistema/ventas/cotiza_venta/$1';
 $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
+$route['ventas/generar-venta'] = 'sistema/ventas/generar_venta';
 
 // servicios
 $route['servicios'] = 'sistema/servicios';

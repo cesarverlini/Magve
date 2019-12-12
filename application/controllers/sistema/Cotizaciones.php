@@ -102,7 +102,7 @@ class Cotizaciones extends CI_Controller {
 
 
 		foreach ($carrito as $value) {
-			if ($value['service'] == "Local") {		
+			if ($value['service'] == "Locales") {		
 				$id_proveedor = 2;	
 			}else if ($value['service'] == "Reposteria") {		
 				$id_proveedor = 3;	
@@ -110,9 +110,9 @@ class Cotizaciones extends CI_Controller {
 				$id_proveedor = 4;	
 			}else if ($value['service'] == "Fotografia") {	
 				$id_proveedor = 5;	
-			}else if ($value['service'] == "Imprenta") {
+			}else if ($value['service'] == "Publicidad") {
 				$id_proveedor = 6;	
-			}else if ($value['service'] == "Banquete") {
+			}else if ($value['service'] == "Banquetes") {
 				$id_proveedor = 7;	
 			}
 
