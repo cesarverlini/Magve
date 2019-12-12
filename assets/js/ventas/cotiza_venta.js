@@ -1,4 +1,5 @@
 $(function () {
+	base_url = $('#base_url').val();
 	// JS Date
 	var d = new Date();
 	var month = d.getMonth()+1;
@@ -93,7 +94,14 @@ $('#finalizarventa').click(function(){
 				// ejecutamos el metodo para guardar la compra
 				var compra_result = cargar_ajax.run_server_ajax("sistema/ventas/generar_compra", datos_compra);
 				console.log(compra_result);
-
+				Swal.fire({
+					icon: 'success',
+					title: 'Venta registrada orrectamente',
+				  }).then((result) => {
+					if (result.value) {
+						window.location.href =base_url;
+					}
+					})
 				// MANDA OTRA ALERTA AQUI DE VENTA SI EL RESULTADO ES NUMERICO
 				// Y REDIRECCIONA AL HOME PAROOOO
 
