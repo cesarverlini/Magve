@@ -27,7 +27,7 @@ class Ventas extends CI_Controller {
 		$data['title'] = "Proceso de confirmación de venta";
 		$data['folio'] = $folio_cotizacion;
 		$data['detalle'] = $this->Ventas_model->detalle_venta($folio_cotizacion);
-
+		
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view('ventas/cotiza_venta');
         $this->load->view('adminlte-3.0.1/footer');
@@ -56,6 +56,8 @@ class Ventas extends CI_Controller {
 		// si este campo esta presente si se hizo la transaccion
 		// si no, status_code aparece entonces no se hizo el pago
 		echo $r['id_Transaccion'];
+		//este ultimo echo seria de que si existe la transaccion mandar un true o algun mensaje y recibirlo en jquery para mandar al alerta
+		// echo "true";
 	}
 
 	public function procesar_pago(){

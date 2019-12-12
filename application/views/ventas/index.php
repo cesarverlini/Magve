@@ -62,7 +62,7 @@
 								</table>
 							</div>
 							<div class="d-block mt-3">
-								<button id="btn-compra" type="butotn" class="btn btn-success mr-2">Proceder con la compra</button>
+								<button id="btn-compra" type="button" class="btn btn-success mr-2">Proceder con la compra</button>
 								<button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button>
 							</div>
 						</form>

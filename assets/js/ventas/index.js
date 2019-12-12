@@ -67,6 +67,7 @@ $(document).ready(function(){
 				var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cliente", $data = { 'id': selectedData.item.id_cliente});
 				total =  selectedData.item.total;
 				id_cotizacion = selectedData.item.id;
+				folio = selectedData.item.folio;
 				$('#nombre').val(respuesta[0].nombre_completo);
 				$('#correo').val(respuesta[0].correo);
 				$('#telefono').val(respuesta[0].telefono);
@@ -116,6 +117,7 @@ $(document).ready(function(){
 		id_cotizacion = $('#cmbCotizaciones').val();
 		
 		total = $('#cmbCotizaciones option:selected').attr("name");
+		folio = $('#cmbCotizaciones option:selected').text();
 		if (id_cotizacion == "") {
 			$('#tabla_cotizacion').hide();
 			$('#Contrato').hide();
@@ -169,6 +171,12 @@ $(document).ready(function(){
 	$('#Contrato').click(function(){
 		// console.log(id_cotizacion);
 		window.open(base_url+"contrato/"+id_cotizacion);
+	});
+	$('#btn-compra').click(function(){
+		// console.log(id_cotizacion);		
+		window.location.href = base_url+"ventas/cotizacion-venta/"+folio;
+
+		// ventas/cotizacion-venta/76912019
 	});
 });
 

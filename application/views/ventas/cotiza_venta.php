@@ -31,7 +31,7 @@
                                     <h4>Información del pago</h4>
                                     <div class="border rounded my-2 p-3">
                                         <label for="formaPago">Forma de pago</label>
-                                        <select name="formaPago" id="" class="form-control">
+                                        <select name="formaPago" id="formaPago" class="form-control">
                                             <option value="0">Efectivo</option>
                                             <option value="1">Tarjeta</option>
                                         </select>
@@ -47,15 +47,15 @@
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label for="">NIP</label>
-                                                <input type="text" class="form-control" id="nip" name="nip">
+                                                <input type="password" class="form-control" id="nip" name="nip">
                                                 <small id="" class="form-text text-muted">La clave con la que firmas tus compras</small>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="">CVV</label>
-                                                <input type="text" class="form-control" id="cvv" name="cvv">
+                                                <input type="password" class="form-control" id="cvv" name="cvv">
                                                 <small id="" class="form-text text-muted">No compartiremos ningun dato privado con nadie</small>
                                             </div>
-                                        </div>
+										</div>
 
                                     </div>
                                 </div>
@@ -84,14 +84,15 @@
 
                                         <div class="form-group">
                                             <label class="py-0 my-0">Total a pagar</label>
-                                            <input type="hidden" value="<?php echo $detalle->total; ?>" name="monto">
+                                            <input type="hidden" value="<?php echo $detalle->total; ?>" name="monto" id="monto">
                                             <p class="text-muted"><?php echo $detalle->total; ?></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-block">
-                                <button class="btn btn-success" type="submit">Finalizar compra</button>
+                                <!-- <button class="btn btn-success" type="submit">Finalizar compra</button> -->
+                                <button class="btn btn-success" type="button" id="finalizarventa">Finalizar compra</button>
                             </div>
                         </form>
                     </div>

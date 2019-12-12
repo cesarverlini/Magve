@@ -18,11 +18,22 @@ class Ventas_model extends CI_Model
 		return $resultado->result();
 	}
 
-	public function detalle_venta($folio){
-		$query = $this->db->query("select v.nombre_completo, v.telefono, v.correo, u.nombre, u.apellido_p,
-		c.total from cotizacion c inner join clientes v on c.id_cliente = v.id inner join usuarios u on
-		c.id_empleado = u.id where folio = ".$folio);
-		return $query->row();
+	public function detalle_venta($folio)
+	{
+		// $query = $this->db->query("select v.nombre_completo, v.telefono, v.correo, u.nombre, u.apellido_p,
+		// c.total from cotizacion c inner join clientes v on c.id_cliente = v.id inner join usuarios u on
+		// c.id_empleado = u.id where folio = ".$folio);
+		// return $folio;
+		
+		// $resultado = $this->db->query('select * from cotizacion join clientes on clientes.id = id_cliente join usuarios on usuarios.id = id_empleado where folio = "'.$folio.'"'); 
+
+		$resultado = $this->db->select('*')
+								->from('cotizacion')
+								->join('clientes', 'clientes.id = id_cliente')
+								->join('usuarios', 'id_empleado = usuarios.id')
+								->where('folio', $folio)
+								->get();
+		return $resultado->row();
 	}
 	public function autocomplete($correo)
 	{
