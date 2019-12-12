@@ -31,13 +31,6 @@ class Ventas_model extends CI_Model
 
 	public function detalle_venta($folio)
 	{
-		// $query = $this->db->query("select v.nombre_completo, v.telefono, v.correo, u.nombre, u.apellido_p,
-		// c.total from cotizacion c inner join clientes v on c.id_cliente = v.id inner join usuarios u on
-		// c.id_empleado = u.id where folio = ".$folio);
-		// return $folio;
-		
-		// $resultado = $this->db->query('select * from cotizacion join clientes on clientes.id = id_cliente join usuarios on usuarios.id = id_empleado where folio = "'.$folio.'"'); 
-
 		$resultado = $this->db->select('*')
 								->from('cotizacion')
 								->join('clientes', 'clientes.id = id_cliente')
@@ -46,6 +39,7 @@ class Ventas_model extends CI_Model
 								->get();
 		return $resultado->row();
 	}
+
 	public function autocomplete($correo)
 	{
 		$data = $correo['search'];
@@ -68,6 +62,17 @@ class Ventas_model extends CI_Model
 								->where('folio',$folio)->get();
 		return $resultado->result();
 	}
+
+	public function insertar_venta($data){
+		$this->db->insert('ventas', $data);
+		return $this->db->insert_id();
+	}
+
+	public function general_cotizacion($folio){
+		$query = $this->db->query("select * from cotizacion where folio = ".$folio);
+		return $query->row_array();
+	}
+
 	public function get_cliente($id)
 	{
 		$respuesta = $this->db->where('id', $id)->get('clientes');

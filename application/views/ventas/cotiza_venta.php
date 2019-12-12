@@ -11,10 +11,10 @@
 
 					<div class="card-body">
                         <h3>Información para evento - Folio: <?= $folio ?></h3>
+                        <input type="hidden" value="<?= $folio ?>" id="folioCotizacion">
                         <hr>
                         <form action="<?php echo base_url('ventas/generar-venta'); ?>" method="POST">
                             <div class="form-group">
-<<<<<<< HEAD
                                 <label for="">Ubicación del evento</label>
                                 <?php if($direccion != null){ ?>
                                     <input value="<?= $direccion; ?>" type="text" class="form-control" id="ubiEvento" name ="ubiEvento" disabled>
@@ -22,12 +22,6 @@
                                     <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento">
                                 <?php } ?>
                                 <small id="" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
-=======
-								<input hidden id="folio" value="<?= $folio ?>">
-                                <label for="exampleInputEmail1">Ubicación del evento</label>
-                                <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
->>>>>>> 56352da6dde5a82ab914d78ba4c619611a5e5578
                             </div>
 
                             <div class="row">

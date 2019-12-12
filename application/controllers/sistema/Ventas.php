@@ -50,31 +50,40 @@ class Ventas extends CI_Controller {
 		// datos tarjeta
 		$tarjeta = $this->input->post('tarjeta');
 		$nip = $this->input->post('nip');
-		$cvv = $this->input->post('cvv'); // opcional
 
-		// datos para la venta
 		$monto = $this->input->post('monto');
-		// TAJETA DE MAGVE
-		$destino = 9296838398409083;
+		$destino = 9296838398409083; //magve: 5799433668183788
 
 		// Llamamos a la API y usamos el metodo transferencia
 		require_once(APPPATH.'controllers/BancoApi.php');
-		// en "r" se guarda el array de la respuesta de la API
 		$r = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
-
-		print_r($r);
-
-
-		// validar si se recibió el pago
-		// si este campo esta presente si se hizo la transaccion
-		// si no, status_code aparece entonces no se hizo el pago
-		echo $r['id_Transaccion'];
-		//este ultimo echo seria de que si existe la transaccion mandar un true o algun mensaje y recibirlo en jquery para mandar al alerta
-		// echo "true";
+		echo json_encode($r);
 	}
 
-	public function procesar_pago(){
-		require_once(APPPATH.'controllersBancoApi.php');
+	// se procede con la compra
+	public function generar_compra(){
+
+		// $fecha_evento 		= $this->input->post('fecha');
+		// $ubicacion_evento 	= $this->input->post('ubicacion');
+		$folio 				= $this->input->post('folio');
+		// $pago 				= $this->input->post('pago');
+		// $metodo				= $this->input->post('metodo');
+
+		$data['cotizacion'] = $this->Ventas_model->general_cotizacion($folio); //datos de la cotizacion
+
+		$datos_venta = array(
+			'id_cliente' 	=> $data['cotizacion']['id_cliente'],
+			'id_empleado' 	=> $data['cotizacion']['id_empleado'],
+			'fecha_venta' 	=> '2019-12-12',
+			'fecha_evento' 	=> $this->input->post('fecha'),
+			'metodo_pago' 	=> $this->input->post('metodo'),
+			'total'			=> $this->input->post('pago'),
+			'id_cotizacion' => $data['cotizacion']['id'],
+			'ubicacion_evento' => $this->input->post('ubicacion')
+		);
+
+		$respuesta_venta = $this->Ventas_model->insertar_venta($datos_venta);
+		echo $respuesta_venta;
 	}
 
     public function check_cotizacion($id_cotizacion = null){
