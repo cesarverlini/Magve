@@ -14,9 +14,13 @@
                         <hr>
                         <form action="<?php echo base_url('ventas/generar-venta'); ?>" method="POST">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Ubicación del evento</label>
-                                <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
+                                <label for="">Ubicación del evento</label>
+                                <?php if($direccion != null){ ?>
+                                    <input value="<?= $direccion; ?>" type="text" class="form-control" id="ubiEvento" name ="ubiEvento" disabled>
+                                <?php }else{ ?>
+                                    <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento">
+                                <?php } ?>
+                                <small id="" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
                             </div>
 
                             <div class="row">

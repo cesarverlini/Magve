@@ -18,6 +18,17 @@ class Ventas_model extends CI_Model
 		return $resultado->result();
 	}
 
+	/*
+	* regresamos el ID si existe un local cotizado
+	*/
+	public function get_direccion_evento($folio){
+		$query = $this->db->query("select d.id_producto as id_local from cotizacion c inner join 
+		detalle_cotizacion_venta d on c.id = d.id_cotizacion where id_proveedor = 2 
+		and c.folio = ".$folio." LIMIT 1 ");
+		// Si no trae nada, retornar 0
+		return ( $query->row() != null ) ? $query->row() : 0;
+	}
+
 	public function detalle_venta($folio)
 	{
 		// $query = $this->db->query("select v.nombre_completo, v.telefono, v.correo, u.nombre, u.apellido_p,

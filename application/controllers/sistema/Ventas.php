@@ -1,4 +1,8 @@
 <?php
+
+// cargamos la api de Locales
+require_once(APPPATH.'libraries/servicios/Locales.php');
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ventas extends CI_Controller {
@@ -27,6 +31,15 @@ class Ventas extends CI_Controller {
 		$data['title'] = "Proceso de confirmación de venta";
 		$data['folio'] = $folio_cotizacion;
 		$data['detalle'] = $this->Ventas_model->detalle_venta($folio_cotizacion);
+		$data['direccion'] = null;
+		
+		// Obtener direccion del local ( si hay uno cotizado)
+		$existe_local = $this->Ventas_model->get_direccion_evento($folio_cotizacion);
+		$id_local = intval($existe_local->id_local);
+		if($id_local != 0 ){
+			$local = json_decode(file_get_contents(Locales::ver_local($id_local)));
+			$data['direccion'] = $local->locales[0]->direccion;
+		}
 		
         $this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view('ventas/cotiza_venta');
