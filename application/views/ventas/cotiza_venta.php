@@ -14,6 +14,7 @@
                         <hr>
                         <form action="<?php echo base_url('ventas/generar-venta'); ?>" method="POST">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="">Ubicación del evento</label>
                                 <?php if($direccion != null){ ?>
                                     <input value="<?= $direccion; ?>" type="text" class="form-control" id="ubiEvento" name ="ubiEvento" disabled>
@@ -21,12 +22,18 @@
                                     <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento">
                                 <?php } ?>
                                 <small id="" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
+=======
+								<input hidden id="folio" value="<?= $folio ?>">
+                                <label for="exampleInputEmail1">Ubicación del evento</label>
+                                <input type="text" class="form-control" id="ubiEvento" name ="ubiEvento" aria-describedby="emailHelp">
+                                <small id="emailHelp" class="form-text text-muted">Proporcione la dirección donde será el evento o bien la del local alquilado</small>
+>>>>>>> 56352da6dde5a82ab914d78ba4c619611a5e5578
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4 form-group">
                                 <label for="fechaEvento">Fecha del evento</label>
-                                <input type="date" class="form-control" name="fechaEvento" id="fechaEvento" aria-describedby="">
+                                <input type="date" class="form-control fecha_renta" name="fechaEvento" id="fechaEvento" aria-describedby="" value="<?php echo date('Y-m-d')?>">
                                 <small class="form-text text-muted">Sujeto a disponibilidad</small>
                                 </div>
                             </div>
