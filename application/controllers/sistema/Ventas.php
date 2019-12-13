@@ -46,13 +46,27 @@ class Ventas extends CI_Controller {
         $this->load->view('adminlte-3.0.1/footer');
 	}
 
+	// public function generar_venta(){
+		
+	// 	$tarjeta = $this->input->post('tarjeta');
+	// 	$nip = $this->input->post('nip');
+
+	// 	$monto = $this->input->post('monto');
+	// 	$destino = 9296838398409083; //magve: 5799433668183788
+
+	// 	// Llamamos a la API y usamos el metodo transferencia
+	// 	require_once(APPPATH.'controllers/BancoApi.php');
+	// 	$r = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
+	// 	echo json_encode($r);
+	// }
+
 	public function generar_venta(){
-		// datos tarjeta
+		
 		$tarjeta = $this->input->post('tarjeta');
 		$nip = $this->input->post('nip');
 
 		$monto = $this->input->post('monto');
-		$destino = 9296838398409083; //magve: 5799433668183788
+		$destino = 9296838398409083;
 
 		// Llamamos a la API y usamos el metodo transferencia
 		require_once(APPPATH.'controllers/BancoApi.php');
@@ -63,11 +77,7 @@ class Ventas extends CI_Controller {
 	// se procede con la compra
 	public function generar_compra(){
 
-		// $fecha_evento 		= $this->input->post('fecha');
-		// $ubicacion_evento 	= $this->input->post('ubicacion');
-		$folio 				= $this->input->post('folio');
-		// $pago 				= $this->input->post('pago');
-		// $metodo				= $this->input->post('metodo');
+		$folio = $this->input->post('folio');
 
 		$data['cotizacion'] = $this->Ventas_model->general_cotizacion($folio); //datos de la cotizacion
 

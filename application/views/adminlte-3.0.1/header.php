@@ -212,17 +212,42 @@
             <li class="nav-item">
               <a href="<?php echo base_url('carrito'); ?>" class="nav-link">
                 <i class="nav-icon fas fa-cubes"></i>
-                <p>Cotizar<span class="right badge badge-warning">1</span></p>
+                <p>Cotizar<span class="right badge badge-warning"></span></p>
               </a>
             </li>
 
             <!-- Termina link -->
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="<?php echo base_url('ventas'); ?>" class="nav-link">
                 <i class="nav-icon fas fa-shopping-bag"></i>
                 <p>Ventas<span class="right badge badge-danger"></span></p>
               </a>
+            </li> -->
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-shopping-bag"></i>
+                <p>
+                  Ventas
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?php echo base_url('ventas'); ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Realizar venta</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../layout/boxed.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Historial de ventas</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
             <!-- Termina link -->
@@ -230,7 +255,7 @@
 
             <li class="nav-item">
               <a href="<?php echo base_url('clientes'); ?>" class="nav-link">
-                <i class="nav-icon fas fa-shopping-bag"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>Clientes<span class="right badge badge-danger"></span></p>
               </a>
             </li>
@@ -244,8 +269,7 @@
                 <p>
                   Clientes
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">
-                    <!-- numero --></span>
+                  <span class="badge badge-info right"></span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -272,8 +296,7 @@
                 <p>
                   Proveedores
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">
-                    <!-- numero --></span>
+                  <span class="badge badge-info right"></span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -300,8 +323,7 @@
                 <p>
                   Usuarios
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">
-                    <!-- numero --></span>
+                  <span class="badge badge-info right"></span>
                 </p>
               </a>
               <ul class="nav nav-treeview">

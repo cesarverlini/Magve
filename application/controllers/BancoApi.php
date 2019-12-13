@@ -48,19 +48,7 @@ class BancoApi extends CI_Controller {
         $result = curl_exec($curl);
         curl_close($curl);
 
-
-        // $result = json_decode($result, true);
         return json_decode($result, true);
-
-        // print_r($data);
-        // print_r($result);
-
-        // echo "<br>";
-        // echo $result['id_Transaccion'];
-        // echo "<br>";
-        // echo $result['fecha'];
-        // echo "<br>";
-        // echo $result['mensaje']; 
     }
 
     /*
@@ -122,10 +110,10 @@ class BancoApi extends CI_Controller {
 
     public static function Transfer(){
         $data = [
-            'Tarjeta_Origen'=> 5799433668183788,
+            'Tarjeta_Origen'=> 5799433668183788,//5799433668183788
              'Numeros_Verificadores' => 506,
              'Tarjeta_Destino'=> 9296838398409083, 
-             'Monto'=> 200
+             'Monto'=> 1
         ];
 
         $data_string = json_encode($data);
@@ -145,18 +133,59 @@ class BancoApi extends CI_Controller {
         $result = curl_exec($curl);
         curl_close($curl);
 
-
         $result = json_decode($result, true);
 
-        print_r($data);
-        print_r($result);
+        //print_r($result);
+        
+        // Normalizamos la respuesta a nuestro JS
+        if(isset($result['id_Transaccion'])){
+            $respuesta = array(
+                'error' => FALSE,
+                'mensaje' => $result['mensaje'],
+                'numero_transaccion' => $result['id_Transaccion'],
+                'fecha' => date("Y-m-d h:i:s",strtotime($result['fecha']))
+            );
+        }else{
+            $respuesta = array(
+                'error' => TRUE,
+                'mensaje' => $result['mensaje'],
+                'errno' => $result['statusCode']
+            );
+        }
 
-        echo "<br>";
-        echo $result['id_Transaccion'];
-        echo "<br>";
-        echo $result['fecha'];
-        echo "<br>";
-        echo $result['mensaje']; 
+        $respuesta = json_encode($respuesta);
+        print_r($respuesta);
+    }
+
+
+    public function Deposit(){
+
+        $data = array(
+             'Tarjeta_Destino' => 2,
+             'Monto' => 55000
+        );
+    
+        $data_string = json_encode($data);
+    
+        $curl = curl_init('https://bancossoftwarecomplejo.azurewebsites.net/api/Transaccions/Deposito');
+    
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+    
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($data_string))
+        );
+    
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string); 
+    
+        $result = curl_exec($curl);
+        curl_close($curl);
+    
+    
+        $result = json_decode($result, true);
+    
+        print_r($result);
     }
 
 }
