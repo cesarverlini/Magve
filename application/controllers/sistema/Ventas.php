@@ -25,7 +25,10 @@ class Ventas extends CI_Controller {
         $this->load->view('adminlte-3.0.1/footer');
 	}
 	
-	// realizar venta desde una cotización recibida
+	/*
+	* Cotizar venta: Muestra los datos de una cotización hecha
+	* para proceder a la venta
+	*/
 	public function cotiza_venta($folio_cotizacion = null){
 
 		$data['title'] = "Proceso de confirmación de venta";
@@ -46,69 +49,57 @@ class Ventas extends CI_Controller {
         $this->load->view('adminlte-3.0.1/footer');
 	}
 
-	// public function generar_venta(){
-		
-	// 	$tarjeta = $this->input->post('tarjeta');
-	// 	$nip = $this->input->post('nip');
-
-	// 	$monto = $this->input->post('monto');
-	// 	$destino = 9296838398409083; //magve: 5799433668183788
-
-	// 	// Llamamos a la API y usamos el metodo transferencia
-	// 	require_once(APPPATH.'controllers/BancoApi.php');
-	// 	$r = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
-	// 	echo json_encode($r);
-	// }
-
+	/*
+	* Metodo llamado desde AJAX donde se conecta con BancoApi
+	* y realizar una transferencia. 
+	* retornamos la respuesta de la api al metodo AJAX
+	*/
 	public function generar_venta(){
 		
 		$tarjeta = $this->input->post('tarjeta');
-		$nip = $this->input->post('nip');
-
+		$nip = $this->input->post('nip');			//cvv
 		$monto = $this->input->post('monto');
 		$destino = 9296838398409083;
 
 		// Llamamos a la API y usamos el metodo transferencia
 		require_once(APPPATH.'controllers/BancoApi.php');
-		$r = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
-		echo json_encode($r);
+		// guardamos en respuesta el resultado del metodo Transferencia
+		$respuesta = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
+		// Regresamos con echo la respuesta al metodo AJAX
+		echo json_encode($respuesta);
 	}
 
-	// se procede con la compra
+	/*
+	* Metodo llamado desde AJAX.
+	* Se llama sólo si el pago ( generar_venta ) se completó correctamente
+	* Insertamos una venta en la base de datos tabla ventas
+	*/
 	public function generar_compra(){
 
+		// Busqueda de detalles en tabla cotización
 		$folio = $this->input->post('folio');
-
 		$data['cotizacion'] = $this->Ventas_model->general_cotizacion($folio); //datos de la cotizacion
 
+		// Datos a insertar en la tabla ventas
+		// date("Y-m-d h:i:s",strtotime($result['fecha']))
 		$datos_venta = array(
 			'id_cliente' 	=> $data['cotizacion']['id_cliente'],
 			'id_empleado' 	=> $data['cotizacion']['id_empleado'],
-			'fecha_venta' 	=> '2019-12-12',
 			'fecha_evento' 	=> $this->input->post('fecha'),
 			'metodo_pago' 	=> $this->input->post('metodo'),
 			'total'			=> $this->input->post('pago'),
 			'id_cotizacion' => $data['cotizacion']['id'],
-			'ubicacion_evento' => $this->input->post('ubicacion')
+			'ubicacion_evento' => $this->input->post('ubicacion'),
+			'numero_transaccion' => $this->input->post('num_transaccion'),
+			'fecha_autorizacion' => $this->input->post('fecha_autorizacion')
 		);
 
+		// guardamos la venta
 		$respuesta_venta = $this->Ventas_model->insertar_venta($datos_venta);
 		echo $respuesta_venta;
 	}
 
-    public function check_cotizacion($id_cotizacion = null){
-
-        if(!isset($id_cotizacion)){
-            $mensaje = "Algo salió mal. No se proporcionó una cotización valida";
-        }else{
-            $mensaje = "Cotización recibida con exito";
-        }
-
-        $data['mensaje'] = $mensaje;
-        $this->load->view('layouts/header');
-        $this->load->view('ventas/check_cotizacion', $data);
-        $this->load->view('layouts/footer');
-	}
+	// ======================================================================
 
 	public function correos()
 	{
@@ -116,12 +107,14 @@ class Ventas extends CI_Controller {
 		// $data = $this->input->post('correo');
 		echo json_encode($respuesta);
 	}
+
 	public function autocomplete()
 	{
 		$data = $this->input->post();
 		$respuesta = $this->Ventas_model->autocomplete($data);
 		echo json_encode($respuesta);
 	}
+
 	public function cotizacion_folio()
 	{
 		$folio = $this->input->post('folio');
@@ -129,18 +122,21 @@ class Ventas extends CI_Controller {
 		// var_dump($respuesta);
 		echo json_encode($respuesta);
 	}
+
 	public function get_cliente()
 	{
 		$id = $this->input->post('id');
 		$respuesta = $this->Ventas_model->get_cliente($id);
 		echo json_encode($respuesta);
 	}
+
 	public function get_cotizaciones()
 	{
 		$data = $this->input->post('id');
 		$respuesta = $this->Ventas_model->get_cotizaciones($data);
 		echo json_encode($respuesta);
 	}
+	
 	public function get_detalles()
 	{
 		$data = $this->input->post('id');

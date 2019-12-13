@@ -45,20 +45,28 @@
                                         <!-- info de tarjeta -->
                                         <div class="form-group">
                                             <label for="">Número de tarjeta</label>
-                                            <input type="text" class="form-control" id="tarjeta" name="tarjeta">
+                                            <input type="text" class="form-control" id="tarjeta" name="tarjeta" autocomplete="off">
                                             <small id="" class="form-text text-muted">16 digitos de tu plastico</small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">Nombre del titular</label>
+                                            <input type="text" class="form-control" id="" name="" placeholder="Jhon Doe" autocomplete="off">
+                                            <small id="" class="form-text text-muted">Todos los datos son confidenciales</small>
                                         </div>
                                         
                                         <div class="row">
+                                            
                                             <div class="col-md-6 form-group">
-                                                <label for="">NIP</label>
-                                                <input type="password" class="form-control" id="nip" name="nip">
-                                                <small id="" class="form-text text-muted">La clave con la que firmas tus compras</small>
+                                                <label for="">vencimiento</label>
+                                                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="12/22" autocomplete="off">
+                                                <small id="" class="form-text text-muted">Vencimiento del plastico</small>
                                             </div>
+
                                             <div class="col-md-6 form-group">
                                                 <label for="">CVV</label>
-                                                <input type="password" class="form-control" id="cvv" name="cvv">
-                                                <small id="" class="form-text text-muted">No compartiremos ningun dato privado con nadie</small>
+                                                <input type="password" class="form-control" id="nip" name="nip" autocomplete="off">
+                                                <small id="" class="form-text text-muted">Código de seguridad</small>
                                             </div>
 										</div>
 
@@ -87,11 +95,25 @@
                                             <p class="text-muted"><?php echo $detalle->nombre." ".$detalle->apellido_p; ?></p>
                                         </div>
 
+                                        <!-- calculo del subtotal + IVA -->
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label class="py-0 my-0">Subtotal a pagar</label>
+                                                <p class="text-muted"><?php echo round($detalle->total, 2); ?></p>
+                                            </div>
+
+                                            <div class="col-md-6 form-group">
+                                                <label class="py-0 my-0">IVA</label>
+                                                <p class="text-muted"><?php echo ($detalle->total*.16); ?></p>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="py-0 my-0">Total a pagar</label>
                                             <input type="hidden" value="<?php echo $detalle->total; ?>" name="monto" id="monto">
-                                            <p class="text-muted"><?php echo $detalle->total; ?></p>
+                                            <p class="text-muted"><span class="text-info">$</span><?php echo round($detalle->total*1.16,2); ?><span class="text-success">MXN</span></p>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

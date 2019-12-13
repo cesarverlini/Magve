@@ -36,7 +36,6 @@ class BancoApi extends CI_Controller {
         $curl = curl_init('https://bancossoftwarecomplejo.azurewebsites.net/api/Transaccions/Transferencia');
 
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-
         curl_setopt($curl, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data_string))
@@ -47,8 +46,27 @@ class BancoApi extends CI_Controller {
 
         $result = curl_exec($curl);
         curl_close($curl);
+        $result = json_decode($result, true);
 
-        return json_decode($result, true);
+        // Normalizamos la respuesta a nuestro JS
+        if(isset($result['id_Transaccion'])){
+            $respuesta = array(
+                'error' => FALSE,
+                'mensaje' => $result['mensaje'],
+                'numero_transaccion' => $result['id_Transaccion'],
+                'fecha' => date("Y-m-d h:i:s",strtotime($result['fecha']))
+            );
+        }else{
+            $respuesta = array(
+                'error' => TRUE,
+                'mensaje' => $result['mensaje'],
+                'errno' => $result['statusCode']
+            );
+        }
+
+        $respuesta = json_encode($respuesta);
+        return $respuesta;
+
     }
 
     /*
@@ -106,6 +124,8 @@ class BancoApi extends CI_Controller {
 
 
 
+    // =============================================================
+    // METODOS DE PRUEBA NO SON LLAMADOS EN LA EJECUCIÓN
     // =============================================================
 
     public static function Transfer(){

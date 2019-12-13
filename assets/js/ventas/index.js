@@ -136,8 +136,10 @@ $(document).ready(function(){
 		$('#btn-compra').show();
 		$('#detalle-titulo').show();
 		$('#tblbodyCotizacion').empty();
+
 		var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_detalles", $data = { 'id': id});
-			
+		
+		// se valida que tipo de producto es
 		$.each(respuesta, function(e,v){
 			if (v.id_proveedor = 2) {
 				$proveedor = "Local";
@@ -152,6 +154,8 @@ $(document).ready(function(){
 			}else if (v.id_proveedor = 7) {
 				$proveedor = "Banquete";
 			}
+
+			//se rellena la tabla 
 			$('#tblbodyCotizacion').append(
 				'<tr>'+
 					'<td>'+v.id+'</td>'+
@@ -164,14 +168,21 @@ $(document).ready(function(){
 			);
 		});
 		$('#tblbodyCotizacion').append(
-			'<td colspan="5" align="right">Total</td>'+
-			'<td colspan="2">$'+total+'</td>'
+			'<tr><td colspan="5" align="right">Subtotal</td>'+
+			'<td colspan="2">$'+total+'</td></tr>'+
+			'<tr><td colspan="5" align="right">IVA</td>'+
+			'<td colspan="2">$'+(total*.16)+'</td></tr>'+
+			'<tr><td colspan="5" align="right">Subtotal</td>'+
+			'<td colspan="2">$'+(total*1.16).toFixed(2)+'</td></tr>'
 		);
 	}
+
+	// contrato
 	$('#Contrato').click(function(){
-		// console.log(id_cotizacion);
 		window.open(base_url+"contrato/"+id_cotizacion);
 	});
+
+	// proceder con la compra
 	$('#btn-compra').click(function(){
 		// console.log(id_cotizacion);		
 		window.location.href = base_url+"ventas/cotizacion-venta/"+folio;
