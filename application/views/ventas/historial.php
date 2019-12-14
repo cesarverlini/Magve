@@ -41,7 +41,7 @@
 												</td>												
 												<td>
 													<div style="text-align: center;">
-														<a href="#" class="btn btn-success"><span class="fa fa-download"></span></a>													
+														<a href="<?php echo base_url('ver_venta_pdf/'.$venta->id)?>" target="_blank" class="btn btn-success"><span class="fa fa-download"></span></a>													
 													</div>
 												</td>												
 											</tr>

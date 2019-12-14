@@ -10,9 +10,40 @@
 					<!-- /.card-header -->
 
 					<div class="card-body">
-						<form action="<?php echo base_url(); ?>" method="post" class="col-md-12">	
+						<form action="#" method="post" class="col-md-12">	
 							<!-- AQUI IRIA LOS DATOS DEL CLIENTE Y ESAS COSAS  -->
-							<h3 class="my-3" id="detalle-titulo">Detalle de ventas</h3>
+							<h3 class="my-3" id="detalle-titulo">Datos del cliente</h3>							
+								<div class="row">	
+									<div class="col-md-12">
+										<p><strong>Nombre</strong>: <span class="text-muted"><?php echo $venta->nombre_completo; ?></span></p>
+									</div>
+									<div class="col-md-12">
+										<p><strong>Fecha de la venta</strong>: <span class="text-muted"><?php echo $venta->fecha_venta; ?></span></p>
+									</div>
+									<div class="col-md-12">
+										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->folio; ?></span></p>
+									</div>
+									<div class="col-md-12">
+										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->correo; ?></span></p>
+									</div>	
+									<div class="col-md-12">
+										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->telefono; ?></span></p>
+									</div>								
+								</div>							
+							<!-- <div class="row">	
+								<div class="col-md-12">
+									<p><strong>Nombre</strong>: <span class="text-muted"><?php echo $nombre_completo; ?></span></p>
+								</div>
+								<div class="col-md-12">
+									<p><strong>Correo Electronico</strong>: <span class="text-muted"><?php echo $correo; ?></span></p>
+								</div>
+								<div class="col-md-12">
+									<p><strong>Número de teléfono</strong>: <span class="text-muted"><?php echo $telefono; ?></span></p>
+								</div>
+							</div> -->
+
+
+							<h3 class="my-3" id="detalle-titulo">Detalle de la venta</h3>
 							<div class="card-body p-0">
 								<table class="table table-bordered" id="">
 									<thead>

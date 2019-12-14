@@ -7,6 +7,7 @@ $route['default_controller'] = 'auth';
 $route['ventas'] = 'sistema/ventas';
 $route['historial_ventas'] = 'sistema/historial';
 $route['ver_venta/(:num)'] = 'sistema/historial/ver_venta/$1';
+$route['ver_venta_pdf/(:num)'] = 'sistema/historial/venta_pdf/$1';
 //vamos a pasar el # de cotización a esta vista para hacer la compra
 $route['ventas/cotizacion-venta/(:num)'] = 'sistema/ventas/cotiza_venta/$1';
 $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
