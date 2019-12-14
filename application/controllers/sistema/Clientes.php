@@ -22,7 +22,6 @@ class Clientes extends CI_Controller {
 		$data = array(
 			'cliente' => $this->Clientes_model->get_cliente($id)
 		);
-
 		$data['title'] = "Datos Cliente";	
 		$this->load->view('adminlte-3.0.1/header', $data);
 		$this->load->view("sistema/editar_cliente",$data);

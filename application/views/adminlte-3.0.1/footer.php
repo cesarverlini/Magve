@@ -24,12 +24,34 @@
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<script src="<?php echo base_url('assets/js/sweetalert/dist/sweetalert2.min.js'); ?>"></script>
+		<!-- datatables -->
+		<script src="<?php echo base_url('assets/adminlte-3.0.1/datatables/datatables.min.js'); ?>"></script>
         <!-- custom JS file load -->
         <?php
             $ruta = ($this->router->fetch_method() == 'vista') ? $this->uri->segment(2) : $this->router->fetch_method();
             $JSFile = base_url().'assets/js/'.$this->router->fetch_class().'/'.$ruta.'.js';
             echo '<script src="'.$JSFile.'"></script>';
 		?>
+		<script type="text/javascript">
+			// $('.datatable').DataTable();
+			$('.datatable').DataTable({
+				"language":{
+					"lengthMenu": "Mostrar _MENU_ registros",
+					"zeroRecords": "No se encontraron resultados",
+					"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+					"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+					"infoFiltered": "(Filtrando de un total de _MAX_ registros)",
+					"sSearch": "Buscar:",
+					"oPaginate": {
+						"sFirst": "Primero",
+						"sLast": "Ultimo",
+						"sNext": "Siguiente",
+						"sPrevious": "Anterior",
+					},					
+					"sProccessing": "Procesando",
+				}
+			});
+		</script>
 		<script type="text/javascript">
 			// FUNCIONES PARA CARGAR AJAX DESDE CUALQUIER ARCHIVO JS o <script> DEL SISTEMA
 			var cargar_ajax = {

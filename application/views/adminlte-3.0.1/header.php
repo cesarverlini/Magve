@@ -11,9 +11,11 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Ion Slider -->
   <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/'); ?>plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/js/sweetalert/dist/sweetalert2.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/js/sweetalert/dist/sweetalert2.min.css'); ?>">
+	
   <!-- <script src=""></script> -->
-
+	<!-- datatable -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/adminlte-3.0.1/datatables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css'); ?>">
   <!-- custom css load -->
   <?php
 
@@ -242,7 +244,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../layout/boxed.html" class="nav-link">
+                  <a href="<?php echo base_url('historial_ventas'); ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Historial de ventas</p>
                   </a>

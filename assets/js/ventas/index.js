@@ -172,7 +172,7 @@ $(document).ready(function(){
 			'<td colspan="2">$'+total+'</td></tr>'+
 			'<tr><td colspan="5" align="right">IVA</td>'+
 			'<td colspan="2">$'+(total*.16)+'</td></tr>'+
-			'<tr><td colspan="5" align="right">Subtotal</td>'+
+			'<tr><td colspan="5" align="right">Total</td>'+
 			'<td colspan="2">$'+(total*1.16).toFixed(2)+'</td></tr>'
 		);
 	}
