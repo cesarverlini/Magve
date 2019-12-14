@@ -32,7 +32,7 @@
 												<td><?php echo $venta->id; ?></td>												
 												<td><?php echo $venta->nombre_completo; ?></td>												
 												<td><?php echo $venta->folio; ?></td>												
-												<td><?php echo $venta->fecha_venta; ?></td>												
+												<td><?php echo date('Y-m-d', strtotime($venta->fecha_venta)) ?></td>												
 												<td><?php echo $venta->total; ?></td>												
 												<td>
 													<div style="text-align: center;">

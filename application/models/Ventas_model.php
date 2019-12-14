@@ -60,7 +60,7 @@ class Ventas_model extends CI_Model
 								->from('cotizacion')
 								->join('detalle_cotizacion_venta','id_cotizacion = cotizacion.id')
 								->where('folio',$folio)->get();
-		return $resultado->result();
+		return $resultado->row();
 	}
 
 	public function insertar_venta($data){
@@ -89,12 +89,12 @@ class Ventas_model extends CI_Model
 		$data = $this->db->get('clientes');
 		return $data->result();
 	}
-	public function get_cliente_cotizacion($id)
+	public function get_cliente_cotizacion($folio)
 	{
 		$resultado = $this->db->select('*')
 			->from('cotizacion')
 			->join('clientes', 'clientes.id = id_cliente')
-			->where('cotizacion.id', $id)
+			->where('cotizacion.folio', $folio)
 			->get();
 		return $resultado->row();
 	}

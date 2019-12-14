@@ -2,14 +2,14 @@ $(document).ready(function(){
 	contrato_id = 0;
 	$('#tabla_cotizacion').hide();
 	$('#divcotizaciones').hide();
-	$('#Contrato').hide();
+	// $('#Contrato').hide();
 	$('#btn-compra').hide();
 	$('#detalle-titulo').hide();
 	var base_url = $('#base_url').val();
 	$('#correofolio').autocomplete({	
 		source: function(req,res){	
 			$('#tabla_cotizacion').hide();
-			$('#Contrato').hide();
+			// $('#Contrato').hide();
 			$('#tblbodyCotizacion').empty();
 			$.ajax({
 				url: base_url+"sistema/ventas/autocomplete",
@@ -120,7 +120,7 @@ $(document).ready(function(){
 		folio = $('#cmbCotizaciones option:selected').text();
 		if (id_cotizacion == "") {
 			$('#tabla_cotizacion').hide();
-			$('#Contrato').hide();
+			// $('#Contrato').hide();
 		}else{
 			obtener_detalle(id_cotizacion);		
 		}
@@ -132,7 +132,7 @@ $(document).ready(function(){
 	function obtener_detalle(id)
 	{
 		$('#tabla_cotizacion').show();
-		$('#Contrato').show();
+		// $('#Contrato').show();
 		$('#btn-compra').show();
 		$('#detalle-titulo').show();
 		$('#tblbodyCotizacion').empty();
@@ -168,19 +168,19 @@ $(document).ready(function(){
 			);
 		});
 		$('#tblbodyCotizacion').append(
-			'<tr><td colspan="5" align="right">Subtotal</td>'+
+			'<tr><td colspan="5" align="right" style="border: 0px">Subtotal</td>'+
 			'<td colspan="2">$'+total+'</td></tr>'+
-			'<tr><td colspan="5" align="right">IVA</td>'+
+			'<tr><td colspan="5" align="right" style="border: 0px">IVA</td>'+
 			'<td colspan="2">$'+(total*.16)+'</td></tr>'+
-			'<tr><td colspan="5" align="right">Total</td>'+
+			'<tr><td colspan="5" align="right" style="border: 0px">Total</td>'+
 			'<td colspan="2">$'+(total*1.16).toFixed(2)+'</td></tr>'
 		);
 	}
 
 	// contrato
-	$('#Contrato').click(function(){
-		window.open(base_url+"contrato/"+id_cotizacion);
-	});
+	// $('#Contrato').click(function(){
+	// 	window.open(base_url+"contrato/"+id_cotizacion);
+	// });
 
 	// proceder con la compra
 	$('#btn-compra').click(function(){

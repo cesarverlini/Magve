@@ -42,8 +42,13 @@ class Cotizaciones_model extends CI_Model {
 	}
 	public function get_cotizacion($id)
 	{
-		$query = "SELECT * FROM cotizacion join clientes on cotizacion.id_cliente = clientes.id where cotizacion.id = ".$id."";
-		$resultado = $this->db->query($query);
+		// $query = "SELECT * FROM cotizacion join clientes on cotizacion.id_cliente = clientes.id where cotizacion.id = ".$id."";
+		$resultado = $this->db->select('*')
+								->from('cotizacion')
+								->join('clientes','cotizacion.id_cliente = clientes.id')
+								->where('cotizacion.id',$id)
+								->get();
+		// $resultado = $this->db->query($query);
 		// $this->db->select('*');
 		// $this->db->from('cotizacion');
 		// $this->db->join('clientes', 'cotizacion.id_cliente = clientes.id');

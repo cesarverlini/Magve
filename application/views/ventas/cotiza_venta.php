@@ -28,7 +28,8 @@
                                 <div class="col-md-4 form-group">
                                 <label for="fechaEvento">Fecha del evento</label>
                                 <input type="date" class="form-control fecha_renta" name="fechaEvento" id="fechaEvento" aria-describedby="" value="<?php echo date('Y-m-d')?>">
-                                <small class="form-text text-muted">Sujeto a disponibilidad</small>
+								<small class="form-text text-muted">Sujeto a disponibilidad</small>
+								<button id="Contrato" type="button" class="btn btn-primary">Generar Contrato</button>							
                                 </div>
                             </div>
                             <div class="row mt-4">

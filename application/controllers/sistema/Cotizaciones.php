@@ -163,8 +163,11 @@ class Cotizaciones extends CI_Controller {
 	// }
 	public function cotizacion_pdf()
 	{		
-		$fecha_actual=date("d-m-Y");
+		// $fecha_actual=date("d-m-Y");
 		$id = $this->uri->segment(2);
+		// $data = $this->Historial_model->get_venta($id);
+		$data = $this->Cotizaciones_model->get_cotizacion($id);
+
 		// var_dump($id);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
@@ -173,45 +176,48 @@ class Cotizaciones extends CI_Controller {
 		$Nombre_archivo = 'Cotizacion Evento.pdf';
 		$pdf->SetTitle("Cotizacion Evento");
 		$pdf->AddPage();
-		/*Encabezado*/
-		// $pdf->Image(base_url().'images/gspm.png',10,8,20);
-		$pdf->SetFont('Arial','B',12);
-		//$pdf->Cell(90,6,'',0,0);
-		$pdf->Cell(0,6,'COTIZACION EVENTO',0,0,'C');
-		$pdf->SetFont('Arial','I',7);
-		$pdf->Cell(0,6,utf8_decode('Fecha de impresión:').$fecha_actual,0,0,'R');
-		$pdf->Ln();
-
-		$data = $this->Cotizaciones_model->get_cotizacion($id);
+		/*Encabezado*/		
+		$pdf->SetFont('Arial','I',10);		
+		$pdf->Cell(0,6,utf8_decode('Folio de Cotización: '.$data->folio.''),0,0,'R');
+		$pdf->Image(base_url().'assets/img/logo.png',135,10,25,25);
+		$fecha = date('d-m-Y', strtotime($data->fecha_registro));
+		$pdf->SetFont('Arial','B',12);	
+		
 		// var_dump($data);
-
+		
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
 		$pdf->SetFont('Arial','B',11);
 		$pdf->setFillColor(0,214,252); 							
 		$pdf->Cell(97,6,"",0,1,'C');
 		$pdf->Cell(90,6,"",0,1,'R');
-		$pdf->Cell(38,7,utf8_decode("Fecha"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($fecha_actual),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Cliente"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->nombre_completo),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->nombre_completo),1,0,'C');
+
 		$pdf->Cell(38,7,utf8_decode("Telefono"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->telefono),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->telefono),1,1,'C');
+
 		$pdf->Cell(38,7,utf8_decode("Correo"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->correo),1,1,'C');
-		// $pdf->Cell(38,7,utf8_decode("Direccion"),1,0,'C',1);
-		// $pdf->Cell(238,7,utf8_decode("Leocadio Salcedo #1297"),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->correo),1,0,'C');
+
+		$pdf->Cell(38,7,utf8_decode("Fecha de cotización"),1,0,'C',1);
+		$pdf->Cell(100,7,utf8_decode( $fecha ),1,1,'C');
 		$pdf->Ln();
 
 		$pdf->Cell(12,7,utf8_decode("N°"),1,0,'C',1);
 		$pdf->Cell(52.8,7,utf8_decode("Tipo Servicio"),1,0,'C',1);
 		$pdf->Cell(52.8,7,utf8_decode("Nombre"),1,0,'C',1);
-		$pdf->Cell(52.8,7,utf8_decode("Descripcion"),1,0,'C',1);
+		// $pdf->Cell(44,7,utf8_decode("Descripcion"),1,0,'C',1);
 		$pdf->Cell(52.8,7,utf8_decode("Cantidad"),1,0,'C',1);
-		$pdf->Cell(52.8,7,utf8_decode("Costo Unitario"),1,1,'C',1);
-		// $pdf->Cell(44,7,utf8_decode("Costo Total"),1,1,'C',1);
-
+		$pdf->Cell(52.8,7,utf8_decode("Costo Unitario"),1,0,'C',1);
+		$pdf->Cell(52.8,7,utf8_decode("Sub-Total"),1,1,'C',1);
+		
 		$datos_matriz = $this->Cotizaciones_model->get_datos_cotizacion($id);
+		
 		$i = 1;
 		$pdf->SetFont('Arial','',9);
+		$subtotal = 0;
 		foreach ($datos_matriz as $row) {
 			if ($row->id_proveedor == 2) {		
 				$tipo_servicio = "Local";
@@ -226,23 +232,35 @@ class Cotizaciones extends CI_Controller {
 			}else if ($row->id_proveedor == 7) {
 				$tipo_servicio = "Banquete";
 			}
+			$subtotal += $row->subtotal;
 			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
 						$i++,
 						utf8_decode($tipo_servicio),
 						utf8_decode($row->nombre),
-						utf8_decode($row->descripcion),
+						// utf8_decode($row->descripcion),
 						utf8_decode($row->cantidad),
 						utf8_decode($row->costo),
-						// utf8_decode('5000'),						
+						utf8_decode($row->subtotal),										
 					 ));
 		}
 
 		$pdf->Ln();
-		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->SetFont('Arial','B',15);
+		$pdf->Cell(216,7,"",0,0,'C',0);
+		$pdf->Cell(30,7,utf8_decode("SubTotal "),0,0,'R',0);
+		$pdf->SetFont('Arial','',15);
+		$pdf->Cell(30,7,utf8_decode("$".$subtotal),0,1,'C');
+		$pdf->SetFont('Arial','B',15);
+		$pdf->Cell(216,7,"",0,0,'C',0);
+		$pdf->Cell(30,7,utf8_decode("IVA: "),0,0,'R',0);
+		$pdf->SetFont('Arial','',15);
+		$pdf->Cell(30,7,utf8_decode("$"),0,1,'C');
+		$pdf->SetFont('Arial','B',15);
+		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
-		$pdf->Cell(30,7,utf8_decode($data->total),0,0,'C');
+		$pdf->SetFont('Arial','',15);
+		$pdf->Cell(30,7,utf8_decode("$".$data->total),0,0,'C');
 
 		$pdf->Ln();
 		// $pdf->SetY(-30);
@@ -251,6 +269,8 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Output($Nombre_archivo, 'I');
 	}
 }
+// $data = $this->Cotizaciones_model->get_cotizacion($id);
+// $datos_matriz = $this->Cotizaciones_model->get_datos_cotizacion($id);
 
 
 // SELECT * FROM locales 

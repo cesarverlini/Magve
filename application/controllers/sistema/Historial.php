@@ -35,7 +35,7 @@ class Historial extends CI_Controller {
 	public function venta_pdf()
 	{		
 		
-		$fecha_actual=date("d-m-Y");
+		// $fecha_actual=date("d-m-Y");
 		$id = $this->uri->segment(2);
 		$data = $this->Historial_model->get_venta($id);
 
@@ -51,7 +51,7 @@ class Historial extends CI_Controller {
 		$pdf->SetFont('Arial','I',10);		
 		$pdf->Cell(0,6,utf8_decode('Folio de Venta: '.$data->folio.''),0,0,'R');
 		$pdf->Image(base_url().'assets/img/logo.png',135,10,25,25);
-		
+		$fecha = date('d-m-Y', strtotime($data->fecha_venta));
 		$pdf->SetFont('Arial','B',12);
 		
 		// $data = $this->Cotizaciones_model->get_cotizacion($id);
@@ -65,14 +65,17 @@ class Historial extends CI_Controller {
 		$pdf->setFillColor(0,214,252); 							
 		$pdf->Cell(97,6,"",0,1,'C');
 		$pdf->Cell(90,6,"",0,1,'R');
-		$pdf->Cell(38,7,utf8_decode("Fecha"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->fecha_venta),1,1,'C');
 		$pdf->Cell(38,7,utf8_decode("Cliente"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->nombre_completo),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->nombre_completo),1,0,'C');
+
 		$pdf->Cell(38,7,utf8_decode("Telefono"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->telefono),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->telefono),1,1,'C');
+
 		$pdf->Cell(38,7,utf8_decode("Correo"),1,0,'C',1);
-		$pdf->Cell(238,7,utf8_decode($data->correo),1,1,'C');
+		$pdf->Cell(100,7,utf8_decode($data->correo),1,0,'C');
+
+		$pdf->Cell(38,7,utf8_decode("Fecha de Venta"),1,0,'C',1);
+		$pdf->Cell(100,7,utf8_decode( $fecha ),1,1,'C');
 		$pdf->Ln();
 
 		$pdf->Cell(12,7,utf8_decode("N°"),1,0,'C',1);

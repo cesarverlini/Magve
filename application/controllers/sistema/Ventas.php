@@ -146,11 +146,12 @@ class Ventas extends CI_Controller {
 	public function Contrato()
 	{	
 		$fecha_actual=date("d-m-Y");
-		$id = $this->uri->segment(2);
+		$folio = $this->uri->segment(2);
 		$hora = date("h:m:s a");
 		$this->load->library('fpdf_manager');
 		$pdf = new fpdf_manager();
-		$respuesta = $this->Ventas_model->get_cliente_cotizacion($id);
+		$respuesta = $this->Ventas_model->get_cliente_cotizacion($folio);
+		// var_dump($respuesta);
 		$cliente = $respuesta->nombre_completo;
 		$folio = $respuesta->folio;
 		$telefono = $respuesta->telefono;

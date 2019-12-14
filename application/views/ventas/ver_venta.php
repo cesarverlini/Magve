@@ -18,7 +18,7 @@
 										<p><strong>Nombre</strong>: <span class="text-muted"><?php echo $venta->nombre_completo; ?></span></p>
 									</div>
 									<div class="col-md-12">
-										<p><strong>Fecha de la venta</strong>: <span class="text-muted"><?php echo $venta->fecha_venta; ?></span></p>
+										<p><strong>Fecha de la venta</strong>: <span class="text-muted"><?php echo date('Y-m-d', strtotime($venta->fecha_venta)) ; ?></span></p>
 									</div>
 									<div class="col-md-12">
 										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->folio; ?></span></p>
@@ -27,7 +27,7 @@
 										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->correo; ?></span></p>
 									</div>	
 									<div class="col-md-12">
-										<p><strong>Folio</strong>: <span class="text-muted"><?php echo $venta->telefono; ?></span></p>
+										<p><strong>Telefono</strong>: <span class="text-muted"><?php echo $venta->telefono; ?></span></p>
 									</div>								
 								</div>							
 							<!-- <div class="row">	

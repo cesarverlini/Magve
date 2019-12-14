@@ -1,5 +1,9 @@
 $(function () {
+	$('#Contrato').hide();
+
 	base_url = $('#base_url').val();
+	folio = $('#folioCotizacion').val();
+
 	// JS Date
 	var d = new Date();
 	var month = d.getMonth() + 1;
@@ -13,7 +17,7 @@ $(function () {
 
 	$('#fechaEvento').change(function () {
 		var folio = {
-			folio: $('#folio').val()
+			folio: $('#folioCotizacion').val()
 		}
 		id_producto = 0;
 		var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/cotizacion_folio", folio);
@@ -58,12 +62,21 @@ $(function () {
 				title: 'Oops...',
 				text: 'Lo sentimos, el ' + servicio + ' seleccionado no esta disponible en las siguientes fechas ' + no_disponible,
 			})
+			$('#Contrato').hide();
 		} else {
-			//nada
+			$('#Contrato').show();
 		}
 	});
+	
+	// response = cargar_ajax.run_server_ajax('/sistema/ventas/cotizacion_folio',folio );
+	// id_cotizacion = response.id;
+	// console.log(response);
+	
 
 })
+$('#Contrato').click(function(){
+	window.open(base_url+"contrato/"+folio);
+});
 $('#finalizarventa').click(function () {
 	// arreglo para el pago
 	var data = {
