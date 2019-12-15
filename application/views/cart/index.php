@@ -19,9 +19,9 @@
                             <th style="width: 50px">ID</th>
                             <th>Tipo</th>
                             <th>Nombre</th>
-                            <th>Precio</th>
+                            <th>Precio Unitario</th>
                             <th>Cantidad</th>
-                            <th>Subtotal</th>
+                            <th>Total</th>
                             <th style="width: 100px">Eliminar</th>
                             </tr>
                         </thead>
@@ -38,10 +38,18 @@
                                     <a href="<?php echo site_url('carrito/quitar/'.$item['id']); ?>">X</a>
                                 </td>
                             </tr>
-                        <?php } ?>
-                            <tr>
-        			            <td colspan="5" align="right">Total</td>
+						<?php } ?>
+							<tr>
+        			            <td colspan="5" align="right" style="border: 0">Sub Total</td>
         			            <td colspan="2">$<?php echo $total; ?></td>
+        		            </tr>
+                            <tr>
+        			            <td colspan="5" align="right" style="border: 0">IVA</td>
+        			            <td colspan="2">$<?php echo $iva; ?></td>
+							</tr>
+							<tr>
+        			            <td colspan="5" align="right" style="border: 0">Total</td>
+        			            <td colspan="2">$<?php echo ($total + $iva); ?></td>
         		            </tr>
                         </tbody>
                     </table>

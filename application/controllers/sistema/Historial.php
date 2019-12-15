@@ -105,7 +105,7 @@ class Historial extends CI_Controller {
 			}else if ($row->id_proveedor == 7) {
 				$tipo_servicio = "Banquete";
 			}
-			$subtotal += $row->subtotal;
+			$subtotal += $row->subtotal; //subtotal de la compra
 			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
 						$i++,
@@ -114,26 +114,26 @@ class Historial extends CI_Controller {
 						// utf8_decode($row->descripcion),
 						utf8_decode($row->cantidad),
 						utf8_decode($row->costo),
-						utf8_decode($row->subtotal),										
+						utf8_decode($row->subtotal),//subtotal del articulo(s)									
 					 ));
 		}
 
 		$pdf->Ln();
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(216,7,"",0,0,'C',0);
-		$pdf->Cell(30,7,utf8_decode("SubTotal "),0,0,'R',0);
+		$pdf->Cell(30,7,utf8_decode("SubTotal: "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$".$subtotal),0,1,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$data->subtotal),0,1,'R');
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("IVA: "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$"),0,1,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$data->iva),0,1,'R');
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$".$data->total),0,0,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$data->total),0,0,'R');
 
 		$pdf->Ln();
 		// $pdf->SetY(-30);

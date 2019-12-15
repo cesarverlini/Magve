@@ -100,19 +100,19 @@
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label class="py-0 my-0">Subtotal a pagar</label>
-                                                <p class="text-muted"><?php echo round($detalle->total, 2); ?></p>
+                                                <p class="text-muted"><?php echo round($detalle->subtotal, 2); ?></p>
                                             </div>
 
                                             <div class="col-md-6 form-group">
                                                 <label class="py-0 my-0">IVA</label>
-                                                <p class="text-muted"><?php echo ($detalle->total*.16); ?></p>
+                                                <p class="text-muted"><?php echo ($detalle->iva); ?></p>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="py-0 my-0">Total a pagar</label>
                                             <input type="hidden" value="<?php echo $detalle->total; ?>" name="monto" id="monto">
-                                            <p class="text-muted"><span class="text-info">$</span><?php echo round($detalle->total*1.16,2); ?><span class="text-success">MXN</span></p>
+                                            <p class="text-muted"><span class="text-info">$</span><?php echo round($detalle->total); ?><span class="text-success">MXN</span></p>
                                         </div>
 
                                     </div>

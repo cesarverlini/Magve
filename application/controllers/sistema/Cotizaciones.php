@@ -44,7 +44,8 @@ class Cotizaciones extends CI_Controller {
 				'correo' => $correo,
 				'telefono' => $telefono,
 				'carrito' => array_values(unserialize($this->session->userdata('cart'))),
-				'total' => $this->total()
+				'total' => $this->total(),
+				'iva' => $this->iva()
 			);
 			// $data['total'] = $this->total();
 
@@ -95,7 +96,9 @@ class Cotizaciones extends CI_Controller {
 		$cotizacion = array(				
 			'id_empleado' => 1, 
 			'id_cliente' => $id_cliente,
-			'total' => 	$this->total(),
+			'subtotal' => 	$this->total(),
+			'iva' => $this->iva(),
+			'total' => (intval($this->iva())+intval($this->total())),
 			'folio' => intval($id_cliente) . intval($folio)
 		);
 		$id_cotizacion = $this->Cotizaciones_model->insert_cotizacion($cotizacion);
@@ -147,6 +150,12 @@ class Cotizaciones extends CI_Controller {
             $s += $item['price'] * $item['quantity'];
         }
         return $s;
+	}
+	private function IVA()
+	{		
+        $subtotal = $this->total();
+        $iva = $subtotal * .16;
+        return $iva;
 	}
 	public function autocomplete()
 	{
@@ -250,17 +259,17 @@ class Cotizaciones extends CI_Controller {
 		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("SubTotal "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$".$subtotal),0,1,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$subtotal),0,1,'R');
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("IVA: "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$"),0,1,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$data->iva),0,1,'R');
 		$pdf->SetFont('Arial','B',15);
 		$pdf->Cell(216,7,"",0,0,'C',0);
 		$pdf->Cell(30,7,utf8_decode("Total: "),0,0,'R',0);
 		$pdf->SetFont('Arial','',15);
-		$pdf->Cell(30,7,utf8_decode("$".$data->total),0,0,'C');
+		$pdf->Cell(30,7,utf8_decode("$".$data->total),0,0,'R');
 
 		$pdf->Ln();
 		// $pdf->SetY(-30);

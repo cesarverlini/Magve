@@ -7,6 +7,7 @@ class Cart extends CI_Controller{
         if(unserialize($this->session->userdata('cart'))){
             $data['items'] = array_values(unserialize($this->session->userdata('cart')));
             $data['total'] = $this->total();
+            $data['iva'] = $this->IVA();
         }else{
             $data['error'] = TRUE;
         }
@@ -99,5 +100,18 @@ class Cart extends CI_Controller{
             $s += $item['price'] * $item['quantity'];
         }
         return $s;
-    }
+	}
+	// private function total(){
+	//    $subtotal = $this->subtotal();
+	//    $iva = $this->iva();
+	//    $total = $subtotal + $iva;
+	//    return $total;
+	// }
+	private function IVA()
+	{		
+        $subtotal = $this->total();
+        $iva = $subtotal * .16;
+        return $iva;
+	}
+	
 }

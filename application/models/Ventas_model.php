@@ -11,11 +11,13 @@ class Ventas_model extends CI_Model
 
 	public function get_cotizaciones($id)
 	{
-		$resultado = $this->db->select('*')
-			->from('cotizacion')
-			->where('id_cliente', $id)
-			->get();
-		return $resultado->result();
+		// $resultado = $this->db->select('*')
+		// 	->from('cotizacion')
+		// 	->where('id_cliente', $id)
+		// 	->get();
+		$query = $this->db->query("SELECT * FROM cotizacion where id_cliente = '".$id."' AND NOT EXISTS (select * from ventas where cotizacion.id = ventas.id_cotizacion)");
+		
+		return $query->result();
 	}
 
 	/*
@@ -44,7 +46,8 @@ class Ventas_model extends CI_Model
 	{
 		$data = $correo['search'];
 		$correo = $this->db->query("SELECT * FROM clientes where correo like '%$data%'");
-		$folio = $this->db->query("SELECT * FROM cotizacion where folio like '%$data%'");
+		$folio = $this->db->query("SELECT * FROM cotizacion where folio like '%$data%' AND NOT EXISTS (select * FROM ventas where cotizacion.id = ventas.id_cotizacion)");
+
 		if ($correo->result()) {
 			return $correo->result();
 		}else{

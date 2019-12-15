@@ -71,12 +71,12 @@
 										<?php } ?>
 									<?php endif;?>
 
-									<!-- <tr><td colspan="5" align="right" style="border: 0">Subtotal</td>
-									<td colspan="2"></td></tr>
+									<tr><td colspan="5" align="right" style="border: 0">Subtotal</td>
+									<td colspan="2"><?php echo $venta->subtotal?></td></tr>
 									<tr><td colspan="5" align="right" style="border: 0">IVA</td>
-									<td colspan="2"></td></tr>
+									<td colspan="2"><?php echo $venta->iva?></td></tr>
 									<tr><td colspan="5" align="right" style="border: 0">Total</td>
-									<td colspan="2"></td></tr> -->
+									<td colspan="2"><?php echo $venta->total?></td></tr>
 									</tbody>
 								</table>
 							</div>

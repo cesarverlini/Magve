@@ -51,9 +51,9 @@
 											<th style="width: 50px">ID</th>
 											<th>Tipo</th>
 											<th>Nombre</th>
-											<th>Precio</th>
+											<th>Precio Unitario</th>
 											<th>Cantidad</th>
-											<th>Subtotal</th>
+											<th>Total</th>
 										</tr>
 									</thead>
 									<tbody id="tblbodyCotizacion">

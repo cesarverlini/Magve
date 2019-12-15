@@ -35,6 +35,8 @@ $(document).ready(function(){
 								value: key.folio,
 								id: value.id,
 								id_cliente: value.id_cliente,
+								subtotal: value.subtotal,
+								iva: value.subtotal,
 								total: value.total,
 								folio: value.folio
 							};
@@ -51,7 +53,7 @@ $(document).ready(function(){
 				$('#correo').val(selectedData.item.label);
 				$('#telefono').val(selectedData.item.telefono);
 				var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cotizaciones", $data = { 'id': selectedData.item.id});
-				console.log(respuesta);
+				// console.log(respuesta);
 				$('#cmbCotizaciones').empty();
 				$('#cmbCotizaciones').append(
 					'<option value="">Seleccionar...</option>'
@@ -59,13 +61,13 @@ $(document).ready(function(){
 				$.each(respuesta, function(e,v){
 					$('#cmbCotizaciones').append(
 						// '<option value="">Seleccionar...</option>' +
-						'<option value="'+v.id+'" name="'+v.total+'" >'+v.folio+'</option>' 
+						'<option value="'+v.id+'" name="'+v.subtotal+'" >'+v.folio+'</option>' 
 					);
 				});		
 			}else{
 				$('#divcotizaciones').hide();
 				var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/get_cliente", $data = { 'id': selectedData.item.id_cliente});
-				total =  selectedData.item.total;
+				total =  selectedData.item.subtotal;
 				id_cotizacion = selectedData.item.id;
 				folio = selectedData.item.folio;
 				$('#nombre').val(respuesta[0].nombre_completo);
@@ -163,7 +165,7 @@ $(document).ready(function(){
 					'<td>'+v.nombre+'</td>'+
 					'<td>'+v.costo+'</td>'+
 					'<td>'+v.cantidad+'</td>'+
-					'<td>'+v.subtotal+'</td>'+
+					'<td>$'+v.subtotal+'</td>'+
 				'</tr>'			
 			);
 		});
