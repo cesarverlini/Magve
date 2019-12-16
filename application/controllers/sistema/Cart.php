@@ -25,8 +25,11 @@ class Cart extends CI_Controller{
 		$direccion = $this->input->post('direccion');
 		$costo = $this->input->post('costo');
 		$capacidad = $this->input->post('capacidad');
-		// $descripcion = $this->input->post('descripcion');
-		$descripcion = "alguna descripcion";
+		if ($this->input->post('descripcion') == "") {
+			$descripcion = "";
+		}else{
+			$descripcion = $this->input->post('descripcion');
+		}
 		
         // $product = $this->productModel->find($id);
         // $item = array(

@@ -33,7 +33,7 @@
                                 foreach($locales->locales as $local){
                             ?>
                             <div class="col-md-4">
-                                <div class="card" style="">
+                                <div class="card">
                                     <img src="https://picsum.photos/id/1<?php echo $local->id; ?>/200" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $local->nombre; ?></h5>

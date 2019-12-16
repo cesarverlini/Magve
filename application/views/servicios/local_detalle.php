@@ -46,7 +46,8 @@
 								<input type="text" id="nombre" name="nombre" value="<?php echo $info_local->locales[0]->nombre;?>">							
 								<input type="text" id="direccion" name="direccion" value="<?php echo $info_local->locales[0]->direccion;?>">						
 								<input type="text" id="costo" name="costo" value="<?php echo $info_local->locales[0]->costo;?>">						
-								<input type="text" id="capacidad" name="capacidad" value="<?php echo $info_local->locales[0]->capacidad;?>">						
+								<input type="text" id="capacidad" name="capacidad" value="<?php echo $info_local->locales[0]->capacidad;?>">
+								<input type="text" id="descripcion" name="descripcion" value="">	
 								<!-- <input type="text" id="direccion" name="direccion" value="<?php echo $info_local->locales[0]->descripcion;?>">						 -->
 								<button type="submit" class="btn btn-xs bg-gradient-primary"><i class="fas fa-cart-plus"></i>&nbsp;Agregar al carrito</button>
 							</form>

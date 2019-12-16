@@ -81,13 +81,13 @@
                   </a>
                 </div>
 
-                <!-- PUBLICIDAD -->
+                <!-- DECORACION -->
                 <div class="col-sm-4">
-                  <a href="<?php echo base_url('servicios/publicidad'); ?>">
+                  <a href="<?php echo base_url('servicios/decoracion'); ?>">
                   <div class="invitacion portada position-relative p-3" style="height: 180px">
                     <div class="ribbon-wrapper ribbon-xl">
                       <div class="ribbon bg-info">
-                        Publicidad
+                        Decoracion
                       </div>
                     </div>
                   </div>

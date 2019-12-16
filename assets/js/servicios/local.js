@@ -3,4 +3,4 @@ $('#nombre').hide();
 $('#direccion').hide();
 $('#costo').hide();
 $('#capacidad').hide();
-// $('#descripcion').hide();
+$('#descripcion').hide();

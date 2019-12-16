@@ -24,7 +24,8 @@ class Servicios extends CI_Controller {
             2 => 'fotografia', 
             3 => 'publicidad',
             4 => 'musica',
-            5 => 'banquetes'
+            5 => 'banquetes',
+            6 => 'decoracion'
         );
 
         // Si retorna un número si es vista valida
@@ -44,6 +45,10 @@ class Servicios extends CI_Controller {
             if( $nombre_servicio == 'locales' ){
                 // cargamos la información de la API
                 $data['locales'] = json_decode(file_get_contents(Locales::ver_local()));
+
+            }else  if( $nombre_servicio == 'decoracion' ){
+                // cargamos la información de la API
+                $data['paquetes'] = json_decode(file_get_contents(Decoracion::tabla_paquetes()));
 
             }else{
                 $nombre_servicio = 'servicios_template';
@@ -73,5 +78,5 @@ class Servicios extends CI_Controller {
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/local_detalle.php');
         $this->load->view('adminlte-3.0.1/footer');
-    }
+	}
 }
