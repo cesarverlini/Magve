@@ -11,9 +11,5 @@
             return ($id==null) ? API_Domain::DOMAIN_LOCALES.self::Controller.'local' : 
             API_Domain::DOMAIN_LOCALES.self::Controller.'local/'.$id;
         }
-
-        /*public static function ver_localzz($id=null){
-            return API_Domain::DOMAIN.self::Controller.'local/'.$id;
-        }*/
     }
 ?>

@@ -47,7 +47,7 @@ class Servicios extends CI_Controller {
 
             }else{
                 $nombre_servicio = 'servicios_template';
-                //$data['productos'] = json_decode(file_get_contents($libreria_servicio::main()));
+                $data['paquetes'] = json_decode(file_get_contents($libreria_servicio::tabla_paquetes()));
             }
             
             $this->load->view('adminlte-3.0.1/header', $data);

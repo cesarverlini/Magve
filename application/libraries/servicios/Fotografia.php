@@ -5,6 +5,10 @@
 
     class Fotografia {
 
+        // retorna los paquetes disponibles en fotografía
+        public static function tabla_paquetes(){
+            return API_Domain::DOMAIN_FOTOGRAFIA.'paquetes/tabla_paquetes';
+        }
     }
 
 ?>

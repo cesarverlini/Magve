@@ -27,15 +27,43 @@
                     <div class="card-header">
                         <h3 class="card-title">Paquetes disponibles en <?= $title ?></h3>
                     </div>
-                    <div class="card-body">
-                        <div class="card d-flex flex-direction-column">
-                            <div class="card-body">
-                            <h4>Algo salió mal <i class="fas fa-bug ml-2"></i></h4>
-                                <p>No se ha podido conectar con el proveedo de <span class="text-info"><?= $title; ?></span>.</p>
-                                <p>La conexión no pudo ser establecida o no existe un canal para obtener la información. <a href="<?php echo base_url('servicios'); ?>">Regresar a servicios.</a></p>
+                    <div class="card-body">    
+                            <?php if($paquetes == null){ ?>
+                            <div class="card d-flex flex-direction-column">
+                                <div class="card-body">
+                                    <h4>Algo salió mal <i class="fas fa-bug ml-2"></i></h4>
+                                    <p>No se ha podido conectar con el proveedo de <span class="text-info"><?= $title; ?></span>.</p>
+                                    <p>La conexión no pudo ser establecida o no existe un canal para obtener la información. <a href="<?php echo base_url('servicios'); ?>">Regresar a servicios.</a></p>
+                                </div>
                             </div>
+                            <?php }else{ ?>
+                                <!-- si sí hay paquetes se muestran aqui -->
+                                <?php foreach($paquetes as $pack){ ?>
+                                <div class="card d-flex flex-direction-column">
+                                    <!-- <div class="">
+                                        <h4><?php echo $pack->nombre; ?></h4>
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img src="<?php echo base_url('assets/img/servicios/placeholder.png');?>" width="150" alt="">
+                                        </div>
+                                        <div class="col-md-8 offset-md-1 card-body">
+                                            <h5><?php echo $pack->nombre; ?></h5>
+                                            <p><?php echo $pack->detalles; ?></p>
+                                            <div class="d-block">
+                                                <a href="#">Ver detalles</a>
+                                                &nbsp;|&nbsp;
+                                                <a href="#">Agregar producto</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 card-body" style="display:flex;margin:auto;">
+                                        <h4><span class="text-success">$</span><?php echo $pack->costo; ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
-                    </div>
                     <hr>
                 </div>
             </div>
