@@ -50,6 +50,10 @@ class Servicios extends CI_Controller {
                 // cargamos la información de la API
                 $data['paquetes'] = json_decode(file_get_contents(Decoracion::tabla_paquetes()));
 
+            }else  if( $nombre_servicio == 'reposteria' ){
+                // cargamos la información de la API
+                $data['paquetes'] = json_decode(file_get_contents(Reposteria::tabla_paquetes()));
+
             }else{
                 $nombre_servicio = 'servicios_template';
                 $data['paquetes'] = json_decode(file_get_contents($libreria_servicio::tabla_paquetes()));
@@ -77,6 +81,20 @@ class Servicios extends CI_Controller {
 
         $this->load->view('adminlte-3.0.1/header', $data);
         $this->load->view('servicios/local_detalle.php');
+        $this->load->view('adminlte-3.0.1/footer');
+	}
+
+	public function paquete($id_paquete){
+
+        require(APPPATH.'libraries/servicios/Reposteria.php');
+
+        $data['title'] = 'Detalles de Paquete Reposteria';
+        $data['id_paquete'] = $id_paquete;
+        $data['info_paquete'] = json_decode(file_get_contents(Reposteria::tabla_paquetes($id_paquete)));
+        // libraries -> servicios -> locales -> API_Domain
+
+        $this->load->view('adminlte-3.0.1/header', $data);
+        $this->load->view('servicios/reposteria_detalle.php');
         $this->load->view('adminlte-3.0.1/footer');
 	}
 }

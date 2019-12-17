@@ -19,6 +19,8 @@ $route['servicios'] = 'sistema/servicios';
 $route['servicios/(:any)'] = 'sistema/servicios/vista/$1';
 // servicio local
 $route['servicios/locales/(:num)'] = 'sistema/servicios/local/$1';
+// servicio reposteria
+$route['servicios/paquete/(:num)'] = 'sistema/servicios/paquete/$1';
 
 //carrito ver carrito
 $route['carrito'] = 'sistema/cart';
