@@ -234,7 +234,7 @@ class Cotizaciones extends CI_Controller {
 			}else if ($row->id_proveedor == 3) {		
 				$tipo_servicio = "Reposteria";
 			}else if ($row->id_proveedor == 4) {		
-				$tipo_servicio = "Musica";
+				$tipo_servicio = "Decoracion";
 			}else if ($row->id_proveedor == 5) {	
 				$tipo_servicio = "Fotografia";
 			}else if ($row->id_proveedor == 6) {
@@ -242,6 +242,7 @@ class Cotizaciones extends CI_Controller {
 			}else if ($row->id_proveedor == 7) {
 				$tipo_servicio = "Banquete";
 			}
+
 			$subtotal += $row->subtotal;
 			$pdf->SetWidths(array(12,52.8,52.8,52.8,52.8,52.8));
 			$pdf->Row(array(
