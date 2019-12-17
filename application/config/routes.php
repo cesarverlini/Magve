@@ -25,7 +25,7 @@ $route['servicios/paquete/(:num)'] = 'sistema/servicios/paquete/$1';
 //carrito ver carrito
 $route['carrito'] = 'sistema/cart';
 $route['carrito/comprar/(:num)'] = 'sistema/cart/buy/$1';
-$route['carrito/quitar/(:num)'] = 'sistema/cart/remove/$1';
+$route['carrito/quitar/(:num)/(:num)'] = 'sistema/cart/remove/$1/$2';
 
 //cotizaciones
 $route['cotizacion_pdf/(:num)'] = 'sistema/cotizaciones/cotizacion_pdf/$1';

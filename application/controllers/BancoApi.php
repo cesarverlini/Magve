@@ -25,7 +25,7 @@ class BancoApi extends CI_Controller {
     */
     public static function Transferencia($tc_numero, $tc_nip, $td_numero, $monto, $fecha){
         $data = [
-            'Tarjeta_Origen'=>intval($tc_numero),
+            'Tarjeta_Origen'         => intval($tc_numero),
              'Numeros_Verificadores' => intval($tc_nip),
              'Tarjeta_Destino'       => intval($td_numero),
              'Fecha_Vencimiento'     => $fecha,
@@ -49,7 +49,7 @@ class BancoApi extends CI_Controller {
         curl_close($curl);
         $result = json_decode($result, true);
 
-        // Normalizamos la respuesta a nuestro JS
+        //Normalizamos la respuesta a nuestro JS
         if(isset($result['id_Transaccion'])){
             $respuesta = array(
                 'error' => FALSE,

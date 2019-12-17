@@ -15,6 +15,7 @@ class Historial_model extends CI_Model
 						->from('ventas')
 						->join('clientes','clientes.id = id_cliente')
 						->join('cotizacion','cotizacion.id = id_cotizacion')
+						->order_by('fecha_venta', 'DESC')
 						->get();
 		// $resultados = $this->db->get('ventas');
 		$resultados = $query->result();

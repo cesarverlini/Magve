@@ -35,7 +35,7 @@
                                 <td><?php echo $item['quantity']; ?></td>
                                 <td><?php echo $item['price'] * $item['quantity']; ?></td>
                                 <td align="center">
-                                    <a href="<?php echo site_url('carrito/quitar/'.$item['id']); ?>">X</a>
+                                    <a href="<?php echo site_url('carrito/quitar/'.$item['id'].'/'.$item['id_service']); ?>">X</a>
                                 </td>
                             </tr>
 						<?php } ?>

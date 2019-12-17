@@ -58,8 +58,8 @@ class Ventas extends CI_Controller {
 		
 		$tarjeta = $this->input->post('tarjeta');
 		$nip 	 = $this->input->post('nip');			//cvv
-		$monto   = $this->input->post('monto');
 		$fecha   = $this->input->post('fecha');
+		$monto   = $this->input->post('monto');
 		$destino = 9296838398409083;
 
 		// Llamamos a la API y usamos el metodo transferencia

@@ -83,10 +83,16 @@ $('#finalizarventa').click(function () {
 		tarjeta: $('#tarjeta').val(),
 		nip: $('#nip').val(),
 		monto: $('#monto').val(),
+		fecha: $('#fecha').val()
 	}
+
+	alert(data.fecha);
 
 	// JSON.parse, para poder leer la respuesta
 	var respuesta = JSON.parse(cargar_ajax.run_server_ajax("sistema/ventas/generar_venta", data));
+	//var respuesta = cargar_ajax.run_server_ajax("sistema/ventas/generar_venta", data);
+
+	console.log(respuesta);
 
 	if (!respuesta.error) {
 		Swal.fire({
