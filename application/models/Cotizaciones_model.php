@@ -9,7 +9,7 @@ class Cotizaciones_model extends CI_Model {
     }
 	public function insert_servicios($data) //este lo tenga como prueba
     {
-        $this->db->insert('detalle_cotizacion_venta',$data);
+		$this->db->insert('detalle_cotizacion_venta',$data);
 	}
 	public function insert_clientes($data)
 	{

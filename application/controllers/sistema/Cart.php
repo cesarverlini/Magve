@@ -26,6 +26,7 @@ class Cart extends CI_Controller{
         $servicio     = $this->get_nombre_servicio($id_servicio);
 		$nombre       = $this->input->post('nombre');
 		$costo        = $this->input->post('costo');
+		$descripcion  = $this->input->post('descripcion');
         
         // array a guardar
         $item = array(
@@ -34,6 +35,7 @@ class Cart extends CI_Controller{
 			'service'    => $servicio,
 			'name'       => $nombre,
             'price'      => $costo,
+            'description'=> $descripcion,
             'quantity'   => 1
 		);
 

@@ -45,7 +45,7 @@
 								<input type="text" id="servicio" name="servicio" value="0">							
 								<input type="text" id="nombre" name="nombre" value="<?php echo $info_local->locales[0]->nombre;?>">						
 								<input type="text" id="costo" name="costo" value="<?php echo $info_local->locales[0]->costo;?>">	
-								<!-- <input type="text" id="direccion" name="direccion" value="<?php echo $info_local->locales[0]->descripcion;?>">						 -->
+								<input type="text" id="descripcion" name="descripcion" value="">						
 								<button type="submit" class="btn btn-xs bg-gradient-primary"><i class="fas fa-cart-plus"></i>&nbsp;Agregar al carrito</button>
 							</form>
 								

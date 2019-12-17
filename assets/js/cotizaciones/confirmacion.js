@@ -6,7 +6,6 @@ $('#apellido_m').hide();
 $('#correo').hide();
 $('#telefono').hide();
 
-
 $('#guardar').click(function()
 {
 	var cliente = {
@@ -16,6 +15,7 @@ $('#guardar').click(function()
 		telefono:$('#telefono').val(),
 	}		
 	respuesta = cargar_ajax.run_server_ajax('sistema/cotizaciones/guardar',cliente);					
+	// console.log(respuesta);
 	window.open(base_url+"cotizacion_pdf/"+respuesta, '_blank');
 	Swal.fire({
 		icon: 'success',
@@ -25,7 +25,6 @@ $('#guardar').click(function()
 			  	window.location.href =base_url;
 		}
 	  })
-	// window.location.href =base_url;
-	// console.log(base_url);
+	window.location.href =base_url;
 
 });

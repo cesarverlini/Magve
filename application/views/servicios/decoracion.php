@@ -51,7 +51,7 @@
                                             <h5><?php echo $pack->Servicio_Contratado; ?></h5>
 											<p><?php echo $pack->Descripcion; ?></p>
 											<form action="<?php echo base_url('carrito/comprar/'.$pack->ID_Decoraciones); ?>" method="post">
-												<input type="text" id="servicio" name="servicio" value="Decoraciones" class="esconder">							
+												<input type="text" id="servicio" name="servicio" value="6" class="esconder">							
 												<input type="text" id="nombre" name="nombre" value="<?php echo $pack->Servicio_Contratado;?>" class="esconder">							
 												<input type="text" id="descripcion" name="descripcion" value="<?php echo $pack->Descripcion;?>" class="esconder">						
 												<input type="text" id="costo" name="costo" value="<?php echo $pack->Monto;?>" class="esconder">						

@@ -143,19 +143,21 @@ $(document).ready(function(){
 		
 		// se valida que tipo de producto es
 		$.each(respuesta, function(e,v){
-			if (v.id_proveedor = 2) {
+			if (v.id_proveedor == 2) {
 				$proveedor = "Local";
-			}else if (v.id_proveedor = 3) {
+			}else if (v.id_proveedor == 3) {
 				$proveedor = "Reposteria";
-			}else if (v.id_proveedor = 4) {
-				$proveedor = "Musica";
-			}else if (v.id_proveedor = 5) {
+			}else if (v.id_proveedor == 4) {
+				$proveedor = "Decoracion";
+			}else if (v.id_proveedor == 5) {
 				$proveedor = "Fotografia";
-			}else if (v.id_proveedor = 6) {
+			}else if (v.id_proveedor == 6) {
 				$proveedor = "Imprenta";
-			}else if (v.id_proveedor = 7) {
+			}else if (v.id_proveedor == 7) {
 				$proveedor = "Banquete";
 			}
+			// console.log(v.id_proveedor);
+
 
 			//se rellena la tabla 
 			$('#tblbodyCotizacion').append(

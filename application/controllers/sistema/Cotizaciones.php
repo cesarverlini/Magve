@@ -108,7 +108,7 @@ class Cotizaciones extends CI_Controller {
 				$id_proveedor = 2;	
 			}else if ($value['service'] == "Reposteria") {		
 				$id_proveedor = 3;	
-			}else if ($value['service'] == "Musica") {		
+			}else if ($value['service'] == "Decoracion") {		
 				$id_proveedor = 4;	
 			}else if ($value['service'] == "Fotografia") {	
 				$id_proveedor = 5;	
@@ -116,14 +116,15 @@ class Cotizaciones extends CI_Controller {
 				$id_proveedor = 6;	
 			}else if ($value['service'] == "Banquetes") {
 				$id_proveedor = 7;	
-			}			
-
+			}		
+			// var_dump($value);
+			// echo $id_proveedor;
 			$data = array(
 				'id_cotizacion' => $id_cotizacion,
 				'id_proveedor' => $id_proveedor,
 				'id_producto' => $value['id'],
 				'nombre' => $value['name'],
-				'descripcion' => $value['descripcion'],
+				'descripcion' => $value['description'],
 				'cantidad' => $value['quantity'],
 				'costo' => $value['price'],
 				'subtotal' => intval($value['quantity']) * intval($value['price']),
