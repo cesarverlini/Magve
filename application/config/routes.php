@@ -13,6 +13,9 @@ $route['ventas/cotizacion-venta/(:num)'] = 'sistema/ventas/cotiza_venta/$1';
 $route['ventas/verificar-cotizacion/(:any)'] = 'sistema/check_cotizacion/$1';
 $route['ventas/generar-venta'] = 'sistema/ventas/generar_venta';
 
+//test api locales curl
+$route['curl'] = 'sistema/curl';
+
 // servicios
 $route['servicios'] = 'sistema/servicios';
 // servicios -> carga servicio
