@@ -23,12 +23,13 @@ class BancoApi extends CI_Controller {
     * con esta función vamos a hacer el pago a los proveedores
     * con nuestros datos y los de ellos
     */
-    public static function Transferencia($tc_numero, $tc_nip, $td_numero, $monto){
+    public static function Transferencia($tc_numero, $tc_nip, $td_numero, $monto, $fecha){
         $data = [
             'Tarjeta_Origen'=>intval($tc_numero),
              'Numeros_Verificadores' => intval($tc_nip),
-             'Tarjeta_Destino'=> intval($td_numero), 
-             'Monto'=> intval($monto)
+             'Tarjeta_Destino'       => intval($td_numero),
+             'Fecha_Vencimiento'     => $fecha,
+             'Monto'                 => intval($monto)
         ];
 
         $data_string = json_encode($data);

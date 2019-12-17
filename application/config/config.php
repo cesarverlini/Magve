@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://magve/'; /* virtual host ubuntu */
-// $config['base_url'] = 'http://localhost/magve/'; /* xamp */
-$config['base_url'] = 'http://localhost:8080/magve/'; /* cesar */
+$config['base_url'] = 'http://localhost/magve/'; /* xamp */
+//$config['base_url'] = 'http://localhost:8080/magve/'; /* cesar */
 
 /*
 |--------------------------------------------------------------------------

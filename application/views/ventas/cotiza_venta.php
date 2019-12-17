@@ -44,23 +44,25 @@
                                         <hr class=>
 
                                         <!-- info de tarjeta -->
-                                        <div class="form-group">
-                                            <label for="">Número de tarjeta</label>
-                                            <input type="text" class="form-control" id="tarjeta" name="tarjeta" autocomplete="off">
-                                            <small id="" class="form-text text-muted">16 digitos de tu plastico</small>
-                                        </div>
 
                                         <div class="form-group">
                                             <label for="">Nombre del titular</label>
                                             <input type="text" class="form-control" id="" name="" placeholder="Jhon Doe" autocomplete="off">
                                             <small id="" class="form-text text-muted">Todos los datos son confidenciales</small>
                                         </div>
-                                        
+
+                                        <div class="form-group">
+                                            <label for="">Número de tarjeta</label>
+                                            <input type="text" class="form-control" id="tarjeta" name="tarjeta" autocomplete="off">
+                                            <small id="" class="form-text text-muted">16 digitos de tu plastico</small>
+                                        </div>
+
                                         <div class="row">
                                             
                                             <div class="col-md-6 form-group">
                                                 <label for="">vencimiento</label>
-                                                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="12/22" autocomplete="off">
+                                                <input type="text" class="form-control" id="fecha" name="fecha" placeholder="12/22" autocomplete="off" pattern="[0-9]{2}/[0-9]{2}" title="formato incorrecto" maxlength
+                                                ="5" required>
                                                 <small id="" class="form-text text-muted">Vencimiento del plastico</small>
                                             </div>
 

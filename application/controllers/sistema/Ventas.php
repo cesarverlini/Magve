@@ -57,14 +57,15 @@ class Ventas extends CI_Controller {
 	public function generar_venta(){
 		
 		$tarjeta = $this->input->post('tarjeta');
-		$nip = $this->input->post('nip');			//cvv
-		$monto = $this->input->post('monto');
+		$nip 	 = $this->input->post('nip');			//cvv
+		$monto   = $this->input->post('monto');
+		$fecha   = $this->input->post('fecha');
 		$destino = 9296838398409083;
 
 		// Llamamos a la API y usamos el metodo transferencia
 		require_once(APPPATH.'controllers/BancoApi.php');
 		// guardamos en respuesta el resultado del metodo Transferencia
-		$respuesta = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto);
+		$respuesta = BancoApi::Transferencia($tarjeta, $nip, $destino, $monto, $fecha);
 		// Regresamos con echo la respuesta al metodo AJAX
 		echo json_encode($respuesta);
 	}
