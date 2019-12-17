@@ -42,13 +42,18 @@ class Servicios extends CI_Controller {
             * Banquetes     Música      Repostería
             */
 
+            // API NUESTRA
             if( $nombre_servicio == 'locales' ){
                 // cargamos la información de la API
                 $data['locales'] = json_decode(file_get_contents(Locales::ver_local()));
 
-            }else  if( $nombre_servicio == 'decoracion' ){
+            }else  if( $nombre_servicio == 'decoracion' ){ //API ALAIN
                 // cargamos la información de la API
                 $data['paquetes'] = json_decode(file_get_contents(Decoracion::tabla_paquetes()));
+
+            }else  if( $nombre_servicio == 'fotografia' ){ // "API" TAPIA
+                // cargamos la información de la API
+                $data['paquetes'] = json_decode(file_get_contents(Fotografia::tabla_paquetes()));
 
             }else{
                 $nombre_servicio = 'servicios_template';
