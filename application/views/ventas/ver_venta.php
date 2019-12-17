@@ -28,6 +28,8 @@
 									</div>	
 									<div class="col-md-12">
 										<p><strong>Telefono</strong>: <span class="text-muted"><?php echo $venta->telefono; ?></span></p>
+									</div>	<div class="col-md-12">
+										<p><strong>Numero de Transaccion</strong>: <span class="text-muted"><?php echo $venta->numero_transaccion; ?></span></p>
 									</div>								
 								</div>							
 							<!-- <div class="row">	

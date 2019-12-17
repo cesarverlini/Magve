@@ -21,6 +21,7 @@
 											<th>Folio</th>
 											<th>Fecha de venta</th>
 											<th>Total</th>
+											<th style="width: 150px" hidden>Numero de Transaccion</th>
 											<th>Detalle</th>
 											<th>PDF</th>
 										</tr>
@@ -34,6 +35,7 @@
 												<td><?php echo $venta->folio; ?></td>												
 												<td><?php echo date('Y-m-d', strtotime($venta->fecha_venta)) ?></td>												
 												<td><?php echo $venta->total; ?></td>												
+												<td hidden><?php echo $venta->numero_transaccion; ?></td>
 												<td>
 													<div style="text-align: center;">
 														<a href="<?php echo base_url('ver_venta/'.$venta->id)?>" class="btn btn-primary"><span class="fa fa-eye"></span></a>													
