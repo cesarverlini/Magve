@@ -11,7 +11,7 @@ class Historial_model extends CI_Model
 
 	public function get_ventas()
 	{
-		$query = $this->db->select('ventas.id, clientes.nombre_completo, cotizacion.folio, ventas.fecha_venta, ventas.total, ventas.numero_transaccion')
+		$query = $this->db->select('ventas.id, clientes.nombre_completo, cotizacion.folio, ventas.fecha_venta, cotizacion.total, ventas.numero_transaccion')
 						->from('ventas')
 						->join('clientes','clientes.id = id_cliente')
 						->join('cotizacion','cotizacion.id = id_cotizacion')
